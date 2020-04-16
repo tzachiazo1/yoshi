@@ -138,15 +138,15 @@ http://www.mydomain.com
 Rendering EJS templates should be done by importing and calling render(). It accepts a template name and data, looks for it in src/templates, and returns the resulting HTML:
 
 ```js
-import { render } from "yoshi-server";
+import { render, route } from "yoshi-server";
 
-export default async function() {
+export default route(async function() {
   const html = await render("app", {
     title: "hello world"
   });
 
   return html;
-}
+});
 ```
 
 #### context (this)
