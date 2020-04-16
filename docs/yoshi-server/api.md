@@ -1,4 +1,4 @@
-## Yoshi Server
+# Yoshi Server
 
 Currently, setting up a simple [Node Platform](https://github.com/wix-platform/wix-node-platform) server requires a lot boilerplate: Setting up an [index.js](https://github.com/wix/yoshi/blob/master/packages/create-yoshi-app/templates/fullstack/javascript/index.js), [index-dev.js](https://github.com/wix/yoshi/blob/master/packages/create-yoshi-app/templates/fullstack/javascript/index-dev.js), [environment.js](https://github.com/wix/yoshi/blob/master/packages/create-yoshi-app/templates/fullstack/javascript/environment.js) and a somewhat complex [src/server.js](https://github.com/wix/yoshi/blob/master/packages/create-yoshi-app/templates/fullstack/javascript/src/server.js). We generate a lot of files that we don't expect developers to change or understand.
 
@@ -25,9 +25,9 @@ With `yoshi-server`, we take a step closer to including a runtime framework alon
 npn install yoshi-server yoshi-server-client
 ```
 
-### Usage
+# API
 
-### Server functions
+## Server functions
 
 Server functions are defined as named exports from files with an `*.api.[j|t]s` extension:
 
@@ -42,7 +42,7 @@ export const greeting = method(function(name: string) {
 });
 ```
 
-##### context (this)
+#### context (this)
 
 Our context exposes the following properties:
 
@@ -51,7 +51,7 @@ Our context exposes the following properties:
 - initData: An object returned from a `src/init-server.[j|t]s` file. This data is usefull when you need to read / fetch data on server initialization (for example, read a configuration file).
 - context: [wix-bootstrap-ng](https://github.com/wix-platform/wix-node-platform)'s [context](https://github.com/wix-platform/wix-node-platform/tree/master/bootstrap/wix-bootstrap-ng#context) object.
 
-##### method
+#### method
 
 `method` is a helper function used to add typing for our context (this). This will work both in Javascript and Typescript code.
 
@@ -69,7 +69,7 @@ export const greeting = method(function(age: number) {
 });
 ```
 
-### Invoking a server function from the client
+## Invoking a server function from the client
 
 Server functions can be invoked from the client by importing a server function and calling it with arguments. This will trigger an HTTP request to an endpoint on the server that will run the function with the correct arguments and return its response:
 
@@ -84,15 +84,14 @@ client.request(greet, "John").then(data => {
 });
 ```
 
-### Route functions
+## Route functions
 
 Since server functions are consumed from the client, we'll use route functions to expose routes to the outside world. Route functions are similar to server functions and support expressing routes (along with URL parameters) via the filesystem:
 
-- Files in `src/routes` will be mapped to a route on the server with a URL that matches the filesystem. For example, `src/routes/users/create.js` will translate into `/users/create`.
-- Named parameters can be used by wrapping the filename or directory name with `[]` and are available to the route function as `this.params`. For example: `src/routes/users/[pid].js` will map into `/users/:pid`.
-- Similar to server functions, route files export a single function that returns a response and they can access [Express's](http://expressjs.com) request and response objects from the function context. It's recommended to also wrap them with `route` for type completions:
+Files in `src/routes` will be mapped to a route on the server with a URL that matches the filesystem. For example, `src/routes/users/create.js` will translate into `/users/create`.
 
 ```js
+//src/routes/app.js
 import { route } from "yoshi-server";
 
 export default route(async function() {
@@ -102,31 +101,37 @@ export default route(async function() {
 });
 ```
 
-##### context (this)
+We can then call this route on:
 
-Our context exposes the following properties:
+http://www.mydomain.com/app
 
-- req: [Express's](http://expressjs.com) request object
-- res: [Express's](http://expressjs.com) response object
-- initData: An object returned from a `src/init-server.[j|t]s` file. This data is usefull when you need to read / fetch data on server initialization (for example, read a configuration file).
-- context: [wix-bootstrap-ng](https://github.com/wix-platform/wix-node-platform)'s [context](https://github.com/wix-platform/wix-node-platform/tree/master/bootstrap/wix-bootstrap-ng#context) object.
+#### Route with params
 
-##### method
-
-`method` is a helper function used to add typing for our context (this). This will work both in Javascript and Typescript code.
+Named parameters can be used by wrapping the filename or directory name with `[]` and are available to the route function as `this.params`. For example: `src/routes/users/[userid].js` will map into `/users/:userid`:
 
 ```js
+//src/routes/users/[userid].js
 import { route } from "yoshi-server";
 
 export default route(async function() {
-  // Adds type completions for `this`
-  console.log(this.req);
-
   return {
-    name: "world!"
+    data: `hello ${this.params.userid}`
   };
 });
 ```
+
+We can then call this route on:
+
+http://www.mydomain.com/users/123
+
+#### Default route
+
+Default route ('/') can be used by adding an `index.[j|t]s` file:
+`//src/routes/index.js`
+
+You will then be able to access it on:
+
+http://www.mydomain.com
 
 #### Rendering an `ejs` template from a route
 
@@ -142,4 +147,30 @@ export default async function() {
 
   return html;
 }
+```
+
+#### context (this)
+
+Our context exposes the following properties:
+
+- req: [Express's](http://expressjs.com) request object
+- res: [Express's](http://expressjs.com) response object
+- initData: An object returned from a `src/init-server.[j|t]s` file. This data is usefull when you need to read / fetch data on server initialization (for example, read a configuration file).
+- context: [wix-bootstrap-ng](https://github.com/wix-platform/wix-node-platform)'s [context](https://github.com/wix-platform/wix-node-platform/tree/master/bootstrap/wix-bootstrap-ng#context) object.
+
+#### route
+
+`route` is a helper function used to add typing for our context (this). This will work both in Javascript and Typescript code.
+
+```js
+import { route } from "yoshi-server";
+
+export default route(async function() {
+  // Adds type completions for `this`
+  console.log(this.req);
+
+  return {
+    name: "world!"
+  };
+});
 ```
