@@ -101,3 +101,45 @@ export default route(async function() {
   };
 });
 ```
+
+##### context (this)
+
+Our context exposes the following properties:
+
+- req: [Express's](http://expressjs.com) request object
+- res: [Express's](http://expressjs.com) response object
+- initData: An object returned from a `src/init-server.[j|t]s` file. This data is usefull when you need to read / fetch data on server initialization (for example, read a configuration file).
+- context: [wix-bootstrap-ng](https://github.com/wix-platform/wix-node-platform)'s [context](https://github.com/wix-platform/wix-node-platform/tree/master/bootstrap/wix-bootstrap-ng#context) object.
+
+##### method
+
+`method` is a helper function used to add typing for our context (this). This will work both in Javascript and Typescript code.
+
+```js
+import { route } from "yoshi-server";
+
+export default route(async function() {
+  // Adds type completions for `this`
+  console.log(this.req);
+
+  return {
+    name: "world!"
+  };
+});
+```
+
+#### Rendering an `ejs` template from a route
+
+Rendering EJS templates should be done by importing and calling render(). It accepts a template name and data, looks for it in src/templates, and returns the resulting HTML:
+
+```js
+import { render } from "yoshi-server";
+
+export default async function() {
+  const html = await render("app", {
+    title: "hello world"
+  });
+
+  return html;
+}
+```
