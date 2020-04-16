@@ -22,7 +22,7 @@ With `yoshi-server`, we take a step closer to including a runtime framework alon
 ### Installation
 
 ```
-npn install yoshi-server yoshi-server-client
+npm install yoshi-server yoshi-server-client
 ```
 
 ### Setup
