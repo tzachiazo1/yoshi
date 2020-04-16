@@ -44,11 +44,39 @@ There are two ways for adding Yoshi Server to handle requests:
 
 - Using `yoshi-server/bootstrap`:
 
-  //TBD
+  Change your `index.js` file to be:
 
-- Using a custom server:
+  ```js
+  require("yoshi-server/bootstrap");
+  ```
 
-  //TBD
+  or, alternatively, remove your `index.js` file and add to your `package.json`:
+
+  ```json
+  "main": "yoshi-server/bootstrap"
+  ```
+
+- Using a custom server (your custom express function can add custom middleware and routing and eventually delegate to yoshi-server).
+  This method is usefull for gradual migration or if you need custom middleware, routing, db connection etc.
+
+  ```js
+  //server.[j|t]s
+  import Server from "yoshi-server";
+
+  export default async (app, context) => {
+    const server = await Server.create(context);
+
+    // Use custom middleware, routing, db connection
+    // or even mount `yoshi-server` on a different path
+    app.get("/foo", (req, res) => {
+      res.send("bar");
+    });
+
+    app.all("*", server.handle);
+
+    return app;
+  };
+  ```
 
 # API
 
@@ -203,3 +231,7 @@ export default route(async function() {
 ## Middlewares
 
 // TBD
+
+## Errors
+
+## HMR
