@@ -25,6 +25,31 @@ With `yoshi-server`, we take a step closer to including a runtime framework alon
 npn install yoshi-server yoshi-server-client
 ```
 
+### Setup
+
+##### Update your Yoshi Config:
+
+```diff
+"yoshi": {
+  "projectType": "app",
++  "experimentalBuildHtml": true, // needed only if you have a server which is rendering an `ejs` file
++  "yoshiServer": true,
+...
+}
+```
+
+##### Set your server to handle requests
+
+There are two ways for adding Yoshi Server to handle requests:
+
+- Using `yoshi-server/bootstrap`:
+
+  //TBD
+
+- Using a custom server:
+
+  //TBD
+
 # API
 
 ## Server functions
@@ -174,3 +199,7 @@ export default route(async function() {
   };
 });
 ```
+
+## Middlewares
+
+// TBD
