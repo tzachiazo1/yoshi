@@ -234,4 +234,16 @@ export default route(async function() {
 
 ## Errors
 
+// TBD
+
 ## HMR
+
+// TBD
+
+## Testing
+
+// TBD
+
+## React API for client server invokation
+
+// TBD
