@@ -1,7 +1,12 @@
 import path from 'path';
 import globby from 'globby';
-import { getProjectArtifactId } from 'yoshi-helpers/build/utils';
 import { watch } from 'chokidar';
+import {
+  readConfig,
+  readExportedComponentConfig,
+  readMethodConfig,
+  readPageConfig,
+} from './config';
 
 export interface ExportedComponentModel {
   componentId: string;
@@ -22,15 +27,15 @@ export interface FlowBMModel {
   methods: Array<MethodModel>;
   moduleInitPath?: string;
   localePath: string;
-  moduleConfig: any;
 }
 
 const exts = '{js,jsx,ts,tsx}';
-const pagesPattern = `src/pages/**/*.${exts}`;
+const pagesDir = 'src/pages';
+const pagesPattern = `${pagesDir}/**/*.${exts}`;
 const componentsPattern = `src/exported-components/**/*.${exts}`;
 const methodsPattern = `src/methods/**/*.${exts}`;
 const moduleInitPattern = `src/moduleInit.${exts}`;
-const translationsPattern = 'translations';
+const translationsDir = 'translations';
 
 export default function createFlowBMModel(cwd = process.cwd()): FlowBMModel {
   const globFiles = (pattern: string) =>
@@ -44,38 +49,52 @@ export default function createFlowBMModel(cwd = process.cwd()): FlowBMModel {
       expandDirectories: false,
     });
 
-  const moduleId = getProjectArtifactId(cwd)!;
+  const config = readConfig(cwd);
 
-  const pages = globFiles(pagesPattern).map(pagePath => ({
-    componentId: `${moduleId}.pages.${path.parse(pagePath).name}`,
+  const getPageModel = (pagePath: string): PageModel => ({
+    ...readPageConfig(config, pagePath),
     componentPath: pagePath,
-    route: '', // TODO: Deferred to the "render ERB" feature, unnecessary until then
-  }));
+    route: path.join(
+      config.routeNamespace,
+      ...path
+        .relative(pagesDir, pagePath)
+        .split(path.delimiter)
+        .slice(0, -1),
+      name !== 'index' ? name : '',
+    ),
+  });
+
+  const getExportedComponentModel = (
+    componentPath: string,
+  ): ExportedComponentModel => ({
+    ...readExportedComponentConfig(config, componentPath),
+    componentPath,
+  });
+
+  const getMethodModel = (methodPath: string): MethodModel => ({
+    ...readMethodConfig(config, methodPath),
+    methodPath,
+  });
+
+  const pagesDir = path.join(cwd, 'src/pages');
+
+  const pages = globFiles(pagesPattern).map(getPageModel);
 
   const exportedComponents = globFiles(componentsPattern).map(
-    componentPath => ({
-      componentId: `${moduleId}.exported-components.${
-        path.parse(componentPath).name
-      }`,
-      componentPath,
-    }),
+    getExportedComponentModel,
   );
 
-  const methods = globFiles(methodsPattern).map(methodPath => ({
-    methodId: `${moduleId}.methods.${path.parse(methodPath).name}`,
-    methodPath,
-  }));
+  const methods = globFiles(methodsPattern).map(getMethodModel);
 
   const [moduleInitPath] = globFiles(moduleInitPattern);
-  const [localePath] = globDirs(translationsPattern);
+  const [localePath] = globDirs(translationsDir);
 
   return {
-    moduleId,
+    moduleId: config.moduleId,
     pages,
     exportedComponents,
     methods,
     localePath,
-    moduleConfig: {},
     moduleInitPath,
   };
 }
@@ -90,7 +109,7 @@ export function watchFlowBMModel(
       componentsPattern,
       methodsPattern,
       moduleInitPattern,
-      translationsPattern,
+      translationsDir,
     ],
     {
       cwd,
