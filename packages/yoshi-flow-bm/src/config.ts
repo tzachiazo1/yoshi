@@ -16,7 +16,7 @@ function readJson(jsonPath: string): Record<string, any> {
 export function readConfig(cwd = process.cwd()): FlowBMConfig {
   return {
     moduleId: getProjectArtifactId(cwd)!,
-    routeNamespace: '/',
+    routeNamespace: '',
     ...readJson(path.resolve(cwd, configPath)),
   };
 }

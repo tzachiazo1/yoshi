@@ -51,18 +51,22 @@ export default function createFlowBMModel(cwd = process.cwd()): FlowBMModel {
 
   const config = readConfig(cwd);
 
-  const getPageModel = (pagePath: string): PageModel => ({
-    ...readPageConfig(config, pagePath),
-    componentPath: pagePath,
-    route: path.join(
-      config.routeNamespace,
-      ...path
-        .relative(pagesDir, pagePath)
-        .split(path.delimiter)
-        .slice(0, -1),
-      name !== 'index' ? name : '',
-    ),
-  });
+  const getPageModel = (pagePath: string): PageModel => {
+    const { name } = path.parse(pagePath);
+
+    return {
+      ...readPageConfig(config, pagePath),
+      componentPath: pagePath,
+      route: path.join(
+        config.routeNamespace,
+        ...path
+          .relative(pagesDir, pagePath)
+          .split(path.delimiter)
+          .slice(0, -1),
+        name !== 'index' ? name : '',
+      ),
+    };
+  };
 
   const getExportedComponentModel = (
     componentPath: string,
