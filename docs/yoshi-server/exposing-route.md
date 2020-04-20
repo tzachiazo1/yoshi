@@ -44,6 +44,10 @@ We can then call this route on:
 
 http://www.mydomain.com/users/123
 
+_Note_: You can have multiple params (all available under `this.params`):
+
+`//src/routes/users/[userid]/apps/[appid].js` -> http://www.mydomain.com/users/123/apps/myAppId
+
 #### Default route
 
 Default route ('/') can be used by adding an `index.[j|t]s` file:
@@ -76,6 +80,7 @@ Our context exposes the following properties:
 - req: [Express's](http://expressjs.com) request object
 - res: [Express's](http://expressjs.com) response object
 - initData: An object returned from a `src/init-server.[j|t]s` file. This data is usefull when you need to read / fetch data on server initialization (for example, read a configuration file).
+- params: a key value dictionary of url params.
 - context: [wix-bootstrap-ng](https://github.com/wix-platform/wix-node-platform)'s [context](https://github.com/wix-platform/wix-node-platform/tree/master/bootstrap/wix-bootstrap-ng#context) object.
 
 #### route
