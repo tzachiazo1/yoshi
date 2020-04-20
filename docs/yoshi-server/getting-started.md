@@ -1,3 +1,9 @@
+---
+id: getting-started
+title: Getting Started
+sidebar_label: Getting Started
+---
+
 # Getting Started
 
 Setting a Yoshi Server for a new project is pretty straightforward. If you want to migrate an existing project, please take a look at Migrating to Yoshi Server (TBD).
