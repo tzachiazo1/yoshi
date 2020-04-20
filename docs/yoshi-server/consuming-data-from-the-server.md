@@ -6,9 +6,11 @@ sidebar_label: Consuming Data from the Server
 
 # Consuming Data from the Server
 
+Yoshi Server adds an abstraction over client server communication, using conventions.
+
 ### Server functions
 
-Server functions are defined as named exports from files with an `*.api.[j|t]s` extension:
+Server functions are meant to expose api endpoints to our client, and are defined as named exports from files with an `*.api.[j|t]s` extension:
 
 ```js
 import { method } from "yoshi-server";
@@ -62,3 +64,5 @@ client.request(greet, "John").then(data => {
   console.log(data.name);
 });
 ```
+
+When using Typescript, the response and the request arguments are fully typed!
