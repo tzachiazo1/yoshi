@@ -10,14 +10,12 @@ With `yoshi-server`, we take a step closer to including a runtime framework alon
 - Abstract the communication between the client and its server.
 - Improve the developer experience with type completions for client-server interactions.
 - Show clear error messages from the server in both, the terminal and the browser.
-- Minimize the differences between full-stack and client projects.
 - Make it easier for us to make non-breaking changes in the future.
 
 ### Prerequisits
 
 - A fullstack app (both server and client are together, using the same `package.json` file).
 - We currently support only projects using the `app-flow` ("projectType": "app" in your Yoshi configuration). If you do not it, please migrate first (see https://wix.github.io/yoshi/docs/guides/app-flow for more details)
-- If you have a server which is rendering an `ejs` file, you will have to use the `htmlWebpackPlugin` ("experimentalBuildHtml": true in your Yoshi configuration). Do not worry, if you are not using it, yet, this migration guide shows how to migrate. This should be pretty straight forward.
 
 ### Installation
 
@@ -32,7 +30,6 @@ npm install yoshi-server yoshi-server-client
 ```diff
 "yoshi": {
   "projectType": "app",
-+  "experimentalBuildHtml": true, // needed only if you have a server which is rendering an `ejs` file
 +  "yoshiServer": true,
 ...
 }
@@ -48,34 +45,6 @@ There are two ways for adding Yoshi Server to handle requests:
 
   ```js
   require("yoshi-server/bootstrap");
-  ```
-
-  or, alternatively, remove your `index.js` file and add to your `package.json`:
-
-  ```json
-  "main": "yoshi-server/bootstrap"
-  ```
-
-- Using a custom server (your custom express function can add custom middleware and routing and eventually delegate to yoshi-server).
-  This method is usefull for gradual migration or if you need custom middleware, routing, db connection etc.
-
-  ```js
-  //server.[j|t]s
-  import Server from "yoshi-server";
-
-  export default async (app, context) => {
-    const server = await Server.create(context);
-
-    // Use custom middleware, routing, db connection
-    // or even mount `yoshi-server` on a different path
-    app.get("/foo", (req, res) => {
-      res.send("bar");
-    });
-
-    app.all("*", server.handle);
-
-    return app;
-  };
   ```
 
 # API
