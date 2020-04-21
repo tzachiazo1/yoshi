@@ -59,13 +59,13 @@ http://www.mydomain.com
 
 #### Rendering an `ejs` template from a route
 
-Rendering EJS templates should be done by importing and calling render(). It accepts a template name and data, looks for it in src/templates, and returns the resulting HTML:
+Rendering EJS templates can be done by calling the renderView() function. It accepts the `response` object, a template path and the data, and will render the template.
 
 ```js
-import { render, route } from "yoshi-server";
+import { renderView, route } from "yoshi-server";
 
 export default route(async function() {
-  const html = await render("app", {
+  renderView(this.res, "app", {
     title: "hello world"
   });
 

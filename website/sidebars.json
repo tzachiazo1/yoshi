@@ -35,6 +35,7 @@
       "yoshi-server/react-binding",
       "yoshi-server/initializing-server-data",
       "yoshi-server/built-in-middleware",
+      "yoshi-server/custom-server",
       "yoshi-server/why-yoshi-server"
     ],
     "Migration": [
