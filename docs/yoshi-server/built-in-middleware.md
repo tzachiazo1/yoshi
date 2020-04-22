@@ -6,7 +6,7 @@ sidebar_label: Built-in Middleware
 
 # Built-in Middleware
 
-We wrapped some common middleares (for now the `bo-auth` and `require-login`), so it can be used as a promises:
+We wrapped some common middleares (for now the [`bo-auth`](https://github.com/wix-platform/wix-node-platform/tree/master/bootstrap-plugins/bo-auth) and [`require-login`](https://github.com/wix-platform/wix-node-platform/tree/master/bootstrap/wix-bootstrap-require-login)), so it can be used as a promises:
 
 ```js
 import * as boAuth from "yoshi-server/build/bo-auth";
