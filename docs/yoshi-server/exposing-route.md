@@ -81,8 +81,8 @@ Our context exposes the following properties:
 - res ([express.Response](https://github.com/types/express/blob/master/lib/response.d.ts)): [Express's](http://expressjs.com) response object
 - initData (any): An object returned from a `src/init-server.[j|t]s` file. This data is usefull when you need to read / fetch data on server initialization (for example, read a configuration file).
 - params ({ [param: string]: any }): a key value dictionary of url params.
-- context: [wix-bootstrap-ng](https://github.com/wix-platform/wix-node-platform)'s [context](https://github.com/wix-platform/wix-node-platform/tree/master/bootstrap/wix-bootstrap-ng#context) object.
-- config: an object containg the project's `.erb` configuration file. Loading this object is done by convention, assuming the `.erb` file will be called the same as the project's name in `package.json` (stripping organization name, if exists). For example:
+- context (BootstrapContext): [wix-bootstrap-ng](https://github.com/wix-platform/wix-node-platform)'s [context](https://github.com/wix-platform/wix-node-platform/tree/master/bootstrap/wix-bootstrap-ng#context) object.
+- config (any): an object containg the project's `.erb` configuration file. Loading this object is done by convention, assuming the `.erb` file will be called the same as the project's name in `package.json` (stripping organization name, if exists). For example:
 
   ```json
   //package.json
