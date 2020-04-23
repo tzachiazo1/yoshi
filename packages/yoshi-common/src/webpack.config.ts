@@ -64,7 +64,7 @@ const customAnalyzerPort: number | null = process.env.ANALYZE_PORT
   ? Number(process.env.ANALYZE_PORT)
   : null;
 
-const reScript = /\.js?$/;
+const reScript = /\.(js|mjs)$/;
 const reStyle = /\.(css|less|scss|sass)$/;
 const reAssets = /\.(png|jpg|jpeg|gif|woff|woff2|ttf|otf|eot|wav|mp3)$/;
 
