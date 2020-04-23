@@ -6,24 +6,20 @@ sidebar_label: Getting Started
 
 # Getting Started
 
-Setting a Yoshi Server for a new project is pretty straightforward. If you want to migrate an existing project, please take a look at Migrating to Yoshi Server (TBD).
+## Setup
 
-If you are generating a fullstack project using the [Create Yoshi App](https://wix.github.io/yoshi/docs/getting-started/create-app), the Yoshi Server setup is already done for you.
-
-### Prerequisits
-
-- A fullstack app (both server and client are together, using the same `package.json` file).
-- We currently support only projects using the `app-flow` ("projectType": "app" in your Yoshi configuration). If you do not use it, please migrate first (see https://wix.github.io/yoshi/docs/guides/app-flow for more details)
-
-### Setup
-
-We recommend creating a new Yoshi Server app using the [`create-yoshi-app`](). It will be available for both Fullstack and Business Manager apps.
+We recommend creating a new Yoshi Server app using the [`create-yoshi-app`](https://wix.github.io/yoshi/docs/getting-started/create-app). It will be available for both Fullstack and Business Manager apps.
 
 ```bash
 npx create-yoshi-app my-app-name
 ```
 
-### Manual Setup
+## Manual Setup
+
+##### Prerequisits
+
+- A fullstack app (both server and client are together, using the same `package.json` file).
+- We currently support only projects using the `app-flow` ("projectType": "app" in your Yoshi configuration). If you do not use it, please migrate first (see https://wix.github.io/yoshi/docs/guides/app-flow for more details)
 
 Install `yoshi-server` and `yoshi-server-client`:
 
@@ -51,9 +47,9 @@ require("yoshi-server/bootstrap");
 
 Now you are ready to add your first Yoshi Server function.
 
-### Adding your first Yoshi Server function
+## Adding your first Yoshi Server function
 
-Yoshi Server is built on conventions. Files with `.api.js` ot `.api.ts` with named export functions will be treated as [server functions]().
+> Yoshi Server is built on conventions. Files with `.api.js` or `.api.ts` extention with named export functions will be treated as [server functions]().
 
 Add a `greeting.api.ts` file to your project (if your project is in Javascript, use `.js` for all examples):
 
@@ -68,7 +64,7 @@ export const greeting = method(function(name: string) {
 });
 ```
 
-Now that we have our first server function, let's consume this data from our client code.
+Now that we have our first server function (`greeting`), let's consume the data from our client code.
 
 Let's initialize `yoshi-server-client` in our main `client.ts` file, and pass it as a prop to our components:
 
