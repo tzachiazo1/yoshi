@@ -119,6 +119,8 @@ If you run `npx yoshi start` you will see `hello world` as the title.
 
 - `yoshi-server-client` is triggering xhr calls behind the scenes.
 - `yoshi-server` will have one endpoint, `_api_` (open devtools and you will be able to see it). All requests are done as `post` requests, with data about the function that we want to call and the arguments.
--
+- If you are using Typescript, server arguments and response are typed!
 
 #### What's next?
+
+Go to [consuming-data-from-the-server]() and get a deeper understanding of how things work.

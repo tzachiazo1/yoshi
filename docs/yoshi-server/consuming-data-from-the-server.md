@@ -23,9 +23,42 @@ export const greeting = method(function(name: string) {
 });
 ```
 
+Youe server function can be invoked from the client by importing a server function and calling it with arguments. This will trigger an HTTP request to an endpoint on the server that will run the function with the correct arguments and return its response:
+
+```js
+import HttpClient from "yoshi-server-client";
+import { greet } from "./greeting.api";
+
+const client = new HttpClient({ baseUrl: "http://wix.com" });
+
+client.request(greet, "John").then(data => {
+  console.log(data.name);
+});
+```
+
+When using Typescript, the response and the request arguments are fully typed!
+
+#### method
+
+`method` is a helper function used to add typing for our context (this). This will work both in Javascript and Typescript code.
+
+```js
+import { method } from "yoshi-server";
+
+export const greeting = method(function(age: number) {
+  // Adds type completions for `this`
+  console.log(this.req);
+
+  return {
+    name: `world! ${age}`,
+    age
+  };
+});
+```
+
 #### context (this)
 
-Our context exposes the following properties:
+If you need to access data (such as request, response, Bootstrap Context and more) from your server function, these are the values that are available on context (this):
 
 | name     | type                                                                      | description                                                                                                                                                                                                                                                  |
 | -------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -59,38 +92,3 @@ And anywhere in your route / api functions:
 ```
 console.log(this.config.hello); //logs 'world'
 ```
-
-#### method
-
-`method` is a helper function used to add typing for our context (this). This will work both in Javascript and Typescript code.
-
-```js
-import { method } from "yoshi-server";
-
-export const greeting = method(function(age: number) {
-  // Adds type completions for `this`
-  console.log(this.req);
-
-  return {
-    name: `world! ${age}`,
-    age
-  };
-});
-```
-
-## Invoking a server function from the client
-
-Server functions can be invoked from the client by importing a server function and calling it with arguments. This will trigger an HTTP request to an endpoint on the server that will run the function with the correct arguments and return its response:
-
-```js
-import HttpClient from "yoshi-server-client";
-import { greet } from "./greeting.api";
-
-const client = new HttpClient({ baseUrl: "http://wix.com" });
-
-client.request(greet, "John").then(data => {
-  console.log(data.name);
-});
-```
-
-When using Typescript, the response and the request arguments are fully typed!
