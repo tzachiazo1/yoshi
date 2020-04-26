@@ -66,50 +66,15 @@ export const greeting = method(function(name: string) {
 
 Now that we have our first server function (`greeting`), let's consume the data from our client code.
 
-Let's initialize `yoshi-server-client` in our main `client.ts` file, and pass it as a prop to our components:
-
 ```js
-import React from "react";
-import ReactDOM from "react-dom";
 import HttpClient from "yoshi-server-client";
-import Component from "./component";
+import { greet } from "./greeting.api";
 
-const client = new HttpClient({ baseUrl: "http://localhost:3000" });
+const client = new HttpClient({ baseUrl: "http://wix.com" });
 
-ReactDOM.render(
-  <Component httpClient={client} />,
-  document.getElementById("root")
-);
-```
-
-Now we import our server function and call it using a `httpClient.request` request:
-
-```js
-// component.tsx
-import React from "react";
-import { HttpClient } from "yoshi-server-client";
-import { greet } from "./api/greeting.api";
-
-interface PropsType {
-  httpClient: HttpClient;
-}
-
-export default class App extends React.Component<PropsType> {
-  state = { text: "" };
-  async componentDidMount() {
-    const { httpClient } = this.props;
-    const result = await httpClient.request({ method: greet, args: ["world"] });
-    this.setState({ text: result.greeting });
-  }
-
-  render() {
-    return (
-      <div>
-        <h2 id="my-text">{this.state.text}</h2>
-      </div>
-    );
-  }
-}
+client.request(greet, "John").then(data => {
+  console.log(data.name);
+});
 ```
 
 That's it!

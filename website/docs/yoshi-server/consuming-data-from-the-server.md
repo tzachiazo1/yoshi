@@ -23,17 +23,52 @@ export const greeting = method(function(name: string) {
 });
 ```
 
-Server functions can be invoked from the client by importing a server function and calling it with arguments:
+Server functions can be invoked from the client by importing a server function and calling it with arguments.
+
+Let's initialize `yoshi-server-client` in our main `client.ts` file, and pass it as a prop to our components:
 
 ```js
+import React from "react";
+import ReactDOM from "react-dom";
 import HttpClient from "yoshi-server-client";
-import { greet } from "./greeting.api";
+import Component from "./component";
 
-const client = new HttpClient({ baseUrl: "http://wix.com" });
+const client = new HttpClient({ baseUrl: "http://localhost:3000" });
 
-client.request(greet, "John").then(data => {
-  console.log(data.name);
-});
+ReactDOM.render(
+  <Component httpClient={client} />,
+  document.getElementById("root")
+);
+```
+
+Now we import our server function and call it using a `httpClient.request` request:
+
+```js
+// component.tsx
+import React from "react";
+import { HttpClient } from "yoshi-server-client";
+import { greet } from "./api/greeting.api";
+
+interface PropsType {
+  httpClient: HttpClient;
+}
+
+export default class App extends React.Component<PropsType> {
+  state = { text: "" };
+  async componentDidMount() {
+    const { httpClient } = this.props;
+    const result = await httpClient.request({ method: greet, args: ["world"] });
+    this.setState({ text: result.greeting });
+  }
+
+  render() {
+    return (
+      <div>
+        <h2 id="my-text">{this.state.text}</h2>
+      </div>
+    );
+  }
+}
 ```
 
 How does it work?
@@ -44,6 +79,10 @@ How does it work?
 - When using Typescript, the response and the request arguments are fully typed!
 
 ### API
+
+#### React API
+
+Instead of passing `httpClient` all over, consider using the [React Binding]().
 
 #### method
 
