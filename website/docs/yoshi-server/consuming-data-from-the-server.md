@@ -38,11 +38,12 @@ client.request(greet, "John").then(data => {
 
 How does it work?
 
-- Importing a server function:
-  - We have a Webpack loader that will return only an object with types. Try running: `console.log(greet);` on the client and find for see it.
-  - Server file will not be bundled with client code!
-  - Yoshi Server runtime will trigger a xhr call to a special endpoint.
+- When importing a server function, we have a Webpack loader that returns an object with types (try running: `console.log(greet);` on the client and see for yourself).
+- Yoshi Server runtime will trigger a post call to `/_api_`, with details about the request, and arguments (open the network tab and see for yourself).
+- Server file will not be bundled with client code!
 - When using Typescript, the response and the request arguments are fully typed!
+
+### API
 
 #### method
 
