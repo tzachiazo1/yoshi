@@ -23,7 +23,7 @@ export const greeting = method(function(name: string) {
 });
 ```
 
-Youe server function can be invoked from the client by importing a server function and calling it with arguments. This will trigger an HTTP request to an endpoint on the server that will run the function with the correct arguments and return its response:
+Server functions can be invoked from the client by importing a server function and calling it with arguments:
 
 ```js
 import HttpClient from "yoshi-server-client";
@@ -36,7 +36,13 @@ client.request(greet, "John").then(data => {
 });
 ```
 
-When using Typescript, the response and the request arguments are fully typed!
+How does it work?
+
+- Importing a server function:
+  - We have a Webpack loader that will return only an object with types. Try running: `console.log(greet);` on the client and find for see it.
+  - Server file will not be bundled with client code!
+  - Yoshi Server runtime will trigger a xhr call to a special endpoint.
+- When using Typescript, the response and the request arguments are fully typed!
 
 #### method
 

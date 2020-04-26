@@ -82,7 +82,7 @@ ReactDOM.render(
 );
 ```
 
-Now we just import our server function and call it using a `httpClient.request` request:
+Now we import our server function and call it using a `httpClient.request` request:
 
 ```js
 // component.tsx
@@ -113,7 +113,7 @@ export default class App extends React.Component<PropsType> {
 ```
 
 That's it!
-If you run `npx yoshi start` you will see `hello world` as the title.
+Running `npx yoshi start` will show `hello world` as the title.
 
 #### What just happened here?
 
