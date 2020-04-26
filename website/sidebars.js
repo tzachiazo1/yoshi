@@ -9,6 +9,13 @@ module.exports = {
     // 'business-manager-flow'
     // 'monorepo-flow'
     'legacy-flow',
+    {
+      'yoshi-server': [
+        'yoshi-server/getting-started',
+        'yoshi-server/consuming-data-from-the-server',
+        'yoshi-server/exposing-route',
+      ],
+    },
     'babel-preset-yoshi',
     'jest-yoshi-preset',
     'node-api',
