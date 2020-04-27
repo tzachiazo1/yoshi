@@ -70,6 +70,7 @@ Now that we have our first server function (`greeting`), let's consume the data 
 import HttpClient from "yoshi-server-client";
 import { greet } from "./greeting.api";
 
+// For Business Manager modules, we map all api requests to '/_api/projectName'
 const client = new HttpClient({ baseUrl: "/_api/projectName" });
 
 client.request(greet, "John").then(data => {
@@ -85,3 +86,4 @@ Running `npx yoshi start` will show `hello world` in console.
 - `yoshi-server-client` is triggering xhr calls behind the scenes.
 - `yoshi-server` will have one endpoint, `_api_` (open devtools and you will be able to see it). All requests are done as `post` requests, with data about the function that we want to call and the arguments.
 - If you are using Typescript, server arguments and response are typed!
+- For Business Manager modules, all api requests to `/_api/projectName` will be mapped to `/_api_` (Yoshi Server)

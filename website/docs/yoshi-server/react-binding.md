@@ -14,13 +14,13 @@ npm install yoshi-server-react
 
 ##### Usage
 
-```
+```js
 //client.tsx
-import React from 'react';
-import ReactDOM from 'react-dom';
-import HttpClient from 'yoshi-server-client';
-import { HttpProvider } from 'yoshi-server-react';
-import App from './components/App';
+import React from "react";
+import ReactDOM from "react-dom";
+import HttpClient from "yoshi-server-client";
+import { HttpProvider } from "yoshi-server-react";
+import App from "./components/App";
 
 const client = new HttpClient();
 
@@ -28,7 +28,7 @@ ReactDOM.render(
   <HttpProvider client={client}>
     <App />
   </HttpProvider>,
-  document.getElementById('root'),
+  document.getElementById("root")
 );
 ```
 
@@ -58,3 +58,7 @@ const App = () => {
 
 export default App;
 ```
+
+#### How does it work?
+
+Yoshi Server React API will use [React Context](https://reactjs.org/docs/context.html) in order to pass `Yoshi Server HttpClient` instance. You can then use access it via the `useRequest` hook, in order to trigger a request (`httpClient.request`).
