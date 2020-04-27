@@ -18,6 +18,7 @@ module.exports = {
         'yoshi-server/initializing-server-data',
         'yoshi-server/built-in-middleware',
         'yoshi-server/custom-server',
+        'yoshi-server/testing',
         'yoshi-server/why-yoshi-server',
       ],
     },
