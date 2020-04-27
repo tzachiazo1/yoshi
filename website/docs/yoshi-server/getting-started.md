@@ -49,9 +49,10 @@ Now you are ready to add your first Yoshi Server function.
 
 > Yoshi Server is built on conventions. Files with `.api.js` or `.api.ts` extention with named export functions will be treated as [server functions]().
 
-Add a `greeting.api.ts` file to your project (if your project is in Javascript, use `.js` for all examples):
+Add a `greet.api.ts` file to your project (if your project is in Javascript, use `.js` for all examples):
 
 ```js
+// greet.api.ts
 import { method } from "yoshi-server";
 
 export const greeting = method(function(name: string) {
@@ -66,18 +67,18 @@ Now that we have our first server function (`greeting`), let's consume the data 
 
 ```js
 import HttpClient from "yoshi-server-client";
-import { greet } from "./greeting.api";
+import { greeting } from "./greet.api";
 
 // For Business Manager modules, we map all api requests to '/_api/projectName'
 const client = new HttpClient({ baseUrl: "/_api/projectName" });
 
-client.request(greet, "John").then(data => {
-  console.log(data.name);
+client.request({ method: greeting, args: ["John"] }).then(data => {
+  console.log(data.greet);
 });
 ```
 
 That's it!
-Running `npx yoshi start` will show `hello world` in console.
+Running `npx yoshi start` will show `hello John` in console.
 
 #### What just happened here?
 
