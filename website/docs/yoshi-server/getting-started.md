@@ -78,6 +78,7 @@ client.request({ method: greeting, args: ["John"] }).then(data => {
 ```
 
 That's it!
+
 Running `npx yoshi start` will show `hello John` in console.
 
 #### What just happened here?
