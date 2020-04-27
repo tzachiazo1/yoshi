@@ -70,7 +70,7 @@ Now that we have our first server function (`greeting`), let's consume the data 
 import HttpClient from "yoshi-server-client";
 import { greet } from "./greeting.api";
 
-const client = new HttpClient({ baseUrl: "http://wix.com" });
+const client = new HttpClient({ baseUrl: "/_api/projectName" });
 
 client.request(greet, "John").then(data => {
   console.log(data.name);
@@ -78,7 +78,7 @@ client.request(greet, "John").then(data => {
 ```
 
 That's it!
-Running `npx yoshi start` will show `hello world` as the title.
+Running `npx yoshi start` will show `hello world` in console.
 
 #### What just happened here?
 
