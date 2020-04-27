@@ -134,5 +134,5 @@ Then your `.erb` file should be:
 And anywhere in your route / api functions:
 
 ```
-console.log(this.config.hello); //logs 'world'
+console.log(this.config.hello); // logs 'world'
 ```
