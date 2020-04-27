@@ -4,9 +4,7 @@ title: Consuming Data from the Server
 sidebar_label: Consuming Data from the Server
 ---
 
-# Consuming Data from the Server
-
-Yoshi Server adds an abstraction over client server communication, using conventions.
+> Yoshi Server makes it easier to consume data from the server by adding an abstraction over client server communication, using conventions.
 
 ### Server functions
 
@@ -82,7 +80,7 @@ How does it work?
 
 #### React API
 
-Instead of passing `httpClient` all over, consider using the [React Binding]().
+Instead of passing `httpClient` all over, consider using the [React Bindings]().
 
 #### method
 

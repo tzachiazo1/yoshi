@@ -6,7 +6,7 @@ sidebar_label: React Binding
 
 Instead of passing `HttpClient` all around, we can use Yoshi Server's React API.
 
-##### Istallation:
+##### Installation:
 
 ```js
 npm install yoshi-server-react

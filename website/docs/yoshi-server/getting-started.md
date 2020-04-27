@@ -4,8 +4,6 @@ title: Getting Started
 sidebar_label: Getting Started
 ---
 
-# Getting Started
-
 ## Setup
 
 We recommend creating a new Yoshi Server app using the [`create-yoshi-app`](https://wix.github.io/yoshi/docs/getting-started/create-app). It will be available for both Fullstack and Business Manager apps.
