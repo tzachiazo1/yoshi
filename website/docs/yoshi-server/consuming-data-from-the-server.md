@@ -76,13 +76,11 @@ How does it work?
 - Server file will not be bundled with client code!
 - When using Typescript, the response and the request arguments are fully typed!
 
-### API
-
-#### React API
+### React Bindings
 
 Instead of passing `httpClient` all over, consider using the [React Bindings]().
 
-#### method
+### method
 
 `method` is a helper function used to add typing for our context (this). This will work both in Javascript and Typescript code.
 
@@ -100,7 +98,7 @@ export const greeting = method(function(age: number) {
 });
 ```
 
-#### context (this)
+### context (this)
 
 If you need to access data (such as request, response, Bootstrap Context and more) from your server function, these are the values that are available on context (this):
 
