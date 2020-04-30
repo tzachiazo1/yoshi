@@ -15,7 +15,7 @@ With `yoshi-server`, we take a step closer to including a runtime framework alon
 ### Prerequisits
 
 - A fullstack app (both server and client are together, using the same `package.json` file).
-- We currently support only projects using the `app-flow` ("projectType": "app" in your Yoshi configuration). If you do not it, please migrate first (see https://wix.github.io/yoshi/docs/guides/app-flow for more details)
+- We currently support only projects using the `app-flow` ("projectType": "app" in your Yoshi configuration). If you do not it, please migrate first (see https://wix.github.io/yoshi/docs/app-flow for more details)
 
 ### Installation
 
