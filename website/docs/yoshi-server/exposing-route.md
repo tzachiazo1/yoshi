@@ -23,7 +23,7 @@ export default route(async function() {
 
 We can then call this route on:
 
-http://www.mydomain.com/app
+`http://www.mydomain.com/app`
 
 #### Route with params
 
@@ -42,11 +42,11 @@ export default route(async function() {
 
 We can then call this route on:
 
-http://www.mydomain.com/users/123
+`http://www.mydomain.com/users/123`
 
 _Note_: You can have multiple params (all available under `this.params`):
 
-`//src/routes/users/[userid]/apps/[appid].js` -> http://www.mydomain.com/users/123/apps/myAppId
+`//src/routes/users/[userid]/apps/[appid].js` -> `http://www.mydomain.com/users/123/apps/myAppId`
 
 #### Default route
 
@@ -55,7 +55,7 @@ Default route ('/') can be used by adding an `index.[j|t]s` file:
 
 You will then be able to access it on:
 
-http://www.mydomain.com
+`http://www.mydomain.com`
 
 #### Rendering an `ejs` template from a route
 
