@@ -4,9 +4,13 @@ title: Getting Started
 sidebar_label: Getting Started
 ---
 
+Welcome to Yoshi Server documentation!
+
+Yoshi Server makes it easier to consume data from the server by adding an abstraction over client server communication, using conventions.
+
 ## Setup
 
-We recommend creating a new Yoshi Server app using the [`create-yoshi-app`](https://wix.github.io/yoshi/docs/getting-started/create-app). It will be available for both Fullstack and Business Manager apps.
+We recommend creating a new Yoshi Server app using the [`create-yoshi-app`](https://wix.github.io/yoshi/docs/getting-started/create-app). It is available for both Fullstack and Business Manager apps.
 
 ```bash
 npx create-yoshi-app my-app-name
@@ -47,7 +51,7 @@ Now you are ready to add your first Yoshi Server function.
 
 ## Adding your first Yoshi Server function
 
-> Yoshi Server is built on conventions. Files with `.api.js` or `.api.ts` extention with named export functions will be treated as [server functions]().
+> Files with `.api.js` or `.api.ts` extention with named export functions will be treated as [server functions]().
 
 Add a `greet.api.ts` file to your project (if your project is in Javascript, use `.js` for all examples):
 

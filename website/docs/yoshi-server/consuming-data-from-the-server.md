@@ -4,11 +4,11 @@ title: Consuming Data from the Server
 sidebar_label: Consuming Data from the Server
 ---
 
-> Yoshi Server makes it easier to consume data from the server by adding an abstraction over client server communication, using conventions.
-
 ### Server functions
 
-Server functions are meant to expose api endpoints to our client, and are defined as named exports from files with an `*.api.[j|t]s` extension:
+In Yoshi Server, a server function is a way of exposing data from your server to the client.
+
+Server Functions are named exports, inside a file with an `*.api.[j|t]s` extension:
 
 ```js
 import { method } from "yoshi-server";
@@ -21,9 +21,11 @@ export const greeting = method(function(name: string) {
 });
 ```
 
-Server functions can be invoked from the client by importing a server function and calling it with arguments.
+A Server function can be invoked from the client by importing and calling it with arguments.
 
-Let's initialize `yoshi-server-client` in our main `client.ts` file, and pass it as a prop to our components:
+---
+
+For example, let's initialize `yoshi-server-client` in our main `client.ts` file, and pass it as a prop to our components:
 
 ```js
 import React from "react";
@@ -39,7 +41,7 @@ ReactDOM.render(
 );
 ```
 
-Now we import our server function and call it using a `httpClient.request` request:
+Now we import our server function and call it using a `httpClient.request` call:
 
 ```js
 // component.tsx
@@ -55,6 +57,7 @@ export default class App extends React.Component<PropsType> {
   state = { text: "" };
   async componentDidMount() {
     const { httpClient } = this.props;
+    // trigger an http request that will "run" `greet('world')` on the server.
     const result = await httpClient.request({ method: greet, args: ["world"] });
     this.setState({ text: result.greeting });
   }
