@@ -4,15 +4,19 @@ title: React Binding
 sidebar_label: React Binding
 ---
 
-Instead of passing `HttpClient` all around, we can use Yoshi Server's React API.
+Passing the `httpClient` as a prop to your components might be cumbersome. Instead, we suggest using the `useRequest` hook, together with the `HttpProvider. This will make your code cleaner and will also simplify data management code by tracking error and loading states for you.
 
-##### Installation:
+### Installation:
 
 ```js
 npm install yoshi-server-react
 ```
 
-##### Usage
+### Fetching data
+
+Use the `useRequest` [React Hook](https://reactjs.org/docs/hooks-intro.html) inside your React component to fetch data from your server function. When your component renders, `useRequest` returns an object from Yoshi Server Client that contains loading, error, and data properties you can use to render your UI.
+
+Wrap your component with the `HttpProvider`:
 
 ```js
 //client.tsx
@@ -32,6 +36,8 @@ ReactDOM.render(
 );
 ```
 
+Fetch data using `useRequest`, and handle the response:
+
 ```js
 // App.tsx
 import React from "react";
@@ -39,16 +45,20 @@ import { useRequest } from "yoshi-server-react";
 import { greet } from "../../api/greeting.api";
 
 const App = () => {
+  // Fetch Data
   const req = useRequest(greet, "Yaniv");
 
+  // Show a loading message
   if (req.loading) {
     return <p data-testid="loading">Loading...</p>;
   }
 
+  // Show an error message
   if (req.error) {
     return <p data-testid="error">Error :(</p>;
   }
 
+  // render the data
   return (
     <div>
       <h2>{req.data.greeting}</h2>
@@ -61,4 +71,10 @@ export default App;
 
 #### How does it work?
 
-Yoshi Server React API will use [React Context](https://reactjs.org/docs/context.html) in order to pass `Yoshi Server HttpClient` instance. You can then use access it via the `useRequest` hook, in order to trigger a request (`httpClient.request`).
+As our query executes and the values of loading, error, and data change, the App component can intelligently render different UI elements according to the query's state:
+
+- As long as loading is true (indicating the query is still in flight), the component presents a Loading... notice.
+
+- When loading is false and there is no error, the query has completed. The component renders a greeting data returned by the server.
+
+- Show an error messege in case there's an `req.error` (`req.error` contains an [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) object).
