@@ -4,7 +4,6 @@ title: Testing
 sidebar_label: Testing
 ---
 
-# Testing
 
 ## Server E2E Tests
 
