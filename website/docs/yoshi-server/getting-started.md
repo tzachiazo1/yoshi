@@ -83,11 +83,11 @@ client.request({ method: greeting, args: ["John"] }).then(data => {
 
 That's it!
 
-Running `npx yoshi start` will show `hello John` in console.
+Running `npx yoshi start` shows `hello John` in the console.
 
 #### What just happened here?
 
 - `yoshi-server-client` is triggering xhr calls behind the scenes.
-- `yoshi-server` will have one endpoint, `_api_` (open devtools and you will be able to see it). All requests are done as `post` requests, with data about the function that we want to call and the arguments.
+- `yoshi-server` has one endpoint, `_api_` (open devtools to see it). All requests are made as `post` requests, with data about the function that we want to call and the arguments.
 - If you are using Typescript, server arguments and response are typed!
-- For Business Manager modules, all api requests to `/_api/projectName` will be mapped to `/_api_` (Yoshi Server)
+- For Business Manager modules, all API requests to `/_api/projectName` are mapped to `/_api_` (Yoshi Server)
