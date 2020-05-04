@@ -17,4 +17,4 @@ export const search = method(async function(text = "") {
 });
 ```
 
-If you want to use custom middlewares, ou can have a [custom server]().
+If you want to use custom middlewares, you can have a [custom server]().
