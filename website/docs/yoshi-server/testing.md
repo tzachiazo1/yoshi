@@ -4,8 +4,7 @@ title: Testing
 sidebar_label: Testing
 ---
 
-
-## Server E2E Tests
+# Server E2E Tests
 
 Suppose we have the following server function:
 
@@ -21,7 +20,7 @@ export const greeting = method(function(name: string) {
 });
 ```
 
-Calling the server from a server e2e test can been done exactly like we call it from the client. For example:
+Testing the server can been done exactly like we call it from the client. For example:
 
 ```js
 // server.e2e.ts
@@ -42,18 +41,18 @@ test("should reject on a JSON response", async () => {
 });
 ```
 
-## Component tests
+# Component tests
 
 When writing a component test for a component which uses `yoshi-server-client`, we should mock the server request (there's no server when running component tests).
 In order to do that we use the `yoshi-server-testing` package:
 
-#### Installation
+## Installation
 
 ```
 npm install --save-dev yoshi-server-testing
 ```
 
-#### a spec test example
+## a spec test example
 
 ```js
 import React from "react";
@@ -83,4 +82,4 @@ it("should pass", async () => {
 });
 ```
 
-Instead of passing `HttpClient` from `yoshi-server`, we will pass the `HttpClient` from `yoshi-server-testing` as a prop to the component. This `HttpClient` will have the mocks that we want.
+Instead of passing an instance of `yoshi-server`'s `HttpClient`, we will pass a `yoshi-server-testing` instance, with the mocks that we want to return.
