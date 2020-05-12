@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { FC, useRef, useMemo } from 'react';
+import React, { FC, useMemo, useEffect } from 'react';
 import { notifyViewStartLoading } from '@wix/business-manager-api';
 import { wixAxiosConfig } from '@wix/wix-axios-config';
 import { I18nextProvider, initI18n } from '@wix/wix-i18n-config';
@@ -10,17 +10,10 @@ wixAxiosConfig(axios, {
   baseURL: '/',
 });
 
-const useOnce = (cb: () => void) => {
-  const ref = useRef(false);
-
-  if (!ref.current) {
-    ref.current = true;
-    cb();
-  }
-};
-
 const AppContainer: FC<IBMModuleParams> = ({ locale }) => {
-  useOnce(() => notifyViewStartLoading(COMPONENT_NAME));
+  useEffect(() => {
+    notifyViewStartLoading(COMPONENT_NAME);
+  }, []);
 
   const i18n = useMemo(
     () =>
