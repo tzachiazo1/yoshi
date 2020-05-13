@@ -482,6 +482,10 @@ export function createBaseWebpackConfig({
 
       // https://github.com/wix/yoshi/pull/497
       jsonpFunction: `webpackJsonp_${toIdentifier(name)}`,
+
+      // @ts-ignore Not available in @types/webpack
+      // https://webpack.js.org/configuration/output/#outputchunkcallbackname
+      chunkCallbackName: `webpackWorker_${toIdentifier(name)}`,
     },
 
     resolve: {
