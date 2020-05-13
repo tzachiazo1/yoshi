@@ -27,7 +27,9 @@ exports[`CommonEditorScriptEntry template generates correct template with entry 
   if (editorScriptEntry.eventHandler) {
     builder = builder.withEventHandler(editorScriptEntry.eventHandler);
   }
-  builder = builder.withWidget(require(\\"project/src/components/a/editor.controller.ts\\"));
+  
+  var userController_0 = require('project/src/components/a/editor.controller.ts');
+  builder = builder.withWidget(userController_0.default || userController_0);
   editorScriptEntry = builder.build();
   
 
@@ -52,9 +54,15 @@ exports[`CommonEditorScriptEntry template generates correct template with entry 
   if (editorScriptEntry.eventHandler) {
     builder = builder.withEventHandler(editorScriptEntry.eventHandler);
   }
-  builder = builder.withWidget(require(\\"project/src/components/a/editor.controller.ts\\"));
-  builder = builder.withWidget(require(\\"project/src/components/c/editor.controller.ts\\"));
-  builder = builder.withWidget(require(\\"project/src/components/d/editor.controller.ts\\"));
+  
+  var userController_0 = require('project/src/components/a/editor.controller.ts');
+  builder = builder.withWidget(userController_0.default || userController_0);
+  
+  var userController_1 = require('project/src/components/c/editor.controller.ts');
+  builder = builder.withWidget(userController_1.default || userController_1);
+  
+  var userController_2 = require('project/src/components/d/editor.controller.ts');
+  builder = builder.withWidget(userController_2.default || userController_2);
   editorScriptEntry = builder.build();
   
 

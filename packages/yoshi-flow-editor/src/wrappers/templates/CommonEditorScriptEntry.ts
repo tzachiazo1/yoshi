@@ -29,8 +29,10 @@ export default t<Opts>`
   }
   ${controllersMeta
     .map(
-      meta =>
-        `builder = builder.withWidget(require("${meta.controllerFileName}"));`,
+      (meta, i) =>
+        `
+  var userController_${i} = require('${meta.controllerFileName}');
+  builder = builder.withWidget(userController_${i}.default || userController_${i});`,
     )
     .join('\n  ')}
   editorScriptEntry = builder.build();
