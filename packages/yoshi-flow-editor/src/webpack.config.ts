@@ -50,7 +50,6 @@ export function createClientWebpackConfig(
     forceEmitSourceMaps,
     forceEmitStats,
     exportAsLibraryName: '[name]',
-    cssModules: config.cssModules,
     ...defaultOptions,
   });
 

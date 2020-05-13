@@ -243,7 +243,7 @@ export default (): Array<ExtendedPromptObject<string>> => {
             {
               type: 'text',
               name: 'appName',
-              async after(answers, context) {
+              async after(answers, context: any) {
                 if (isAppBuilder(context.templateDefinition.name)) {
                   answers.components = getDefaultAnswers(
                     context.templateDefinition.name,
@@ -257,7 +257,7 @@ export default (): Array<ExtendedPromptObject<string>> => {
                 return !!value;
               },
               message: 'Name of the app:',
-              next(answers, context) {
+              next(answers, context: any) {
                 if (isOutOfIframe(context.templateDefinition.name)) {
                   return [
                     {
@@ -286,7 +286,7 @@ export default (): Array<ExtendedPromptObject<string>> => {
                               type: 'text',
                               name: 'componentName',
                               format: val => val.split(/\s|-/).join(''),
-                              async after(answers, context) {
+                              async after(answers, context: any) {
                                 if (!answers.components) {
                                   answers.components = [];
                                 }
@@ -362,10 +362,10 @@ export default (): Array<ExtendedPromptObject<string>> => {
               name: 'appId',
               message: 'Pick the app you want to use',
               optionsPerPage: 8,
-              async before(answers, context) {
+              async before(answers, context: any) {
                 context.apps = await getApps();
               },
-              async getDynamicChoices(answers, context) {
+              async getDynamicChoices(answers, context: any) {
                 return context.apps.map(formatAppOption);
               },
             },
@@ -373,11 +373,11 @@ export default (): Array<ExtendedPromptObject<string>> => {
               type: 'multiselect',
               name: 'selectedComponents',
               message: 'Select components you want to migrate.',
-              async before(answers, context) {
+              async before(answers, context: any) {
                 context.app = await getApp(answers.appId);
                 answers.appName = context.app.name;
               },
-              async after(answers, context) {
+              async after(answers, context: any) {
                 const { app } = context;
                 if (!answers.components) {
                   answers.components = [];
@@ -397,7 +397,7 @@ export default (): Array<ExtendedPromptObject<string>> => {
               },
               hint: '- Space to select. Return to submit',
               warn: "This type of component can't be imported",
-              async getDynamicChoices(answers, context) {
+              async getDynamicChoices(answers, context: any) {
                 const { app } = context;
                 const components = app.components;
                 return components.map(formatComponentOption);
