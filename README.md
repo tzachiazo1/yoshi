@@ -1,5 +1,5 @@
 <h1 align="center">Yoshi</h1>
-<p align="center">🐉 A Toolkit that supports building all kinds of applications in Wix</p>
+<p align="center">A Galaxy of toolkits to develop applications at Wix</p>
 
 <p align="center">
   <a href="LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="license"></a>
@@ -8,23 +8,6 @@
   <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs welcome"></a>
   <a href="https://www.npmjs.com/package/yoshi"><img src="https://img.shields.io/npm/dm/yoshi.svg" alt="downloads"></a>
 </p>
-
-## Getting started
-
-Generate a new project:
-
-```sh
-npx create-yoshi-app my-app
-```
-
-Start working on it immediately:
-
-```sh
-cd my-app
-npm run start
-```
-
-You can now open your browser with `http://localhost:3000` and see your app.
 
 <p align="center">
   <img src="https://yoshi-assets.surge.sh/create-yoshi-app.gif" alt="create-yoshi-app">
