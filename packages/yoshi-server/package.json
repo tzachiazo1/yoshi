@@ -7,6 +7,9 @@
     "yoshi",
     "server"
   ],
+  "scripts": {
+    "build": "tsc -b"
+  },
   "author": "Ronen Amiel",
   "license": "ISC",
   "dependencies": {

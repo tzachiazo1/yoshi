@@ -6,6 +6,9 @@
     "config",
     "yoshi"
   ],
+  "scripts": {
+    "build": "tsc -b"
+  },
   "author": "Ronen Amiel & Ran Yitzhaki",
   "license": "ISC",
   "devDependencies": {

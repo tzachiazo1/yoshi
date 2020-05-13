@@ -7,7 +7,7 @@
     "url": "git+https://github.com/wix/yoshi.git"
   },
   "workspaces": [
-    "packages/*"
+    "packages/yoshi-config", "packages/yoshi-server"
   ],
   "scripts": {
     "// local dev": "------------------------------------------------------------------------------------",
