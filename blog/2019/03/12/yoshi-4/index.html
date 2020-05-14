@@ -16,21 +16,21 @@
 <link rel="stylesheet" href="/yoshi/styles.73ff1874.css">
 
 
-<link rel="preload" href="/yoshi/styles.efa1fafb.js" as="script">
+<link rel="preload" href="/yoshi/styles.3da0fd39.js" as="script">
 
-<link rel="preload" href="/yoshi/runtime~main.612a66d6.js" as="script">
+<link rel="preload" href="/yoshi/runtime~main.7aa1fcd6.js" as="script">
 
-<link rel="preload" href="/yoshi/main.ef2bbb5e.js" as="script">
+<link rel="preload" href="/yoshi/main.7200fa72.js" as="script">
 
-<link rel="preload" href="/yoshi/1.62d6909c.js" as="script">
+<link rel="preload" href="/yoshi/1.cb591ab8.js" as="script">
 
-<link rel="preload" href="/yoshi/2.21f05df8.js" as="script">
+<link rel="preload" href="/yoshi/2.afff5528.js" as="script">
 
-<link rel="preload" href="/yoshi/3.489281cf.js" as="script">
+<link rel="preload" href="/yoshi/3.528f2b26.js" as="script">
 
-<link rel="preload" href="/yoshi/ccc49370.d16da43f.js" as="script">
+<link rel="preload" href="/yoshi/ccc49370.6d206544.js" as="script">
 
-<link rel="preload" href="/yoshi/4f9dc67c.fb21860a.js" as="script">
+<link rel="preload" href="/yoshi/4f9dc67c.7f1ee37e.js" as="script">
 
 </head>
 <body>
@@ -40,21 +40,21 @@
 </span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"></span><span class="token keyword" style="font-style:italic">const</span><span class="token plain"> </span><span class="token function-variable function maybe-class-name" style="color:rgb(130, 170, 255)">App</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"> </span><span class="token arrow operator" style="color:rgb(137, 221, 255)">=&gt;</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  </span><span class="token operator" style="color:rgb(137, 221, 255)">&lt;</span><span class="token plain">div</span><span class="token operator" style="color:rgb(137, 221, 255)">&gt;</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">    </span><span class="token punctuation" style="color:rgb(199, 146, 234)">{</span><span class="token comment" style="color:rgb(105, 112, 152);font-style:italic">/* Logo is an actual React component */</span><span class="token punctuation" style="color:rgb(199, 146, 234)">}</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">    </span><span class="token operator" style="color:rgb(137, 221, 255)">&lt;</span><span class="token maybe-class-name">Logo</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">/</span><span class="token operator" style="color:rgb(137, 221, 255)">&gt;</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  </span><span class="token operator" style="color:rgb(137, 221, 255)">&lt;</span><span class="token operator" style="color:rgb(137, 221, 255)">/</span><span class="token plain">div</span><span class="token operator" style="color:rgb(137, 221, 255)">&gt;</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"></span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token punctuation" style="color:rgb(199, 146, 234)">;</span></div></div></div></div></div><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="app-flow"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#app-flow" title="Direct link to heading">#</a>App flow</h3><p>We want to deliver awesome developer experience, one that&#x27;s specific to the type of application that you build.</p><p>App flow is an improved developer experience that is specific to apps. Internally, instead of running many different tools (babel/typescript, sass/less) on various glob patterns, it creates a dedicated Webpack bundle, specifically for the server.</p><p>This has a few advantages:</p><ul><li><strong>Clean output, clear errors:</strong> If your build fails or your server throws you should know about it immediately and clearly. Forget of long stack traces or errors that show multiple times; See your server&#x27;s output in your terminal.</li><li><strong>Faster build times:</strong> Now that Yoshi knows it targets apps, it can only run relevant build operations which can result in a significant speed boost.</li><li><strong>Faster server reload:</strong> When you&#x27;re working in watch mode and you change a file, Yoshi knows whether to reload your server, client or both. With the addition of <strong>server-side HMR</strong>, Yoshi will be able to reload your <code>wix-bootstrap-ng</code> server almost instantly.</li></ul><p>In the future, we plan on providing many features specifically for apps. We want to encourage applications to use the new flow.</p><p><img src="https://user-images.githubusercontent.com/11733036/80118554-3c801300-8591-11ea-9dea-483007ac3020.png" alt="A terminal showing the new app flow"></p><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="the-future"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#the-future" title="Direct link to heading">#</a>The future</h2><p>One of our goals is to create a community around Yoshi. That other developers in the company will take an active part in its development. We work hard to create issues for problems and explain how we think they can be solved. We also try to maintain a <a href="https://github.com/wix/yoshi/blob/master/CONTRIBUTING.md">good place to start</a> if you want to contribute.</p><p>We want to thank <a href="https://github.com/saarkuriel">@saarkuriel</a> and <a href="https://github.com/matveyok">@matveyok</a> on their amazing work on Yoshi v4. Thank you.</p><p>We are already making plans for Yoshi v5 but more than anything, we want to hear your feedback. Please tell us what is slowing you down and what isn&#x27;t working too well and we will invest time to make it better.</p></section></article><div></div><div class="margin-vert--xl"><nav class="pagination-nav"><div class="pagination-nav__item"></div><div class="pagination-nav__item pagination-nav__item--next"><a class="pagination-nav__link" href="/yoshi/blog/2018/06/02/yoshi-3"><div class="pagination-nav__link--sublabel">Next Post</div><div class="pagination-nav__link--label">Yoshi 3.0 »</div></a></div></nav></div></div></div></div></div><footer class="footer"><div class="container"><div class="row footer__links"><div class="col footer__col"><h4 class="footer__title">Docs</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/yoshi/docs/welcome">Get Started</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Social</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/yoshi/blog">Blog</a></li></ul></div></div><div class="text--center"><div>Copyright © 2020 Wix.com, Built with Docusaurus.</div></div></div></footer>
 </div>
 
-<script src="/yoshi/styles.efa1fafb.js"></script>
+<script src="/yoshi/styles.3da0fd39.js"></script>
 
-<script src="/yoshi/runtime~main.612a66d6.js"></script>
+<script src="/yoshi/runtime~main.7aa1fcd6.js"></script>
 
-<script src="/yoshi/main.ef2bbb5e.js"></script>
+<script src="/yoshi/main.7200fa72.js"></script>
 
-<script src="/yoshi/1.62d6909c.js"></script>
+<script src="/yoshi/1.cb591ab8.js"></script>
 
-<script src="/yoshi/2.21f05df8.js"></script>
+<script src="/yoshi/2.afff5528.js"></script>
 
-<script src="/yoshi/3.489281cf.js"></script>
+<script src="/yoshi/3.528f2b26.js"></script>
 
-<script src="/yoshi/ccc49370.d16da43f.js"></script>
+<script src="/yoshi/ccc49370.6d206544.js"></script>
 
-<script src="/yoshi/4f9dc67c.fb21860a.js"></script>
+<script src="/yoshi/4f9dc67c.7f1ee37e.js"></script>
 
 
 </body>

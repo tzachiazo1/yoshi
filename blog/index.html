@@ -16,31 +16,31 @@
 <link rel="stylesheet" href="/yoshi/styles.73ff1874.css">
 
 
-<link rel="preload" href="/yoshi/styles.efa1fafb.js" as="script">
+<link rel="preload" href="/yoshi/styles.3da0fd39.js" as="script">
 
-<link rel="preload" href="/yoshi/runtime~main.612a66d6.js" as="script">
+<link rel="preload" href="/yoshi/runtime~main.7aa1fcd6.js" as="script">
 
-<link rel="preload" href="/yoshi/main.ef2bbb5e.js" as="script">
+<link rel="preload" href="/yoshi/main.7200fa72.js" as="script">
 
-<link rel="preload" href="/yoshi/1.62d6909c.js" as="script">
+<link rel="preload" href="/yoshi/1.cb591ab8.js" as="script">
 
-<link rel="preload" href="/yoshi/2.21f05df8.js" as="script">
+<link rel="preload" href="/yoshi/2.afff5528.js" as="script">
 
-<link rel="preload" href="/yoshi/3.489281cf.js" as="script">
+<link rel="preload" href="/yoshi/3.528f2b26.js" as="script">
 
-<link rel="preload" href="/yoshi/a6aa9e1f.7c346a0e.js" as="script">
+<link rel="preload" href="/yoshi/a6aa9e1f.c5a3f63b.js" as="script">
 
-<link rel="preload" href="/yoshi/7ae7698b.5037d025.js" as="script">
+<link rel="preload" href="/yoshi/7ae7698b.e5362b66.js" as="script">
 
-<link rel="preload" href="/yoshi/cb03f8ee.8a55ed3b.js" as="script">
+<link rel="preload" href="/yoshi/cb03f8ee.94ab0632.js" as="script">
 
-<link rel="preload" href="/yoshi/25d43e87.5f5a383f.js" as="script">
+<link rel="preload" href="/yoshi/25d43e87.858dac14.js" as="script">
 
-<link rel="preload" href="/yoshi/85d127e2.a47a604d.js" as="script">
+<link rel="preload" href="/yoshi/85d127e2.3dcb8492.js" as="script">
 
-<link rel="preload" href="/yoshi/b9acbcc6.74b22d94.js" as="script">
+<link rel="preload" href="/yoshi/b9acbcc6.2c060df2.js" as="script">
 
-<link rel="preload" href="/yoshi/3d483825.d4ee8bfd.js" as="script">
+<link rel="preload" href="/yoshi/3d483825.ecd79653.js" as="script">
 
 </head>
 <body>
@@ -58,31 +58,31 @@ We made some changes recently in <code>haste</code>/<code>yoshi</code>/<code>gen
 For example, <code>yoshi</code> is a toolkit, and we could have changed Yoshi’s implementation without affecting you, our users. We understand that this change led to a lot of confusion and we are sorry about it.</p><p>We understand that naming our toolkit <code>haste-preset-yoshi</code> was wrong. We don’t want the users to know how their toolkit work under the hood. Each toolkit (Yoshi including) will have its own binary file (different command name in <code>package.json</code>).</p><p>In the future, we plan to remove the <code>haste</code> binary and change the name of the toolkit back to <code>yoshi</code>. We’ve already removed the requirement to specify a <code>preset</code> in <code>package.json</code> and added <code>yoshi</code> as a working binary to <code>haste-preset-yoshi</code>. We’ve also changed it in the generators.</p><hr><p><em>P.S.</em> Watch <a href="https://www.youtube.com/watch?v=G39lKaONAlA">Dan Abramov’s talk</a> if you’re interested in the idea of toolkits.</p></section></article><article class="margin-bottom--xl"><header><h2 class="margin-bottom--sm blogPostTitle_2RZH"><a href="/yoshi/blog/2018/03/14/semantic-versioning">Moving To Semantic Versioning</a></h2><div class="margin-vert--md"><time datetime="2018-03-14T00:00:00.000Z" class="blogPostDate_3tRe">March 14, 2018  · 2 min read</time></div><div class="avatar margin-vert--md"><div class="avatar__intro"><h4 class="avatar__name"><a target="_blank" rel="noreferrer noopener">Ran Yitzhaki &amp; Ronen Amiel</a></h4><small class="avatar__subtitle"></small></div></div></header><section class="markdown"><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="tldr"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#tldr" title="Direct link to heading">#</a>TL;DR</h2><p><strong>Do not use <code>latest</code> when using <code>yoshi</code> or any of our libraries. Instead, use a valid semantic version. This way, when we release breaking changes, your app will not get the latest version, thus won&#x27;t break.</strong></p><p>Until not long ago, we worked in a <strong>&quot;latest is the greatest&quot;</strong> manner, which meant that we all need to put <code>latest</code> in our <code>package.json</code> regarding internal packages like <code>yoshi</code> or <code>wix-style-react</code>.</p><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="what-were-the-problems"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#what-were-the-problems" title="Direct link to heading">#</a>What were the problems?</h3><p>Whenever we had to release a breaking change, we made it available only with a feature toggle which required an action from you. Then we had to ask you to opt-into it, and eventually remove the old way and ask you to opt-out again. Also, it did not work for changes like bumping the version of a major dependency like <code>eslint</code> or <code>jest</code>. This made it really hard for us to move forward, and our tools and you suffered because of it.</p><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="the-solution"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#the-solution" title="Direct link to heading">#</a>The solution</h3><p>With <a href="https://semver.org/">semver</a>, whenever we need to release a breaking change we can release it as a new major version. You and all other users won&#x27;t be affected, you&#x27;ll have to go to our <code>CHANGELOG.md</code>, see what has changed, and adjust to the changes. This makes the process much simpler. We will do our best to make it as easy as we can.</p><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="what-is-semver"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#what-is-semver" title="Direct link to heading">#</a>what is <code>semver</code></h3><blockquote><ul><li>MAJOR version when you make incompatible API changes,</li><li>MINOR version when you add functionality in a backwards-compatible manner, and</li><li>PATCH version when you make backwards-compatible bug fixes.</li></ul></blockquote><p>If the owner of the package respects that, it means breaking changes will occur only on major versions and it&#x27;s safe to list the package as <code>^2.0.0</code> for example instead of <code>latest</code>.</p><p>The <code>^</code> is a sign <a href="https://docs.npmjs.com/getting-started/semantic-versioning#semver-for-consumers">respected by the package manager</a> and says that you want to get updates from <code>patch</code> and <code>minor</code> versions.</p><p><strong>This also means that you&#x27;ll need to update major version manually!</strong></p><p>With every major version, we will provide a migration guide that will tell you which API broke, or what you should do in order to move to the next version.</p><hr><p><strong>Wait! how do I make sure I don&#x27;t stay behind?</strong></p><p>Don&#x27;t worry, we use <a href="https://github.com/wix/depkeeper">depkeeper</a>, that will notify you in case you did not update versions for too long.</p></section></article><nav class="pagination-nav"><div class="pagination-nav__item"></div><div class="pagination-nav__item pagination-nav__item--next"></div></nav></div></div></div></div><footer class="footer"><div class="container"><div class="row footer__links"><div class="col footer__col"><h4 class="footer__title">Docs</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/yoshi/docs/welcome">Get Started</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Social</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/yoshi/blog">Blog</a></li></ul></div></div><div class="text--center"><div>Copyright © 2020 Wix.com, Built with Docusaurus.</div></div></div></footer>
 </div>
 
-<script src="/yoshi/styles.efa1fafb.js"></script>
+<script src="/yoshi/styles.3da0fd39.js"></script>
 
-<script src="/yoshi/runtime~main.612a66d6.js"></script>
+<script src="/yoshi/runtime~main.7aa1fcd6.js"></script>
 
-<script src="/yoshi/main.ef2bbb5e.js"></script>
+<script src="/yoshi/main.7200fa72.js"></script>
 
-<script src="/yoshi/1.62d6909c.js"></script>
+<script src="/yoshi/1.cb591ab8.js"></script>
 
-<script src="/yoshi/2.21f05df8.js"></script>
+<script src="/yoshi/2.afff5528.js"></script>
 
-<script src="/yoshi/3.489281cf.js"></script>
+<script src="/yoshi/3.528f2b26.js"></script>
 
-<script src="/yoshi/a6aa9e1f.7c346a0e.js"></script>
+<script src="/yoshi/a6aa9e1f.c5a3f63b.js"></script>
 
-<script src="/yoshi/7ae7698b.5037d025.js"></script>
+<script src="/yoshi/7ae7698b.e5362b66.js"></script>
 
-<script src="/yoshi/cb03f8ee.8a55ed3b.js"></script>
+<script src="/yoshi/cb03f8ee.94ab0632.js"></script>
 
-<script src="/yoshi/25d43e87.5f5a383f.js"></script>
+<script src="/yoshi/25d43e87.858dac14.js"></script>
 
-<script src="/yoshi/85d127e2.a47a604d.js"></script>
+<script src="/yoshi/85d127e2.3dcb8492.js"></script>
 
-<script src="/yoshi/b9acbcc6.74b22d94.js"></script>
+<script src="/yoshi/b9acbcc6.2c060df2.js"></script>
 
-<script src="/yoshi/3d483825.d4ee8bfd.js"></script>
+<script src="/yoshi/3d483825.ecd79653.js"></script>
 
 
 </body>

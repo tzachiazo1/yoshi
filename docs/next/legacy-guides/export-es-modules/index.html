@@ -16,25 +16,25 @@
 <link rel="stylesheet" href="/yoshi/styles.73ff1874.css">
 
 
-<link rel="preload" href="/yoshi/styles.efa1fafb.js" as="script">
+<link rel="preload" href="/yoshi/styles.3da0fd39.js" as="script">
 
-<link rel="preload" href="/yoshi/runtime~main.612a66d6.js" as="script">
+<link rel="preload" href="/yoshi/runtime~main.7aa1fcd6.js" as="script">
 
-<link rel="preload" href="/yoshi/main.ef2bbb5e.js" as="script">
+<link rel="preload" href="/yoshi/main.7200fa72.js" as="script">
 
-<link rel="preload" href="/yoshi/1.62d6909c.js" as="script">
+<link rel="preload" href="/yoshi/1.cb591ab8.js" as="script">
 
-<link rel="preload" href="/yoshi/2.21f05df8.js" as="script">
+<link rel="preload" href="/yoshi/2.afff5528.js" as="script">
 
-<link rel="preload" href="/yoshi/3.489281cf.js" as="script">
+<link rel="preload" href="/yoshi/3.528f2b26.js" as="script">
 
-<link rel="preload" href="/yoshi/1be78505.7a7f9c2c.js" as="script">
+<link rel="preload" href="/yoshi/1be78505.fd686f68.js" as="script">
 
-<link rel="preload" href="/yoshi/cb8e64de.5288556f.js" as="script">
+<link rel="preload" href="/yoshi/cb8e64de.be5aef1d.js" as="script">
 
-<link rel="preload" href="/yoshi/17896441.824aadf1.js" as="script">
+<link rel="preload" href="/yoshi/17896441.c64430de.js" as="script">
 
-<link rel="preload" href="/yoshi/233901a1.57bbe6bf.js" as="script">
+<link rel="preload" href="/yoshi/233901a1.3f0e458a.js" as="script">
 
 </head>
 <body>
@@ -44,25 +44,25 @@
 Yoshi will also use this field to infer whether to create <code>/es</code> directory with no modules transformed.</li></ul><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="how"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#how" title="Direct link to heading">#</a>How</h3><ol><li>Specify path to your entry file with <code>module: &#x27;dist/es/src/entry.js&#x27;</code>. Please note that Yoshi will create <code>es</code> directory with untranspiled modules near your usual transformation output (<code>dist/src</code> and <code>dist/es/src</code>).</li></ol><p><em>package.json</em></p><div class="mdxCodeBlock_iHAB"><div class="codeBlockContent_32p_"><button type="button" aria-label="Copy code to clipboard" class="copyButton_1BYj">Copy</button><div tabindex="0" class="prism-code language-json codeBlock_19pQ"><div class="codeBlockLines_2n9r" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token property">&quot;module&quot;</span><span class="token operator" style="color:rgb(137, 221, 255)">:</span><span class="token plain"> </span><span class="token string" style="color:rgb(195, 232, 141)">&quot;dist/es/src/entry.js&quot;</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"></span><span class="token punctuation" style="color:rgb(199, 146, 234)">}</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"></span><span class="token property">&quot;yoshi&quot;</span><span class="token operator" style="color:rgb(137, 221, 255)">:</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(199, 146, 234)">{</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  </span><span class="token property">&quot;entry&quot;</span><span class="token operator" style="color:rgb(137, 221, 255)">:</span><span class="token plain"> </span><span class="token string" style="color:rgb(195, 232, 141)">&quot;./entry.js&quot;</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"></span><span class="token punctuation" style="color:rgb(199, 146, 234)">}</span></div></div></div></div></div><p>This will create 2 output targets:</p><div class="mdxCodeBlock_iHAB"><div class="codeBlockContent_32p_"><button type="button" aria-label="Copy code to clipboard" class="copyButton_1BYj">Copy</button><div tabindex="0" class="prism-code language-undefined codeBlock_19pQ"><div class="codeBlockLines_2n9r" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain">dist</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">└── src/entry.js</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">└── es</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">     └── src/entry.js</span></div></div></div></div></div><p><strong>NOTE:</strong> In <code>pacakge.json</code>, you can <a href="https://github.com/webpack/webpack/tree/master/examples/side-effects">configure <code>&quot;sideEffects&quot;: false</code></a> and allow webpack to perform tree-shaking on your library when imported to other projects, eg:</p><div class="mdxCodeBlock_iHAB"><div class="codeBlockContent_32p_"><button type="button" aria-label="Copy code to clipboard" class="copyButton_1BYj">Copy</button><div tabindex="0" class="prism-code language-js codeBlock_19pQ"><div class="codeBlockLines_2n9r" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword module" style="font-style:italic">import</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(199, 146, 234)">{</span><span class="token plain"> </span><span class="token maybe-class-name">Button</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(199, 146, 234)">}</span><span class="token plain"> </span><span class="token keyword module" style="font-style:italic">from</span><span class="token plain"> </span><span class="token string" style="color:rgb(195, 232, 141)">&quot;wix-style-react&quot;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">;</span></div></div></div></div></div></div></article><div class="margin-vert--xl"><div class="row"><div class="col"><a href="https://github.com/wix/yoshi/edit/master/website/docs/legacy-guides/export-es-modules.md" target="_blank" rel="noreferrer noopener"><svg fill="currentColor" height="1.2em" width="1.2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 40 40" style="margin-right:0.3em;vertical-align:sub"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col text--right"><em><small>Last updated on <time datetime="2020-04-22T16:21:33.000Z" class="docLastUpdatedAt_1sqk">4/22/2020</time> by <strong>Ran Yitzhaki</strong></small></em></div></div></div><div class="margin-vert--lg"><nav class="pagination-nav"><div class="pagination-nav__item"><a class="pagination-nav__link" href="/yoshi/docs/next/legacy-guides/stylelint-setup"><div class="pagination-nav__link--sublabel">Previous</div><div class="pagination-nav__link--label">« Stylelint Setup</div></a></div><div class="pagination-nav__item pagination-nav__item--next"><a class="pagination-nav__link" href="/yoshi/docs/next/legacy-guides/hmr"><div class="pagination-nav__link--sublabel">Next</div><div class="pagination-nav__link--label">HMR »</div></a></div></nav></div></div></div><div class="col col--3"><div class="tableOfContents_TbNY"><ul class="contents contents__left-border"><li><a href="#how-to-export-es-modules-along-with-commonjs" class="contents__link">How to export ES modules along with commonjs?</a><ul><li><a href="#tldr" class="contents__link">TL;DR</a></li><li><a href="#why" class="contents__link">Why</a></li><li><a href="#how" class="contents__link">How</a></li></ul></li></ul></div></div></div></div></main></div></div><footer class="footer"><div class="container"><div class="row footer__links"><div class="col footer__col"><h4 class="footer__title">Docs</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/yoshi/docs/welcome">Get Started</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Social</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/yoshi/blog">Blog</a></li></ul></div></div><div class="text--center"><div>Copyright © 2020 Wix.com, Built with Docusaurus.</div></div></div></footer>
 </div>
 
-<script src="/yoshi/styles.efa1fafb.js"></script>
+<script src="/yoshi/styles.3da0fd39.js"></script>
 
-<script src="/yoshi/runtime~main.612a66d6.js"></script>
+<script src="/yoshi/runtime~main.7aa1fcd6.js"></script>
 
-<script src="/yoshi/main.ef2bbb5e.js"></script>
+<script src="/yoshi/main.7200fa72.js"></script>
 
-<script src="/yoshi/1.62d6909c.js"></script>
+<script src="/yoshi/1.cb591ab8.js"></script>
 
-<script src="/yoshi/2.21f05df8.js"></script>
+<script src="/yoshi/2.afff5528.js"></script>
 
-<script src="/yoshi/3.489281cf.js"></script>
+<script src="/yoshi/3.528f2b26.js"></script>
 
-<script src="/yoshi/1be78505.7a7f9c2c.js"></script>
+<script src="/yoshi/1be78505.fd686f68.js"></script>
 
-<script src="/yoshi/cb8e64de.5288556f.js"></script>
+<script src="/yoshi/cb8e64de.be5aef1d.js"></script>
 
-<script src="/yoshi/17896441.824aadf1.js"></script>
+<script src="/yoshi/17896441.c64430de.js"></script>
 
-<script src="/yoshi/233901a1.57bbe6bf.js"></script>
+<script src="/yoshi/233901a1.3f0e458a.js"></script>
 
 
 </body>
