@@ -1,4 +1,8 @@
-# Yoshi config
+---
+id: yoshi-config
+title: Yoshi Config
+sidebar_label: Yoshi Config
+---
 
 > Yoshi config is currently being used in the following flows: [Legacy](legacy-flow.md), [App](app-flow.md) & Monorepo.
 

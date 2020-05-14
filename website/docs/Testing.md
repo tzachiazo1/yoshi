@@ -1,8 +1,10 @@
 ---
-id: jest-yoshi-preset
-title: Jest Yoshi Preset
-sidebar_label: Jest Yoshi Preset
+id: testing
+title: Testing
+sidebar_label: Testing
 ---
+
+# Jest Yoshi Preset
 
 ## Introduction
 

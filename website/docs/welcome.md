@@ -32,11 +32,11 @@ This is a generic flow to create Fullstack/Client applications.
 
 This is a generic flow to create Client libraries.
 
-### Editor Flow
+### [Editor Flow](editor-flow/overview.md)
 
 This flow is specific to building Editor-Platform-Apps and Out-Of-iFrame Apps.
 
-### Business Manager Flow
+### [Business Manager Flow](business-manager-flow.md)
 
 This flow is specific to building Business-Manager-Modules.
 

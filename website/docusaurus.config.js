@@ -43,16 +43,7 @@ module.exports = {
         {
           label: 'Docs',
           position: 'left',
-          items: [
-            {
-              label: versions[0],
-              to: 'docs/welcome',
-            },
-            ...versions.slice(1).map(version => ({
-              label: version,
-              to: `docs/${version}/api/configuration/`,
-            })),
-          ],
+          to: 'docs/welcome',
         },
         {
           label: 'Flows',

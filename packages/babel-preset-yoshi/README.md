@@ -1,8 +1,4 @@
----
-id: babel-preset-yoshi
-title: Babel Preset Yoshi
-sidebar_label: Babel Preset Yoshi
----
+# babel-preset-yoshi
 
 ## Introduction
 
