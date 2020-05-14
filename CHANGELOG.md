@@ -1,5 +1,45 @@
 # Changelog
 
+## 4.74.0 (2020-05-14)
+
+#### :rocket: New Feature
+
+- `create-yoshi-app`
+  - [#2392](https://github.com/wix/yoshi/pull/2392) Port js universal template to use `wix-i18n-config` ([@vybu](https://github.com/vybu))
+
+#### :building_construction: Templates
+
+- `create-yoshi-app`
+  - [#2392](https://github.com/wix/yoshi/pull/2392) Port js universal template to use `wix-i18n-config` ([@vybu](https://github.com/vybu))
+  - [#2390](https://github.com/wix/yoshi/pull/2390) Yoshi generators: fullstack use `wix-i18n-config` ([@vybu](https://github.com/vybu))
+
+#### :bug: Bug Fix
+
+- `yoshi-flow-editor`
+  - [#2393](https://github.com/wix/yoshi/pull/2393) Hotfix for editor script related to default export. ([@yavorsky](https://github.com/yavorsky))
+- `yoshi-common`
+  - [#2352](https://github.com/wix/yoshi/pull/2352) Add a unique `chunkCallbackName` according to package name ([@ronami](https://github.com/ronami))
+- `yoshi-helpers`
+  - [#2379](https://github.com/wix/yoshi/pull/2379) Fix `a different process is already running on port 3200` error when root folder has whitespace ([@Akrabut](https://github.com/Akrabut))
+
+#### :nail_care: Polish
+
+- `yoshi-common`, `yoshi-flow-monorepo`
+  - [#2400](https://github.com/wix/yoshi/pull/2400) Use absolute URLs for CSS assets in Thunderbolt and Elements ([@ronami](https://github.com/ronami))
+
+#### :memo: Documentation
+
+- [#2397](https://github.com/wix/yoshi/pull/2397) Fix the website's particles ([@ranyitz](https://github.com/ranyitz))
+- [#2367](https://github.com/wix/yoshi/pull/2367) Editor flow docs ([@yavorsky](https://github.com/yavorsky))
+- [#2385](https://github.com/wix/yoshi/pull/2385) Remove the generic get started from the readme, and update tagline ([@ranyitz](https://github.com/ranyitz))
+
+#### :house: Internal
+
+- `create-yoshi-app`, `yoshi-flow-editor`
+  - [#2394](https://github.com/wix/yoshi/pull/2394) Update to TypeScript v3.9.2 ([@ranyitz](https://github.com/ranyitz))
+- Other
+  - [#2391](https://github.com/wix/yoshi/pull/2391) Skip a highly flaky stylable ssr test ([@ranyitz](https://github.com/ranyitz))
+
 ## 4.73.0 (2020-05-13)
 
 #### :rocket: New Feature
