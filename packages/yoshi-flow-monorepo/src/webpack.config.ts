@@ -102,6 +102,10 @@ export function createClientWebpackConfig(
     createEjsTemplates: pkg.config.experimentalBuildHtml,
     useCustomSourceMapPlugin:
       isThunderboltElementModule(pkg) || isThunderboltAppModule(pkg),
+    // Because CSS assets are inlined in the initial HTML response, images
+    // and other assets they reference has to have absolute URLs
+    useAbsoluteUrlsForCssAssets:
+      isThunderboltElementModule(pkg) || isThunderboltAppModule(pkg),
     ...defaultOptions,
   });
 

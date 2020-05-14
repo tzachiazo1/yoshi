@@ -162,6 +162,7 @@ export const getStyleLoaders = ({
   experimentalRtlCss = false,
   separateCss = false,
   tpaStyle = false,
+  useAbsoluteUrlsForCssAssets = false,
 }: {
   name: string;
   embedCss?: boolean;
@@ -171,6 +172,7 @@ export const getStyleLoaders = ({
   experimentalRtlCss?: boolean;
   separateCss?: boolean;
   tpaStyle?: boolean;
+  useAbsoluteUrlsForCssAssets?: boolean;
 }): Array<webpack.Rule> => {
   const cssLoaderOptions = {
     camelCase: true,
@@ -204,7 +206,9 @@ export const getStyleLoaders = ({
                       options: {
                         // By default it use publicPath in webpackOptions.output
                         // We are overriding it to restore relative paths in url() calls
-                        publicPath: '',
+                        publicPath: useAbsoluteUrlsForCssAssets
+                          ? undefined
+                          : '',
                       },
                     },
                   ]
@@ -338,6 +342,7 @@ export function createBaseWebpackConfig({
   useCustomSourceMapPlugin = false,
   forceEmitStats = false,
   forceMinimizeServer = false,
+  useAbsoluteUrlsForCssAssets = false,
   serverExternals,
 }: {
   name: string;
@@ -382,6 +387,7 @@ export function createBaseWebpackConfig({
   useCustomSourceMapPlugin?: boolean;
   forceEmitStats?: boolean;
   forceMinimizeServer?: boolean;
+  useAbsoluteUrlsForCssAssets?: boolean;
   serverExternals?: ExternalsElement | Array<ExternalsElement>;
 }): webpack.Configuration {
   const join = (...dirs: Array<string>) => path.join(cwd, ...dirs);
@@ -395,6 +401,7 @@ export function createBaseWebpackConfig({
     experimentalRtlCss,
     separateCss,
     tpaStyle,
+    useAbsoluteUrlsForCssAssets,
   });
 
   const publicPath = calculatePublicPath({
