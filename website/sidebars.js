@@ -35,9 +35,12 @@ module.exports = {
   ],
   'editor-flow': [
     'editor-flow/overview',
-    'editor-flow/dev-center-registration',
-    'editor-flow/migration-guide',
-    'editor-flow/editor-and-settings-apps',
+    'editor-flow/getting-started',
+    'editor-flow/cli-API',
+    'editor-flow/structure-API',
+    'editor-flow/runtime-API',
+    'editor-flow/local-development',
+    'editor-flow/testing',
     'editor-flow/platform-apps-support',
   ],
   'yoshi-server': [
