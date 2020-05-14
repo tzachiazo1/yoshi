@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.75.0 (2020-05-14)
+
+#### :rocket: New Feature
+
+- `yoshi-server-testing`
+  - [#2399](https://github.com/wix/yoshi/pull/2399) Update yoshi server testing with new api ([@yanivefraim](https://github.com/yanivefraim))
+- `create-yoshi-app`
+  - [#2398](https://github.com/wix/yoshi/pull/2398) Yoshi Server, BM generator: run testkit as fork ([@yanivefraim](https://github.com/yanivefraim))
+
 ## 4.74.0 (2020-05-14)
 
 #### :rocket: New Feature
