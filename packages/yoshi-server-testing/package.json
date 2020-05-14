@@ -1,6 +1,6 @@
 {
   "name": "yoshi-server-testing",
-  "version": "4.72.0",
+  "version": "4.75.0",
   "main": "build/index.js",
   "sideEffects": false,
   "keywords": [
