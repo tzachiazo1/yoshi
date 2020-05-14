@@ -2,6 +2,7 @@
   "name": "yoshi-server-testing",
   "version": "4.72.0",
   "main": "build/index.js",
+  "types": "build/index.d.ts",
   "sideEffects": false,
   "keywords": [
     "yoshi",
