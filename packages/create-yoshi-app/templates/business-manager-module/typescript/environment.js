@@ -5,9 +5,9 @@ const {
   anAppConfigBuilder,
 } = require('@wix/business-manager/dist/testkit');
 
-// start the server as an embedded app
+// start the server
 const bootstrapServer = () => {
-  return testkit.app(require.resolve('yoshi-server/bootstrap'), {
+  return testkit.server(require.resolve('yoshi-server/bootstrap'), {
     env: process.env,
   });
 };
