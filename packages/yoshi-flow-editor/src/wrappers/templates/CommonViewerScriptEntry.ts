@@ -1,4 +1,7 @@
-import { WidgetType } from 'yoshi-flow-editor-runtime/build/constants';
+import {
+  WidgetType,
+  SentryConfig,
+} from 'yoshi-flow-editor-runtime/build/constants';
 import t from './template';
 
 export type TemplateControllerConfig = {
@@ -10,6 +13,7 @@ export type TemplateControllerConfig = {
 type Opts = {
   viewerScriptWrapperPath: string;
   viewerAppFileName: string;
+  sentry: SentryConfig | null;
   controllersMeta: Array<TemplateControllerConfig>;
 };
 
@@ -49,7 +53,17 @@ export default t<Opts>`
   import * as viewerApp from '${({ viewerAppFileName }) => viewerAppFileName}';
   var importedApp = viewerApp;
 
-  export const initAppForPage = initAppForPageWrapper(importedApp.initAppForPage);
+  var sentry = ${({ sentry }) =>
+    sentry
+      ? `{
+      DSN: '${sentry.DSN}',
+      id: '${sentry.id}',
+      projectName: '${sentry.projectName}',
+      teamName: '${sentry.teamName}',
+    }`
+      : 'null'};
+
+  export const initAppForPage = initAppForPageWrapper(importedApp.initAppForPage, sentry);
   export const createControllers = createControllersWithDescriptors([${({
     controllersMeta,
   }) =>

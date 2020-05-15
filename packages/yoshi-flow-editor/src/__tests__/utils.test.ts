@@ -15,6 +15,7 @@ describe('addOverrideQueryParamsWithModel', () => {
         editorEntryFileName: 'a/b/editor.app.ts',
         viewerAppFileName: 'a/b',
         appDefId: 'APP_DEF_ID',
+        sentry: null,
         components: [
           {
             name: 'comp',
@@ -44,6 +45,7 @@ describe('addOverrideQueryParamsWithModel', () => {
         editorEntryFileName: 'a/b/editor.app.ts',
         viewerAppFileName: 'a/b',
         appDefId: 'APP_DEF_ID',
+        sentry: null,
         components: [
           {
             name: 'comp',
@@ -82,6 +84,7 @@ describe('addOverrideQueryParamsWithModel', () => {
         editorEntryFileName: null,
         viewerAppFileName: 'a/b',
         appDefId: 'APP_DEF_ID',
+        sentry: null,
         components: [
           {
             name: 'comp',

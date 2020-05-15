@@ -65,3 +65,23 @@ export const isEditor = (): boolean => {
   // We are checking SSR and CSR cases
   return typeof window !== 'undefined' && !!window.__EDITOR_MODE__;
 };
+
+export const buildSentryOptions = (
+  dsn: string,
+  environment: string,
+  artifact: string,
+) => {
+  return {
+    dsn,
+    config: {
+      // This function will be never called if sentry is not enabled
+      enabled: true,
+      release: artifact,
+      environment,
+    },
+  };
+};
+
+export const getArtifact = () => {
+  return (window as any).__CI_APP_VERSION__;
+};

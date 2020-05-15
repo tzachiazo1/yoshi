@@ -4,13 +4,23 @@ import path from 'path';
 import httpTestkit from '@wix/wix-http-testkit';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import importCwd from 'import-cwd';
+import { AppConfig } from '../model';
 import velocityDataPrivate from './velocity.private.data.json';
 import velocityData from './velocity.data.json';
 import renderVM from './vm';
 
+const getSentryConfig = (config: AppConfig | null) => {
+  return config?.sentry ?? null;
+};
+
 const serverDirectory = 'node_modules/yoshi-flow-editor/build/server';
 const editorTemplate = path.resolve(__dirname, './templates/editorApp.vm');
 const settingsTemplate = path.resolve(__dirname, './templates/settingsApp.vm');
+const applicationConfig = importCwd.silent(
+  './.application.json',
+) as AppConfig | null;
+const sentry = getSentryConfig(applicationConfig);
 
 const server = httpTestkit.server({
   port: process.env.PORT ? Number(process.env.PORT) : undefined,
@@ -48,7 +58,11 @@ app.use('/editor/:widgetName', (req, res) => {
   const { widgetName } = req.params;
   const { instance } = req.query;
   res.send(
-    renderVM(editorTemplate, { widgetName, usePrivateSDKMock: !instance }),
+    renderVM(editorTemplate, {
+      widgetName,
+      sentry,
+      usePrivateSDKMock: !instance,
+    }),
   );
 });
 
@@ -56,7 +70,11 @@ app.use('/settings/:widgetName', (req, res) => {
   const { widgetName } = req.params;
   const { instance } = req.query;
   res.send(
-    renderVM(settingsTemplate, { widgetName, usePrivateSDKMock: !instance }),
+    renderVM(settingsTemplate, {
+      widgetName,
+      sentry,
+      usePrivateSDKMock: !instance,
+    }),
   );
 });
 

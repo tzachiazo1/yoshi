@@ -52,6 +52,19 @@ const mockFlowData = (title, type) => {
   });
 };
 
+const mockSentryData = (teamName, projectName) => {
+  mock('../src/sentry-registration/runPrompt', {
+    default: async () => {
+      return {
+        teamName: `test-${teamName}`,
+        projectName: `test-${projectName}`,
+        DSN: 'https://xxx@123',
+        id: 'xxx',
+      };
+    },
+  });
+};
+
 if (filteredTemplates.length === 0) {
   console.log(
     chalk.red('Could not find any project for the specified projects:'),
@@ -103,8 +116,16 @@ const testTemplate = mockedAnswers => {
           mockedAnswers.templateDefinition.title,
           'WIDGET_OUT_OF_IFRAME',
         );
+        mockSentryData(
+          'some-team',
+          mockedAnswers.templateDefinition.projectName,
+        );
       } else if (isAppBuilder(mockedAnswers.templateDefinition.name)) {
         mockFlowData(mockedAnswers.templateDefinition.title, 'STUDIO_WIDGET');
+        mockSentryData(
+          'some-team',
+          mockedAnswers.templateDefinition.projectName,
+        );
       }
       const { createApp } = mock.reRequire('../src/index');
 

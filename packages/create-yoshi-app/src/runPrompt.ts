@@ -1,7 +1,5 @@
 import path from 'path';
-import extendedPropmts, {
-  Answers,
-} from './dev-center-registration/extended-prompts';
+import extendedPropmts, { Answers } from './extended-prompts';
 import TemplateModel from './TemplateModel';
 import getQuestions from './getQuestions';
 

@@ -1,8 +1,26 @@
-import { IWidgetControllerConfig } from '@wix/native-components-infra/dist/es/src/types/types';
-import { createInstances, objectPromiseAll, fetchFrameworkData } from './utils';
-import { WidgetType, OOI_WIDGET_COMPONENT_TYPE } from './constants';
+import {
+  IWidgetControllerConfig,
+  IAppData,
+  IPlatformAPI,
+  IWixAPI,
+  IPlatformServices,
+} from '@wix/native-components-infra/dist/src/types/types';
+import {
+  createInstances,
+  objectPromiseAll,
+  fetchFrameworkData,
+  buildSentryOptions,
+  getArtifact,
+} from './utils';
+import {
+  SentryConfig,
+  WidgetType,
+  OOI_WIDGET_COMPONENT_TYPE,
+} from './constants';
 
 let frameworkData: any;
+// TODO: Add types
+let reportError: (error: Error | ErrorEvent | string) => void;
 
 type ControllerDescriptor = {
   id: string | null;
@@ -25,6 +43,7 @@ const defaultControllerWrapper = (
     controllerConfig,
     frameworkData,
     appData,
+    reportError,
   });
 
 function ooiControllerWrapper(
@@ -63,6 +82,7 @@ function ooiControllerWrapper(
     controllerConfig,
     frameworkData,
     appData,
+    reportError,
   });
 
   const wrappedController = Promise.resolve(userControllerPromise).then(
@@ -193,11 +213,42 @@ const initializeExperiments = () => {
   );
 };
 
-export const initAppForPageWrapper = (initAppForPage: Function) => (
-  ...args: Array<any>
+export const initAppForPageWrapper = (
+  initAppForPage: Function,
+  sentry: SentryConfig | null,
+) => (
+  initParams: IAppData,
+  apis: IPlatformAPI,
+  namespaces: IWixAPI,
+  platformServices: IPlatformServices,
+  ...other: Array<any>
 ) => {
+  if (sentry) {
+    const sentryOptions = buildSentryOptions(
+      sentry.DSN,
+      'Viewer:Worker',
+      getArtifact(),
+    );
+
+    const sentryInstance = platformServices.monitoring.createMonitor(
+      sentryOptions.dsn,
+      config => ({
+        ...config,
+        ...sentryOptions.config,
+      }),
+    );
+
+    reportError = sentryInstance.captureException.bind(sentryInstance);
+  }
+
   if (initAppForPage) {
-    return initAppForPage(...args);
+    return initAppForPage(
+      initParams,
+      apis,
+      namespaces,
+      platformServices,
+      ...other,
+    );
   }
   return {};
 };

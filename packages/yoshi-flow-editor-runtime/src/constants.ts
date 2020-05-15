@@ -9,3 +9,10 @@ export type WidgetType =
   | typeof OOI_WIDGET_COMPONENT_TYPE
   | typeof PLATFORM_WIDGET_COMPONENT_TYPE
   | typeof PAGE_COMPONENT_TYPE;
+
+export type SentryConfig = {
+  teamName: string;
+  projectName: string;
+  DSN: string;
+  id: string;
+};

@@ -23,6 +23,7 @@ const settingsWrapper = (
         const generateSettingsEntryContent = settingsEntryTemplate({
           settingsWrapperPath,
           baseUIPath,
+          sentry: model.sentry,
           componentFileName: component.settingsFileName,
         });
 

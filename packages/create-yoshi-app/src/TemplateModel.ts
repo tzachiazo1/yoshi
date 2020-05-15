@@ -3,6 +3,12 @@ import fs from 'fs-extra';
 
 export type Language = 'javascript' | 'typescript';
 
+export type SentryData = {
+  teamName: string;
+  projectName: string;
+  DSN: string;
+};
+
 export interface TemplateDefinition {
   name: string;
   title?: string;
@@ -17,6 +23,7 @@ export default class TemplateModel {
   readonly templateDefinition: TemplateDefinition;
   readonly language: Language;
   flowData: Record<string, any> | null;
+  sentryData: SentryData | null;
 
   constructor({
     projectName,
@@ -37,6 +44,7 @@ export default class TemplateModel {
     this.authorEmail = authorEmail;
     this.language = language;
     this.flowData = null;
+    this.sentryData = null;
   }
 
   getPath() {
@@ -51,8 +59,16 @@ export default class TemplateModel {
     return this.flowData;
   }
 
+  getSentryData() {
+    return this.sentryData;
+  }
+
   setFlowData<F>(flowData: F) {
     this.flowData = flowData;
+  }
+
+  setSentryData(sentryData: SentryData) {
+    this.sentryData = sentryData;
   }
 
   static fromFilePath(answersFilePath: string) {

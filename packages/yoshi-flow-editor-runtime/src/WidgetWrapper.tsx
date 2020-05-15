@@ -1,12 +1,16 @@
 import React from 'react';
-import { withStyles } from '@wix/native-components-infra';
+import {
+  withStyles,
+  withSentryErrorBoundary,
+} from '@wix/native-components-infra';
 import { IHostProps } from '@wix/native-components-infra/dist/src/types/types';
 import { IWixStatic } from '@wix/native-components-infra/dist/es/src/types/wix-sdk';
 import { PublicDataProvider } from './react/PublicData/PublicDataProvider';
 import { createInstances } from './createInstances';
 import { ControllerProvider } from './react/Controller/ControllerProvider';
 import { IControllerContext } from './react/Controller/ControllerContext';
-import { ErrorBoundary } from './react/ErrorBoundary';
+import { SentryConfig } from './constants';
+import { buildSentryOptions, getArtifact } from './utils';
 
 declare global {
   interface Window {
@@ -26,10 +30,12 @@ const getWidgetWrapper = (
   UserComponent: typeof React.Component,
   {
     name,
+    sentry,
     Wix,
     isEditor,
   }: {
     name: string;
+    sentry: SentryConfig | null;
     Wix: IWixStatic | null;
     isEditor?: boolean;
   },
@@ -37,16 +43,14 @@ const getWidgetWrapper = (
   const Widget = (props: IHostProps & IFrameworkProps & IControllerContext) => {
     return (
       <div>
-        <ErrorBoundary handleException={error => console.log(error)}>
-          <PublicDataProvider data={props.__publicData__} sdk={{ Wix }}>
-            <ControllerProvider data={props}>
-              <UserComponent
-                {...createInstances({ experiments: props.experiments })}
-                {...props}
-              />
-            </ControllerProvider>
-          </PublicDataProvider>
-        </ErrorBoundary>
+        <PublicDataProvider data={props.__publicData__} sdk={{ Wix }}>
+          <ControllerProvider data={props}>
+            <UserComponent
+              {...createInstances({ experiments: props.experiments })}
+              {...props}
+            />
+          </ControllerProvider>
+        </PublicDataProvider>
       </div>
     );
   };
@@ -58,9 +62,18 @@ const getWidgetWrapper = (
     ? `${name}EditorMode.stylable.bundle.css`
     : `${name}ViewerWidget.stylable.bundle.css`;
 
-  return withStyles(Widget, {
-    cssPath: [cssPath, stylablePath],
-  });
+  if (!sentry) {
+    return withStyles(Widget, {
+      cssPath: [cssPath, stylablePath],
+    });
+  }
+
+  return withSentryErrorBoundary(
+    withStyles(Widget, {
+      cssPath: [cssPath, stylablePath],
+    }),
+    buildSentryOptions(sentry.DSN, 'Viewer', getArtifact()),
+  );
 };
 
 export default getWidgetWrapper;

@@ -10,6 +10,9 @@
     <script
       src="https://${clientTopology.staticsDomain}/unpkg/react-dom@16.6.3/umd/react-dom#if(${debug}).development#else.production.min#{end}.js"
       crossorigin="anonymous"></script>
+    #if (${sentryScript})
+      ${sentryScript}
+    #end
   </head>
   <body>
     <div id="root"></div>

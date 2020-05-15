@@ -1,4 +1,10 @@
 {
   "appDefinitionId": "{%flowData.appDefinitionId%}",
-  "appName": "{%flowData.appName%}"
+  "appName": "{%flowData.appName%}",
+  "sentry": {
+    "DSN": "{%sentryData.DSN%}",
+    "id": "{%sentryData.id%}",
+    "projectName": "{%sentryData.projectName%}",
+    "teamName": "{%sentryData.teamName%}"
+  }
 }

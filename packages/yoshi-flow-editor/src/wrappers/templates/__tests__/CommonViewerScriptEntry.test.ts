@@ -6,6 +6,7 @@ describe('CommonViewerScriptEntry template', () => {
     const generateControllerEntryContent = commonViewerScriptEntry({
       viewerScriptWrapperPath:
         'yoshi-flow-editor-runtime/build/viewerScript.js',
+      sentry: null,
       controllersMeta: [
         {
           controllerFileName: 'project/src/components/button/controller.ts',
@@ -23,6 +24,7 @@ describe('CommonViewerScriptEntry template', () => {
     const generateControllerEntryContent = commonViewerScriptEntry({
       viewerScriptWrapperPath:
         'yoshi-flow-editor-runtime/build/viewerScript.js',
+      sentry: null,
       controllersMeta: [
         {
           controllerFileName: 'project/src/components/todo/controller.ts',
@@ -45,7 +47,31 @@ describe('CommonViewerScriptEntry template', () => {
     const generateControllerEntryContent = commonViewerScriptEntry({
       viewerScriptWrapperPath:
         'yoshi-flow-editor-runtime/build/viewerScript.js',
+      sentry: null,
       controllersMeta: [],
+      viewerAppFileName: 'project/src/app.ts',
+    });
+
+    expect(generateControllerEntryContent).toMatchSnapshot();
+  });
+
+  it('generates correct template with sentry', () => {
+    const generateControllerEntryContent = commonViewerScriptEntry({
+      viewerScriptWrapperPath:
+        'yoshi-flow-editor-runtime/build/viewerScript.js',
+      sentry: {
+        DSN: 'https:xxx@123',
+        teamName: 'team-name',
+        projectName: 'project-name',
+        id: 'xxx',
+      },
+      controllersMeta: [
+        {
+          controllerFileName: 'project/src/components/button/controller.ts',
+          id: '123',
+          widgetType: OOI_WIDGET_COMPONENT_TYPE,
+        },
+      ],
       viewerAppFileName: 'project/src/app.ts',
     });
 

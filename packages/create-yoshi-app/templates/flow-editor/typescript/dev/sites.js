@@ -3,4 +3,5 @@ module.exports = {
   viewerUrl:
     'https://www.editor-flow-dev.com/?appDefinitionId={%flowData.appDefinitionId%}&appName={%flowData.appName%}',
   editorUrl: null,
+  sentryUrl: 'https://sentry.wixpress.com/sentry/{%sentryData.projectName%}',
 };

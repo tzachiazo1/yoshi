@@ -9,6 +9,7 @@ import {
 } from './utils';
 import generateProject from './generateProject';
 import TemplateModel from './TemplateModel';
+import SentryTemplateModel from './sentry-registration/TemplateModel';
 import DevCenterTemplateModel from './dev-center-registration/TemplateModel';
 
 export interface CreateAppOptions {
@@ -43,10 +44,19 @@ export default async ({
   if (templateModel.templateDefinition.name.includes('flow-editor')) {
     const runDevCenterRegistrationPrompt = require('./dev-center-registration/runPrompt')
       .default;
+    const runSentryRegistrationPrompt = require('./sentry-registration/runPrompt')
+      .default;
+
     const devCenterModel = (await runDevCenterRegistrationPrompt(
       templateModel,
     )) as DevCenterTemplateModel;
     templateModel.setFlowData<DevCenterTemplateModel>(devCenterModel);
+
+    const sentryModel = (await runSentryRegistrationPrompt(
+      templateModel,
+    )) as SentryTemplateModel;
+
+    templateModel.setSentryData(sentryModel);
   }
 
   console.log(

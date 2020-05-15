@@ -1,5 +1,5 @@
 import LocalAppTemplateModel from '../TemplateModel';
-import extendedPropmts, { Answers } from './extended-prompts';
+import extendedPropmts, { Answers } from '../extended-prompts';
 import TemplateModel from './TemplateModel';
 import getQuestions from './getQuestions';
 import { getInstance } from './auth';

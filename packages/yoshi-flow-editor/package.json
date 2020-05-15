@@ -13,6 +13,7 @@
   "author": "Dean Shub",
   "license": "ISC",
   "dependencies": {
+    "@wix/add-sentry": "^1.0.0",
     "@wix/bob-widget-services": "^1.30.0",
     "arg": "^4.1.1",
     "body-parser": "^1.19.0",
@@ -21,6 +22,7 @@
     "fs-extra": "^8.1.0",
     "globby": "^10.0.1",
     "resolve": "^1.14.1",
+    "import-cwd": "^3.0.0",
     "tpa-style-webpack-plugin": "^1.3.13",
     "url-join": "^4.0.1",
     "velocity": "^0.7.2",

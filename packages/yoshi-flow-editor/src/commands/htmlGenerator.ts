@@ -13,12 +13,17 @@ const vmPaths: Record<vmType, string> = {
   settings: path.join(templatesPath, './settingsApp.vm'),
 };
 
-const generateHTML = (type: vmType, widgetName: string) => {
+const generateHTML = (
+  type: vmType,
+  widgetName: string,
+  model: FlowEditorModel,
+) => {
   const destinationDir = path.join(process.cwd(), STATICS_DIR, type);
   const vmPath = vmPaths[type];
   const rendered = renderVM(vmPath, {
     widgetName,
     debug: false,
+    sentry: model.sentry,
     clientTopology: {
       staticsBaseUrl: '../',
     },
@@ -35,7 +40,7 @@ export const generateEditorHTMLFiles = (model: FlowEditorModel) => {
   syncHTMLDirectory('editor');
   syncHTMLDirectory('settings');
   model.components.forEach(component => {
-    generateHTML('editor', component.name);
-    generateHTML('settings', component.name);
+    generateHTML('editor', component.name, model);
+    generateHTML('settings', component.name, model);
   });
 };

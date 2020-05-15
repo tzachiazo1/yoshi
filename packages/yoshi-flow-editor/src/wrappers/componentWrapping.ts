@@ -23,6 +23,7 @@ const componentWrapper = (
       const generateWidgetEntryContent = widgetEntryTemplate({
         widgetWrapperPath,
         componentName: component.name,
+        sentry: model.sentry,
         componentFileName: component.widgetFileName,
       });
 

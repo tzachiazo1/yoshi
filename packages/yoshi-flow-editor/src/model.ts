@@ -7,6 +7,7 @@ import fs from 'fs-extra';
 import { Config } from 'yoshi-config/build/config';
 import {
   WidgetType,
+  SentryConfig,
   OOI_WIDGET_COMPONENT_TYPE,
   PLATFORM_WIDGET_COMPONENT_TYPE,
 } from 'yoshi-flow-editor-runtime/build/constants';
@@ -28,6 +29,7 @@ export interface FlowEditorModel {
   viewerAppFileName: string;
   editorEntryFileName: string | null;
   components: Array<ComponentModel>;
+  sentry: SentryConfig | null;
 }
 
 export interface ComponentModel {
@@ -42,6 +44,7 @@ export interface ComponentModel {
 
 export interface AppConfig {
   appDefinitionId: string;
+  sentry?: SentryConfig;
 }
 export interface ComponentConfig {
   id: string;
@@ -57,6 +60,12 @@ function resolveFrom(dir: string, fileName: string): string | null {
   } catch (error) {
     return null;
   }
+}
+
+function shouldUseSentry(): boolean {
+  return (
+    Boolean(process.env.FORCE_SENTRY) || process.env.NODE_ENV === 'production'
+  );
 }
 
 function formatPathsForLog(paths: Array<string>, ext: string) {
@@ -105,11 +114,12 @@ export async function generateFlowEditorModel(
     appConfigFileName && getLocalConfig<AppConfig>(appConfigFileName);
 
   if (!appConfig || !appConfig.appDefinitionId) {
-    console.warn(`Seems like your app doesn't contain ${formatPathsForLog(
-      APPLICATION_CONFIG_FILENAME,
-      'json',
-    )}.json with appDefinitionId specified. You should register it in dev-center and add appDefinitionId field for ${rootPath}.
-For more info, visit http://tiny.cc/dev-center-registration`);
+    throw new Error(
+      `Seems like your app doesn't contain ${formatPathsForLog(
+        APPLICATION_CONFIG_FILENAME,
+        'json',
+      )} or \`appDefinitionId\` is not specified here.`,
+    );
   }
 
   const componentsDirectories = await globby('./src/components/*', {
@@ -203,12 +213,15 @@ For more info, visit http://tiny.cc/dev-center-registration`);
     [] as Array<ComponentModel>,
   );
 
-  return {
+  const model = {
     appName: config.name,
-    appDefId: appConfig ? appConfig.appDefinitionId : null,
+    sentry: (shouldUseSentry() && appConfig.sentry) || null,
+    appDefId: appConfig.appDefinitionId ?? null,
     editorEntryFileName,
     artifactId,
     viewerAppFileName,
     components: componentModels,
   };
+
+  return model;
 }

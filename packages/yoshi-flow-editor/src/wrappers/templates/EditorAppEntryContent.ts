@@ -1,3 +1,4 @@
+import { SentryConfig } from 'yoshi-flow-editor-runtime/build/constants';
 import t from './template';
 
 type Opts = Record<
@@ -7,7 +8,9 @@ type Opts = Record<
   | 'viewerAppFileName'
   | 'componentName',
   string
->;
+> & {
+  sentry: SentryConfig | null;
+};
 
 export default t<Opts>`
     import React from 'react';
@@ -23,10 +26,20 @@ export default t<Opts>`
     var importedApp = viewerApp;
 
     var componentName = '${({ componentName }) => componentName}';
+    var sentry = ${({ sentry }) =>
+      sentry
+        ? `{
+      DSN: '${sentry.DSN}',
+      id: '${sentry.id}',
+      projectName: '${sentry.projectName}',
+      teamName: '${sentry.teamName}',
+    }`
+        : 'null'};
 
     var WrappedEditorApp = () => React.createElement(EditorAppWrapper, {
       UserComponent,
       name: componentName,
+      sentry,
       userController: createController,
       mapPlatformStateToAppData: importedApp.mapPlatformStateToAppData,
       customInitAppForPage: importedApp.initAppForPage

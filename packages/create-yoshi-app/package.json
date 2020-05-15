@@ -29,6 +29,7 @@
     "dev": "ts-node scripts/dev.js"
   },
   "dependencies": {
+    "@wix/add-sentry": "^1.0.0",
     "axios": "^0.19.2",
     "chalk": "^2.4.1",
     "chrome-launcher": "0.13.2",
@@ -39,6 +40,7 @@
     "fs-extra": "^7.0.0",
     "globby": "^9.0.0",
     "lodash": "^4.17.11",
+    "listr": "^0.14.3",
     "parse-git-config": "^2.0.2",
     "pascal-case": "^2.0.1",
     "prompts": "^2.3.2",
@@ -52,6 +54,7 @@
     "@types/prompts": "^2.0.2",
     "@types/semver": "^6.0.2",
     "@types/validate-npm-package-name": "^3.0.0",
+    "@types/listr": "^0.14.2",
     "chokidar": "^2.0.4",
     "clipboardy": "^1.2.3",
     "expect": "^23.6.0",

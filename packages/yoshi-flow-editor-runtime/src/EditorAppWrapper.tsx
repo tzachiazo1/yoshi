@@ -1,17 +1,30 @@
 import React, { Suspense } from 'react';
 import { ViewerScriptWrapper } from '@wix/native-components-infra';
+import SentryGlobal from '@sentry/browser';
+import { ErrorBoundary } from './react/ErrorBoundary';
 import { WixSDK } from './react/SDK/SDKRenderProp';
 import WidgetWrapper from './WidgetWrapper';
 import { createControllers, initAppForPageWrapper } from './viewerScript.js';
-import { IWixSDKContext } from './react/SDK/SDKContext';
+import {
+  IWixSDKContext,
+  IWixSDKEditorEnvironmentContext,
+} from './react/SDK/SDKContext';
 import { WixSDKProvider } from './react/SDK/WixSDKProvider';
+import { SentryConfig } from './constants';
 
+declare global {
+  interface Window {
+    __CI_APP_VERSION__: string;
+    Sentry: typeof SentryGlobal;
+  }
+}
 interface IEditorAppCreatorProps {
   UserComponent: typeof React.Component;
   userController: Function;
   mapPlatformStateToAppData: Function;
   customInitAppForPage: Function;
   name: string;
+  sentry: SentryConfig | null;
 }
 interface IEditorAppWithWixSDKCreatorProps extends IEditorAppCreatorProps {
   sdk: IWixSDKContext;
@@ -28,29 +41,30 @@ const createEditorAppForWixSDK = ({
   mapPlatformStateToAppData,
   customInitAppForPage,
   name,
+  sentry,
   sdk,
 }: IEditorAppWithWixSDKCreatorProps) => {
-  return ViewerScriptWrapper(
-    WidgetWrapper(UserComponent, {
-      name,
-      Wix: sdk.Wix,
-      isEditor: true,
-    }),
-    {
-      viewerScript: {
-        createControllers: createControllers(
-          userController,
-          mapPlatformStateToAppData,
-        ),
-        initAppForPage: initAppForPageWrapper(customInitAppForPage),
-      },
-      Wix: sdk.Wix,
-      widgetConfig: {
-        widgetId: '',
-        getAllPublicData: true,
-      },
+  const WithComponent = WidgetWrapper(UserComponent, {
+    name,
+    Wix: sdk.Wix,
+    sentry: null,
+    isEditor: true,
+  });
+
+  return ViewerScriptWrapper(WithComponent, {
+    viewerScript: {
+      createControllers: createControllers(
+        userController,
+        mapPlatformStateToAppData,
+      ),
+      initAppForPage: initAppForPageWrapper(customInitAppForPage, sentry),
     },
-  );
+    Wix: sdk.Wix,
+    widgetConfig: {
+      widgetId: '',
+      getAllPublicData: true,
+    },
+  });
 };
 
 interface IEditorAppWithCreatorState {
@@ -86,7 +100,7 @@ class EditorAppWithCreator extends React.Component<
       return null;
     }
 
-    return <EditorAppComponent />;
+    return <EditorAppComponent {...this.props} />;
   }
 }
 
@@ -96,7 +110,32 @@ export default (props: IEditorAppWrapperProps) => {
       <WixSDKProvider>
         <WixSDK>
           {sdk => {
-            return <EditorAppWithCreator sdk={sdk} {...props} />;
+            if (!props.sentry) {
+              return (
+                <ErrorBoundary handleException={error => console.log(error)}>
+                  <EditorAppWithCreator sdk={sdk} {...props} />
+                </ErrorBoundary>
+              );
+            }
+
+            const Wix = sdk
+              ? (sdk as IWixSDKEditorEnvironmentContext).Wix
+              : null;
+
+            if (Wix) {
+              window.Sentry.configureScope(scope => {
+                scope.setTag('msid', Wix.Utils.getInstanceValue('metaSiteId'));
+                scope.setUser({
+                  id: Wix.Utils.getInstanceValue('uid'),
+                });
+              });
+            }
+
+            return (
+              <ErrorBoundary handleException={window.Sentry.captureException}>
+                <EditorAppWithCreator sdk={sdk} {...props} />
+              </ErrorBoundary>
+            );
           }}
         </WixSDK>
       </WixSDKProvider>

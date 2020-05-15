@@ -1,7 +1,7 @@
 import getGitConfig from 'parse-git-config';
 import { capitalize } from 'lodash';
 import templates from './templates';
-import { ExtendedPromptObject } from './dev-center-registration/extended-prompts';
+import { ExtendedPromptObject } from './extended-prompts';
 
 const WIX_EMAIL_PATTERN = '@wix.com';
 

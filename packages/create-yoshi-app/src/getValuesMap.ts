@@ -8,6 +8,7 @@ export default ({
   authorName,
   authorEmail,
   flowData,
+  sentryData,
 }: TemplateModel) => {
   const valuesMap: Record<string, any> = {
     projectName,
@@ -16,6 +17,7 @@ export default ({
     gitignore: 'gitignore',
     packagejson: 'package',
     flowData,
+    sentryData,
   };
 
   Object.keys(valuesMap).forEach(key => {

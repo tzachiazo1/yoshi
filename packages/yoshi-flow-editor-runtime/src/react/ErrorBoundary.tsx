@@ -1,12 +1,22 @@
 import React from 'react';
-import PropTypes, { InferProps } from 'prop-types';
+import PropTypes from 'prop-types';
 
-export class ErrorBoundary extends React.Component<
-  InferProps<typeof ErrorBoundary.propTypes>
-> {
+interface IErrorBoundary {
+  handleException: (error: Error) => void;
+  configure?: () => void;
+}
+export class ErrorBoundary extends React.Component<IErrorBoundary> {
   static propTypes = {
     handleException: PropTypes.func.isRequired,
   };
+
+  constructor(props: IErrorBoundary) {
+    super(props);
+
+    if (props.configure) {
+      props.configure();
+    }
+  }
 
   componentDidCatch(error: Error) {
     this.props.handleException(error);

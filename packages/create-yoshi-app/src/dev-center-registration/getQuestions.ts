@@ -1,6 +1,6 @@
 import { isOutOfIframe, isAppBuilder } from '../utils';
+import { ExtendedPromptObject } from '../extended-prompts';
 import getDefaultAnswers from './getDefaultAnswers';
-import { ExtendedPromptObject } from './extended-prompts';
 import {
   createApp,
   createComponent,
@@ -338,11 +338,6 @@ export default (): Array<ExtendedPromptObject<string>> => {
                             [
                               `Congrats! You just registered the ${answers.appName} app! 🚀`,
                               `Dev Center url: https://dev.wix.com/dc3/my-apps/${answers.appId}/build/components`,
-                              'Next steps:',
-                              '  - Push the app to GitHub',
-                              '  - Add the app to LifeCycle',
-                              '  - Create a new Wix Site and Test your app via your App Page on the Dev Center',
-                              '  - Copy viewer and editor URLs to `dev/sites`',
                             ].join('\n'),
                           );
                         }
