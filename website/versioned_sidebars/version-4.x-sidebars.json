@@ -14,39 +14,7 @@
     },
     {
       "type": "doc",
-      "id": "version-4.x/app-flow"
-    },
-    {
-      "type": "doc",
-      "id": "version-4.x/library-flow"
-    },
-    {
-      "type": "doc",
-      "id": "version-4.x/editor-flow/overview"
-    },
-    {
-      "type": "doc",
-      "id": "version-4.x/business-manager-flow"
-    },
-    {
-      "type": "doc",
-      "id": "version-4.x/legacy-flow"
-    },
-    {
-      "type": "doc",
-      "id": "version-4.x/yoshi-server/getting-started"
-    },
-    {
-      "type": "doc",
-      "id": "version-4.x/babel-preset-yoshi"
-    },
-    {
-      "type": "doc",
-      "id": "version-4.x/jest-yoshi-preset"
-    },
-    {
-      "type": "doc",
-      "id": "version-4.x/node-api"
+      "id": "version-4.x/testing"
     },
     {
       "type": "doc",
@@ -54,65 +22,55 @@
     },
     {
       "type": "doc",
-      "id": "version-4.x/migration-guide"
+      "id": "version-4.x/node-api"
     },
     {
       "type": "category",
-      "label": "Legacy-Guides",
+      "label": "Styles and Assets",
       "items": [
         {
           "type": "doc",
-          "id": "version-4.x/legacy-guides/ab-translate"
+          "id": "version-4.x/styles-and-assets/disable-css-modules"
         },
         {
           "type": "doc",
-          "id": "version-4.x/legacy-guides/assets"
+          "id": "version-4.x/styles-and-assets/stylelint-setup"
         },
         {
           "type": "doc",
-          "id": "version-4.x/legacy-guides/bundle-analyze"
-        },
-        {
-          "type": "doc",
-          "id": "version-4.x/legacy-guides/debugging"
-        },
-        {
-          "type": "doc",
-          "id": "version-4.x/legacy-guides/disable-css-modules"
-        },
-        {
-          "type": "doc",
-          "id": "version-4.x/legacy-guides/enzyme-support"
-        },
-        {
-          "type": "doc",
-          "id": "version-4.x/legacy-guides/stylelint-setup"
-        },
-        {
-          "type": "doc",
-          "id": "version-4.x/legacy-guides/export-es-modules"
-        },
-        {
-          "type": "doc",
-          "id": "version-4.x/legacy-guides/hmr"
-        },
-        {
-          "type": "doc",
-          "id": "version-4.x/legacy-guides/momentjs-optimization"
-        },
-        {
-          "type": "doc",
-          "id": "version-4.x/legacy-guides/split-chunks"
-        },
-        {
-          "type": "doc",
-          "id": "version-4.x/legacy-guides/svg"
-        },
-        {
-          "type": "doc",
-          "id": "version-4.x/legacy-guides/managing-dependencies"
+          "id": "version-4.x/styles-and-assets/svg"
         }
       ]
+    },
+    {
+      "type": "category",
+      "label": "Development",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-4.x/development/bundle-analyze"
+        },
+        {
+          "type": "doc",
+          "id": "version-4.x/development/debugging"
+        },
+        {
+          "type": "doc",
+          "id": "version-4.x/development/hmr"
+        },
+        {
+          "type": "doc",
+          "id": "version-4.x/development/momentjs-optimization"
+        },
+        {
+          "type": "doc",
+          "id": "version-4.x/development/split-chunks"
+        }
+      ]
+    },
+    {
+      "type": "doc",
+      "id": "version-4.x/migration-guide"
     }
   ],
   "version-4.x/editor-flow": [

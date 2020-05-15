@@ -20,7 +20,45 @@ In the future, we plan on providing many features specifically for apps. We want
 
 The purpose of this document is to explain how to opt-into this new feature. See https://github.com/wix/yoshi/pull/586 for more information on the changes it introduces.
 
-### Migration for Fullstack apps (bootstrap)
+## CLI
+
+These are the scripts that are available to you in a project that uses app flow:
+
+### `yoshi start`
+
+Starts the application in development mode. Runs your application server and `webpack-dev-server` on port 3200. Watches for changes and reloads your app automatically. Compilation errors will show both, in the terminal and in the browser.
+
+Possible flags:
+
+- `--server`: <img src="https://img.shields.io/badge/deprecated-yellow"/> By default, starts your application server by running `index-dev.js|ts`. Pass a different value to start up a different script.
+- `--url`: By default, opens your browser with `http://localhost:3000`. Use this to pass a different URL.
+- `--production`: Start using un-minified production build.
+- `--debug`: Pass this flag to run your application server with a debugger.
+
+### `yoshi build`
+
+Builds your app for production into the `/dist` directory. Normally, this command will only run in CI. Client-side assets will be minified.
+
+Possible flags:
+
+- `--analyze`: Analyze production bundle. This is helpful to understand what is included in the bundle.
+- `--stats`: Generate Webpack stats into `dist/webpack-stats.json`.
+
+### `yoshi test`
+
+Same as the [legacy test command](legacy-flow.md#test)
+
+### `yoshi lint`
+
+Same as the [legacy lint command](legacy-flow.md#lint)
+
+## Configuration
+
+The app flow is using [yoshi-config](yoshi-config.md)
+
+### Migration from legacy flow
+
+#### Fullstack apps (bootstrap)
 
 Start by opting into app flow by changing your `package.json` or `yoshi.config.js` to include:
 
@@ -138,7 +176,7 @@ import wixExpressRequireHttps from '@wix/wix-express-require-https';
 +});
 ```
 
-### Migration for Client apps
+#### Client apps
 
 Start by opting into app flow by changing your `package.json` or `yoshi.config.js` to include:
 
@@ -158,35 +196,3 @@ mv index.js dev/server.js
 ```
 
 With that, Yoshi will now bundle it into `/dist/server.js`.
-
-### CLI
-
-These are the scripts that are available to you in a project that uses app flow:
-
-#### `npx yoshi start`
-
-Starts the application in development mode. Runs your application server and `webpack-dev-server` on port 3200. Watches for changes and reloads your app automatically. Compilation errors will show both, in the terminal and in the browser.
-
-Possible flags:
-
-- `--server`: <img src="https://img.shields.io/badge/deprecated-yellow"/> By default, starts your application server by running `index-dev.js|ts`. Pass a different value to start up a different script.
-- `--url`: By default, opens your browser with `http://localhost:3000`. Use this to pass a different URL.
-- `--production`: Start using un-minified production build.
-- `--debug`: Pass this flag to run your application server with a debugger.
-
-#### `npx yoshi test`
-
-Runs your test with the configured test runner (Jest by default). Pass `--watch` to start it in watch mode.
-
-#### `npx yoshi build`
-
-Builds your app for production into the `/dist` directory. Normally, this command will only run in CI. Client-side assets will be minified.
-
-Possible flags:
-
-- `--analyze`: Analyze production bundle. This is helpful to understand what is included in the bundle.
-- `--stats`: Generate Webpack stats into `dist/webpack-stats.json`.
-
-## Configuration
-
-The app flow is using [yoshi-config](yoshi-config.md)

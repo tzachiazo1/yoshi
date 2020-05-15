@@ -10,22 +10,9 @@ A zero configuraiton toolkit to create modern TypeScript libraries @ Wix.
 
 ![Editor-flow-example](https://user-images.githubusercontent.com/11733036/77347439-85e60400-6d40-11ea-8270-ae6ac2714a55.gif)
 
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Configuration](#configuration)
-  - [bundle](#bundle)
-  - [bundle.library](#bundlelibrary)
-  - [bundle.externals](#bundleexternals)
-  - [bundle.entry](#bundleentry)
-  - [bundle.port](#bundleport)
-  - [bundle.https](#bundlehttps)
-- [FAQ](#faq)
-- [What `build` command produces?](#what-build-command-produces)
-- [Why does this supports only TypeScript?](#why-does-this-supports-only-typescript)
-- [How can I use a library create by this Flow?](#how-can-i-use-a-library-create-by-this-flow)
+### What is a library?
 
-### What is a library (in the scope of frontend development)?
+> In the scope of frontend development
 
 A library is a chunk of code that you want to reuse between client applications, servers and other libraries. This toolkit focuses on **client libararies**, or libraries that will be consumed in JavaScript client applications.
 
