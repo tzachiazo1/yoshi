@@ -16,25 +16,25 @@
 <link rel="stylesheet" href="/yoshi/styles.73ff1874.css">
 
 
-<link rel="preload" href="/yoshi/styles.c37c2a22.js" as="script">
+<link rel="preload" href="/yoshi/styles.20953f9c.js" as="script">
 
-<link rel="preload" href="/yoshi/runtime~main.0d9419b4.js" as="script">
+<link rel="preload" href="/yoshi/runtime~main.3c1e0f9a.js" as="script">
 
-<link rel="preload" href="/yoshi/main.15e6f8fa.js" as="script">
+<link rel="preload" href="/yoshi/main.4b392fad.js" as="script">
 
-<link rel="preload" href="/yoshi/1.1585cc8a.js" as="script">
+<link rel="preload" href="/yoshi/1.44445247.js" as="script">
 
-<link rel="preload" href="/yoshi/2.fb5ad572.js" as="script">
+<link rel="preload" href="/yoshi/2.cd89a933.js" as="script">
 
-<link rel="preload" href="/yoshi/3.3dac3156.js" as="script">
+<link rel="preload" href="/yoshi/3.8930526e.js" as="script">
 
-<link rel="preload" href="/yoshi/1be78505.963e316b.js" as="script">
+<link rel="preload" href="/yoshi/1be78505.75a8f9eb.js" as="script">
 
-<link rel="preload" href="/yoshi/cb8e64de.af666795.js" as="script">
+<link rel="preload" href="/yoshi/cb8e64de.f6b0a705.js" as="script">
 
-<link rel="preload" href="/yoshi/17896441.7dfac94d.js" as="script">
+<link rel="preload" href="/yoshi/17896441.65093902.js" as="script">
 
-<link rel="preload" href="/yoshi/d480227d.3db346e5.js" as="script">
+<link rel="preload" href="/yoshi/d480227d.fdc89a69.js" as="script">
 
 </head>
 <body>
@@ -46,25 +46,25 @@
 </span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">client</span><span class="token punctuation" style="color:rgb(199, 146, 234)">.</span><span class="token method function property-access" style="color:rgb(130, 170, 255)">request</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">{</span><span class="token plain"> method</span><span class="token operator" style="color:rgb(137, 221, 255)">:</span><span class="token plain"> greeting</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> args</span><span class="token operator" style="color:rgb(137, 221, 255)">:</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&quot;John&quot;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(199, 146, 234)">}</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token punctuation" style="color:rgb(199, 146, 234)">.</span><span class="token method function property-access" style="color:rgb(130, 170, 255)">then</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token parameter">data</span><span class="token plain"> </span><span class="token arrow operator" style="color:rgb(137, 221, 255)">=&gt;</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(199, 146, 234)">{</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  </span><span class="token console class-name" style="color:rgb(255, 203, 107)">console</span><span class="token punctuation" style="color:rgb(199, 146, 234)">.</span><span class="token method function property-access" style="color:rgb(130, 170, 255)">log</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">data</span><span class="token punctuation" style="color:rgb(199, 146, 234)">.</span><span class="token property-access">greet</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token punctuation" style="color:rgb(199, 146, 234)">;</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"></span><span class="token punctuation" style="color:rgb(199, 146, 234)">}</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token punctuation" style="color:rgb(199, 146, 234)">;</span></div></div></div></div></div><p>That&#x27;s it!</p><p>Running <code>npx yoshi start</code> shows <code>hello John</code> in the console.</p><h4><a aria-hidden="true" tabindex="-1" class="anchor" id="what-just-happened-here"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#what-just-happened-here" title="Direct link to heading">#</a>What just happened here?</h4><ul><li><code>yoshi-server-client</code> is triggering xhr calls behind the scenes.</li><li><code>yoshi-server</code> has one endpoint, <code>_api_</code> (open devtools to see it). All requests are made as <code>post</code> requests, with data about the function that we want to call and the arguments.</li><li>If you are using Typescript, server arguments and response are typed!</li><li>For Business Manager modules, all API requests to <code>/_api/projectName</code> are mapped to <code>/_api_</code> (Yoshi Server)</li></ul></div></article><div class="margin-vert--xl"><div class="row"><div class="col"><a href="https://github.com/wix/yoshi/edit/master/website/docs/yoshi-server/getting-started.md" target="_blank" rel="noreferrer noopener"><svg fill="currentColor" height="1.2em" width="1.2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 40 40" style="margin-right:0.3em;vertical-align:sub"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col text--right"><em><small>Last updated on <time datetime="2020-05-12T16:00:15.000Z" class="docLastUpdatedAt_1sqk">5/12/2020</time> by <strong>Yaniv Efraim</strong></small></em></div></div></div><div class="margin-vert--lg"><nav class="pagination-nav"><div class="pagination-nav__item"></div><div class="pagination-nav__item pagination-nav__item--next"><a class="pagination-nav__link" href="/yoshi/docs/next/yoshi-server/consuming-data-from-the-server"><div class="pagination-nav__link--sublabel">Next</div><div class="pagination-nav__link--label">Consuming Data from the Server »</div></a></div></nav></div></div></div><div class="col col--3"><div class="tableOfContents_TbNY"><ul class="contents contents__left-border"><li><a href="#why-we-built-yoshi-server" class="contents__link">Why we built Yoshi Server</a></li><li><a href="#setup" class="contents__link">Setup</a></li><li><a href="#manual-setup" class="contents__link">Manual setup</a></li><li><a href="#adding-your-first-yoshi-server-function" class="contents__link">Adding your first Yoshi Server function</a></li></ul></div></div></div></div></main></div></div><footer class="footer"><div class="container"><div class="row footer__links"><div class="col footer__col"><h4 class="footer__title">Docs</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/yoshi/docs/welcome">Get Started</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Social</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/yoshi/blog">Blog</a></li></ul></div></div><div class="text--center"><div>Copyright © 2020 Wix.com, Built with Docusaurus.</div></div></div></footer>
 </div>
 
-<script src="/yoshi/styles.c37c2a22.js"></script>
+<script src="/yoshi/styles.20953f9c.js"></script>
 
-<script src="/yoshi/runtime~main.0d9419b4.js"></script>
+<script src="/yoshi/runtime~main.3c1e0f9a.js"></script>
 
-<script src="/yoshi/main.15e6f8fa.js"></script>
+<script src="/yoshi/main.4b392fad.js"></script>
 
-<script src="/yoshi/1.1585cc8a.js"></script>
+<script src="/yoshi/1.44445247.js"></script>
 
-<script src="/yoshi/2.fb5ad572.js"></script>
+<script src="/yoshi/2.cd89a933.js"></script>
 
-<script src="/yoshi/3.3dac3156.js"></script>
+<script src="/yoshi/3.8930526e.js"></script>
 
-<script src="/yoshi/1be78505.963e316b.js"></script>
+<script src="/yoshi/1be78505.75a8f9eb.js"></script>
 
-<script src="/yoshi/cb8e64de.af666795.js"></script>
+<script src="/yoshi/cb8e64de.f6b0a705.js"></script>
 
-<script src="/yoshi/17896441.7dfac94d.js"></script>
+<script src="/yoshi/17896441.65093902.js"></script>
 
-<script src="/yoshi/d480227d.3db346e5.js"></script>
+<script src="/yoshi/d480227d.fdc89a69.js"></script>
 
 
 </body>
