@@ -2,10 +2,7 @@ import path from 'path';
 import arg from 'arg';
 import fs from 'fs-extra';
 import { runWebpack } from 'yoshi-common/build/webpack-utils';
-import {
-  printBuildResult,
-  printBundleSizeSuggestion,
-} from 'yoshi-common/build/print-build-results';
+import { printBundleSizeSuggestion } from 'yoshi-common/build/print-build-results';
 import { BUILD_DIR, TARGET_DIR } from 'yoshi-config/build/paths';
 import { inTeamCity } from 'yoshi-helpers/build/queries';
 import {
@@ -16,6 +13,7 @@ import { CliCommand } from '../bin/yoshi-bm';
 import createFlowBMModel from '../model';
 import renderModule, { moduleEntryPath } from '../renderModule';
 import renderModuleConfig from '../renderModuleConfig';
+import printBuildResult from '../print-build-result';
 
 const join = (...dirs: Array<string>) => path.join(process.cwd(), ...dirs);
 
@@ -108,9 +106,9 @@ const build: CliCommand = async function(argv, config) {
     serverConfig,
   ]);
 
-  const [, clientOptimizedStats, serverStats] = stats;
+  const [, clientOptimizedStats] = stats;
 
-  printBuildResult({ webpackStats: [clientOptimizedStats, serverStats] });
+  printBuildResult(model, clientOptimizedStats.toJson({ assets: true }));
   printBundleSizeSuggestion();
 };
 
