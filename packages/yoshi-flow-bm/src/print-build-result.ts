@@ -8,8 +8,9 @@ import webpack from 'webpack';
 import { FlowBMModel } from './model';
 
 import ToJsonOutput = webpack.Stats.ToJsonOutput;
+import { EXPORTED_COMPONENTS_DIR, PAGES_DIR } from './constants';
 
-function printTable(table: Array<Array<string | number>>, gap = 2) {
+function printTable(table: Array<Array<string | number>>, gap = 4) {
   const colWidths = table[0]
     .map((_, i) =>
       table.map(row => stripAnsi((row[i] ?? '').toString()).length),
@@ -80,10 +81,8 @@ export default function printBuildResult(
 
   const table = [];
 
-  table.push(
-    ['Name', 'Size', 'Gzipped'].map(s => chalk.bold.underline.green(s)),
-  );
-  table.push([model.moduleId]);
+  table.push(['Name', 'Size', 'Gzipped'].map(s => chalk.underline(s)));
+  table.push([chalk.cyan(model.moduleId)]);
 
   moduleAssets.forEach(asset =>
     table.push([
@@ -101,7 +100,7 @@ export default function printBuildResult(
     pages.forEach(({ assets, page }) => {
       table.push([
         ` ${chalk.dim('├')} /${page.route} ${chalk.dim(
-          `(${page.componentName})`,
+          `(${PAGES_DIR}/${page.relativePath})`,
         )}`,
       ]);
 
@@ -125,7 +124,11 @@ export default function printBuildResult(
 
   if (exportedComponents.length > 0) {
     exportedComponents.forEach(({ assets, exportedComponent }) => {
-      table.push([` ${chalk.dim('├')} ${exportedComponent.componentId}`]);
+      table.push([
+        ` ${chalk.dim('├')} ${exportedComponent.componentId} ${chalk.dim(
+          `(${EXPORTED_COMPONENTS_DIR}/${exportedComponent.relativePath})`,
+        )}`,
+      ]);
 
       assets.forEach((asset, i) =>
         table.push([
