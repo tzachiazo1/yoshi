@@ -1,9 +1,7 @@
 import path from 'path';
 import arg from 'arg';
-import fs from 'fs-extra';
 import { runWebpack } from 'yoshi-common/build/webpack-utils';
 import { printBundleSizeSuggestion } from 'yoshi-common/build/print-build-results';
-import { BUILD_DIR, TARGET_DIR } from 'yoshi-config/build/paths';
 import { inTeamCity } from 'yoshi-helpers/build/queries';
 import {
   createClientWebpackConfig,
@@ -14,8 +12,6 @@ import createFlowBMModel from '../model';
 import renderModule, { moduleEntryPath } from '../renderModule';
 import renderModuleConfig from '../renderModuleConfig';
 import printBuildResult from '../print-build-result';
-
-const join = (...dirs: Array<string>) => path.join(process.cwd(), ...dirs);
 
 const build: CliCommand = async function(argv, config) {
   const args = arg(
@@ -60,11 +56,18 @@ const build: CliCommand = async function(argv, config) {
   }
 
   await Promise.all([
-    fs.emptyDir(join(BUILD_DIR)),
-    fs.emptyDir(join(TARGET_DIR)),
+    // fs.emptyDir(join(BUILD_DIR)),
+    // fs.emptyDir(join(TARGET_DIR)),
   ]);
 
   const model = createFlowBMModel();
+
+  printBuildResult(
+    model,
+    require(path.join(process.cwd(), 'target/webpack-stats.json')),
+  );
+  return;
+
   renderModule(model);
   renderModuleConfig(model);
 
