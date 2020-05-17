@@ -23,7 +23,13 @@
     },
     {
       "packagePatterns": ["^@babel/"],
-      "enabled": false
+      "groupName": "babel",
+      "schedule": ["after 3:00am and before 7:00am on sunday"]
+    },
+    {
+      "packagePatterns": ["^@stylable/"],
+      "groupName": "stylable",
+      "schedule": ["after 3:00am and before 7:00am on sunday"]
     },
     {
       "updateTypes": ["minor", "patch"],
