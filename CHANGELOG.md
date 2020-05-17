@@ -1,5 +1,17 @@
 # Changelog
 
+## 4.77.0 (2020-05-17)
+
+#### :rocket: New Feature
+
+- `create-yoshi-app`, `yoshi-flow-editor-runtime`
+  - [#2406](https://github.com/wix/yoshi/pull/2406) Add example BILogger to Editor flow template ([@yavorsky](https://github.com/yavorsky))
+
+#### :bug: Bug Fix
+
+- `yoshi-flow-monorepo`
+  - [#2414](https://github.com/wix/yoshi/pull/2414) Build site-assets Webpack config instead of client in monorepo start script ([@ronami](https://github.com/ronami))
+
 ## 4.76.0 (2020-05-17)
 
 #### :boom: Breaking Change
