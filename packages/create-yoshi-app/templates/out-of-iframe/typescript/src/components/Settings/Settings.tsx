@@ -22,8 +22,8 @@ const defaultSettingsValues: ISettingsPanelState = {
 };
 
 export default class SettingsPanel extends React.Component<
-{},
-ISettingsPanelState
+  {},
+  ISettingsPanelState
 > {
   state = defaultSettingsValues;
 
