@@ -1,6 +1,6 @@
 {
   "name": "yoshi-server-testing",
-  "version": "4.75.0",
+  "version": "4.76.0",
   "main": "build/index.js",
   "sideEffects": false,
   "keywords": [
@@ -19,6 +19,6 @@
   },
   "devDependencies": {
     "yoshi-server": "4.72.0",
-    "yoshi-server-client": "4.72.0"
+    "yoshi-server-client": "4.76.0"
   }
 }
