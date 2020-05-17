@@ -1,23 +1,33 @@
-import React from 'react';
-import { I18nextProvider } from 'react-i18next';
-import { notifyViewStartLoading } from '@wix/business-manager-api';
-import { COMPONENT_NAME, IBMModuleParams } from './config';
-import i18n from './i18n';
+import React, { FC, useMemo, useEffect } from 'react';
+import {
+  notifyViewStartLoading,
+  TModuleParams,
+} from '@wix/business-manager-api';
+import { wixAxiosConfig } from '@wix/wix-axios-config';
+import { I18nextProvider, initI18n } from '@wix/wix-i18n-config';
+import { COMPONENT_NAME } from './config';
 import App from './components/App';
 
-export default class AppContainer extends React.Component<IBMModuleParams> {
-  constructor(props: IBMModuleParams) {
-    super(props);
+const AppContainer: FC<TModuleParams> = ({ locale = 'en' }) => {
+  useEffect(() => {
     notifyViewStartLoading(COMPONENT_NAME);
-  }
+  }, []);
 
-  render() {
-    const { locale, config } = this.props;
-    const baseUrl = config.topology.staticsUrl;
-    return (
-      <I18nextProvider i18n={i18n(locale, baseUrl)}>
-        <App />
-      </I18nextProvider>
-    );
-  }
-}
+  const i18n = useMemo(
+    () =>
+      initI18n({
+        locale,
+        asyncMessagesLoader: () =>
+          import(`./assets/locale/messages_${locale}.json`),
+      }),
+    [locale],
+  );
+
+  return (
+    <I18nextProvider i18n={i18n}>
+      <App />
+    </I18nextProvider>
+  );
+};
+
+export default AppContainer;

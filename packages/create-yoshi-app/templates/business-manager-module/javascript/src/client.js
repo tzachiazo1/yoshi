@@ -1,29 +1,35 @@
-import React from 'react';
+import React, { useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { I18nextProvider } from 'react-i18next';
+import { I18nextProvider, initI18n } from '@wix/wix-i18n-config';
 import { notifyViewStartLoading } from '@wix/business-manager-api';
 import { COMPONENT_NAME } from './config';
-import i18n from './i18n';
 import App from './components/App';
 
-export default class AppContainer extends React.Component {
-  static propTypes = {
-    locale: PropTypes.string,
-    config: PropTypes.object,
-  };
-
-  constructor(props) {
-    super(props);
+const AppContainer = ({ locale = 'en' }) => {
+  useEffect(() => {
     notifyViewStartLoading(COMPONENT_NAME);
-  }
+  }, []);
 
-  render() {
-    const { locale, config } = this.props;
-    const baseUrl = config.topology.staticsUrl;
-    return (
-      <I18nextProvider i18n={i18n(locale, baseUrl)}>
-        <App />
-      </I18nextProvider>
-    );
-  }
-}
+  const i18n = useMemo(
+    () =>
+      initI18n({
+        locale,
+        asyncMessagesLoader: () =>
+          import(`./assets/locale/messages_${locale}.json`),
+      }),
+    [locale],
+  );
+
+  return (
+    <I18nextProvider i18n={i18n}>
+      <App />
+    </I18nextProvider>
+  );
+};
+
+AppContainer.propTypese = {
+  locale: PropTypes.string,
+  config: PropTypes.object,
+};
+
+export default AppContainer;
