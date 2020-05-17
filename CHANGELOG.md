@@ -1,5 +1,31 @@
 # Changelog
 
+## 4.76.0 (2020-05-17)
+
+#### :boom: Breaking Change
+
+- `yoshi-server-client`, `yoshi-server-react`, `yoshi-server-testing`
+  - [#2413](https://github.com/wix/yoshi/pull/2413) Yoshi Server - change client-server api ([@yanivefraim](https://github.com/yanivefraim))
+
+#### :rocket: New Feature
+
+- `yoshi-server-client`, `yoshi-server-react`, `yoshi-server-testing`
+  - [#2413](https://github.com/wix/yoshi/pull/2413) Yoshi Server - change client-server api ([@yanivefraim](https://github.com/yanivefraim))
+- `create-yoshi-app`, `yoshi-flow-editor-runtime`
+  - [#2408](https://github.com/wix/yoshi/pull/2408) Add fedops logger to editor-flow template ([@bordi](https://github.com/bordi))
+- `create-yoshi-app`, `yoshi-flow-editor-runtime`, `yoshi-flow-editor`
+  - [#2402](https://github.com/wix/yoshi/pull/2402) Add sentry support for editor flow ([@yavorsky](https://github.com/yavorsky))
+
+#### :building_construction: Templates
+
+- `create-yoshi-app`
+  - [#2405](https://github.com/wix/yoshi/pull/2405) Add translations to the template. ([@yavorsky](https://github.com/yavorsky))
+
+#### :memo: Documentation
+
+- `babel-preset-yoshi`
+  - [#2401](https://github.com/wix/yoshi/pull/2401) Documentation website improvements 📒 🧽 💫 ([@ranyitz](https://github.com/ranyitz))
+
 ## 4.75.0 (2020-05-14)
 
 #### :rocket: New Feature
