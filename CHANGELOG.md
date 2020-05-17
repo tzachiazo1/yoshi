@@ -1,5 +1,16 @@
 # Changelog
 
+## 4.77.1 (2020-05-17)
+
+#### :bug: Bug Fix
+
+- `yoshi-common`
+  - [#2421](https://github.com/wix/yoshi/pull/2421) Library Flow: fix typescript and react babel bug ([@ranyitz](https://github.com/ranyitz))
+
+#### Committers: 1
+
+- Ran Yitzhaki ([@ranyitz](https://github.com/ranyitz))
+
 ## 4.77.0 (2020-05-17)
 
 #### :rocket: New Feature
