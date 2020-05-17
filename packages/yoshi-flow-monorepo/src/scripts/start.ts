@@ -9,7 +9,9 @@ import {
   createServerWebpackConfig,
   createWebWorkerWebpackConfig,
   createWebWorkerServerWebpackConfig,
+  createSiteAssetsWebpackConfig,
 } from '../webpack.config';
+import { isSiteAssetsModule } from '../utils';
 
 const start: cliCommand = async function(argv, rootConfig, { apps, libs }) {
   const args = arg(
@@ -99,11 +101,31 @@ const start: cliCommand = async function(argv, rootConfig, { apps, libs }) {
     process.exit(1);
   }
 
-  const clientConfig = createClientWebpackConfig(rootConfig, pkg, libs, apps, {
-    isDev: true,
-    isHot: pkg.config.hmr as boolean,
-    suricate: pkg.config.suricate,
-  });
+  let clientOrSiteAssetsConfig;
+
+  if (isSiteAssetsModule(pkg)) {
+    clientOrSiteAssetsConfig = createSiteAssetsWebpackConfig(
+      rootConfig,
+      pkg,
+      libs,
+      apps,
+      {
+        isDev: true,
+      },
+    );
+  } else {
+    clientOrSiteAssetsConfig = createClientWebpackConfig(
+      rootConfig,
+      pkg,
+      libs,
+      apps,
+      {
+        isDev: true,
+        isHot: pkg.config.hmr as boolean,
+        suricate: pkg.config.suricate,
+      },
+    );
+  }
 
   const serverConfig = createServerWebpackConfig(rootConfig, pkg, libs, apps, {
     isDev: true,
@@ -141,7 +163,7 @@ const start: cliCommand = async function(argv, rootConfig, { apps, libs }) {
 
   const devEnvironment = await DevEnvironment.create({
     webpackConfigs: [
-      clientConfig,
+      clientOrSiteAssetsConfig,
       serverConfig,
       webWorkerConfig,
       webWorkerServerConfig,
