@@ -17,6 +17,11 @@
   ],
   "packageRules": [
     {
+      "packageNames": ["react"],
+      "paths": ["packages/yoshi-flow-bm-runtime"],
+      "enabled": false
+    },
+    {
       "packagePatterns": ["^@babel/"],
       "enabled": false
     },
