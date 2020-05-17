@@ -6,10 +6,7 @@ export default class App extends React.Component {
   client = new HttpClient({ baseUrl: 'http://localhost:3000' });
   state = { text: '' };
   async componentDidMount() {
-    const result = await this.client.request({
-      method: greet,
-      args: ['Yaniv'],
-    });
+    const result = await this.client.request(greet)('Yaniv');
     this.setState({ text: result.greeting });
   }
 

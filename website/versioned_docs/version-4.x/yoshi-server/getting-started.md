@@ -97,7 +97,7 @@ import { greeting } from "./greet.api";
 
 const client = new HttpClient();
 
-client.request({ method: greeting, args: ["John"] }).then(data => {
+client.request(greeting)("John").then(data => {
   console.log(data.greet);
 });
 ```

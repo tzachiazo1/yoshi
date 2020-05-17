@@ -36,10 +36,7 @@ const client = new HttpClient({
 });
 
 test("should reject on a JSON response", async () => {
-  const response = await client.request({
-    method: greet,
-    args: ["Yaniv"]
-  });
+  const response = await client.request(greet)("Yaniv");
 
   expect(response.greet).toBe("hello Yaniv");
 });
@@ -72,7 +69,7 @@ export default class App extends React.Component<PropsType> {
   async componentDidMount() {
     const { httpClient } = this.props;
     // trigger an http request that will "run" `greet('world')` on the server.
-    const result = await httpClient.request({ method: greet, args: ["world"] });
+    const result = await httpClient.request(greet)("world");
     this.setState({ text: result.greeting });
   }
 

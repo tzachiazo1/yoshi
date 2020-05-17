@@ -58,7 +58,7 @@ export default class App extends React.Component<PropsType> {
   async componentDidMount() {
     const { httpClient } = this.props;
     // trigger an http request that will "run" `greet('world')` on the server.
-    const result = await httpClient.request({ method: greet, args: ["world"] });
+    const result = await httpClient.request(greet)("world");
     this.setState({ text: result.greeting });
   }
 

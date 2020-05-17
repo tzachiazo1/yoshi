@@ -13,9 +13,9 @@ Server Functions are named exports, inside a file with an `*.api.[j|t]s` extensi
 ```js
 import { method } from "yoshi-server";
 
-export const greeting = method(function(name: string) {
+export const greeting = method(function(firstName: string, lastName: string) {
   return {
-    greet: `hello ${name}!`,
+    greet: `hello ${firstName} ${lastName}!`,
     name
   };
 });
@@ -57,8 +57,8 @@ export default class App extends React.Component<PropsType> {
   state = { text: "" };
   async componentDidMount() {
     const { httpClient } = this.props;
-    // trigger an http request that will "run" `greet('world')` on the server.
-    const result = await httpClient.request({ method: greet, args: ["world"] });
+    // trigger an http request that will "run" `greet('John', 'Doe')` on the server.
+    const result = await httpClient.request(greet)("John", "Doe");
     this.setState({ text: result.greeting });
   }
 

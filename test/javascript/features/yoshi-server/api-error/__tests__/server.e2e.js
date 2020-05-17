@@ -6,10 +6,7 @@ const client = new HttpClient({
 });
 
 test('should reject on a JSON response', async () => {
-  const response = client.request({
-    method: greet,
-    args: ['Yaniv'],
-  });
+  const response = client.request(greet)('Yaniv');
 
   await expect(response).rejects.toThrow('An error occured inside greet');
 });

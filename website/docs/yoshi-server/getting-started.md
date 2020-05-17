@@ -81,9 +81,9 @@ Add a `greet.api.ts` file to your project (if your project is in Javascript, use
 // greet.api.ts
 import { method } from "yoshi-server";
 
-export const greeting = method(function(name: string) {
+export const greeting = method(function(firstName: string, lastName: string) {
   return {
-    greet: `hello ${name}!`,
+    greet: `hello ${firstName} ${lastName}!`,
     name
   };
 });
@@ -97,14 +97,16 @@ import { greeting } from "./greet.api";
 
 const client = new HttpClient();
 
-client.request({ method: greeting, args: ["John"] }).then(data => {
-  console.log(data.greet);
-});
+client
+  .request(greeting)("John", "Doe")
+  .then(data => {
+    console.log(data.greet);
+  });
 ```
 
 That's it!
 
-Running `npx yoshi start` shows `hello John` in the console.
+Running `npx yoshi start` shows `hello John Doe` in the console.
 
 #### What just happened here?
 
