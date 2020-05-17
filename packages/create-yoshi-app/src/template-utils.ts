@@ -2,6 +2,9 @@ import { get } from 'lodash';
 
 const templateRegex = /{%(\w|\.)+%}/g;
 const loopTemplateRegEx = /{each%(\w|\.|:)+%each}/g;
+const loopTemplateCodeRegEx = /{forEach%(\w|\.)+%forEach}(\w|.)+{\/forEach}/gms;
+const loopHeaderTemplateRegEx = /{forEach%(\w|\.|:)+%forEach}/g;
+const loopBodyTemplateRegEx = /forEach}(\w|.)+{\/forEach}/gms;
 const loopItemNameSeparatorRegEx = /:/g;
 
 export const replaceTemplates = (
@@ -9,7 +12,32 @@ export const replaceTemplates = (
   map: Record<string, string>,
   { graceful }: { graceful?: boolean } = {},
 ) => {
-  let result = content.replace(templateRegex, match => {
+  let result: string = content.replace(loopTemplateCodeRegEx, str => {
+    const [keyTemplate] = str.match(loopHeaderTemplateRegEx) || [];
+    const key = keyTemplate.slice(9, -9);
+    const values = get(map, key, undefined);
+
+    if (!Array.isArray(values)) {
+      if (graceful) {
+        return str;
+      }
+
+      throw new Error(
+        `the key ${key} suppose to be an array, but got: ${typeof values}`,
+      );
+    }
+
+    const [bodyTemplate] = str.match(loopBodyTemplateRegEx) || [];
+    const bodyStr = bodyTemplate.slice(8, -11);
+
+    return values
+      .map(value => {
+        return replaceTemplates(bodyStr, { ...map, ...value });
+      })
+      .join(',');
+  });
+
+  result = result.replace(templateRegex, match => {
     const key = match.slice(2, -2);
     const value = get(map, key, undefined);
 

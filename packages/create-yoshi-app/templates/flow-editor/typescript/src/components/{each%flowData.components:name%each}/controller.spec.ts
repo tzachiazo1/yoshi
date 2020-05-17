@@ -21,6 +21,10 @@ describe('createController', () => {
     const setPropsSpy = jest.fn();
     const language = 'en';
     const experiments = { someExperiment: 'true' };
+    const fedopsLogger = {
+      appLoaded: () => {},
+      appLoadStarted: () => {},
+    };
     const controllerConfig: IWidgetControllerConfig = getControllerConfigMock({
       setProps: setPropsSpy,
       appParams: {
@@ -33,7 +37,10 @@ describe('createController', () => {
       },
     });
 
-    const controller = await createAppController({ controllerConfig });
+    const controller = await createAppController({
+      controllerConfig,
+      fedopsLogger,
+    });
 
     await controller.pageReady();
 

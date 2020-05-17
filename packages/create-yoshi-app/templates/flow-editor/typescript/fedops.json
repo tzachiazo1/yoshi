@@ -1,0 +1,18 @@
+[
+  {
+    "app_name": "{%projectName%}",
+    "app_id": "{%flowData.appDefinitionId%}",
+    "notifications": {
+      "slack_channels": ["{%projectName%}-urgent"]
+    }
+  },{forEach%flowData.components%forEach}
+  {
+    "app_name": "{%projectName%}-{%name%}",
+    "app_id": "{%flowData.appDefinitionId%}",
+    "widget_id": "{%id%}",
+    "notifications": {
+      "slack_channels": ["{%projectName%}-urgent"]
+    }
+  }
+{/forEach}
+]
