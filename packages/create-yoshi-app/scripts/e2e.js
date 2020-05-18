@@ -141,6 +141,8 @@ const testTemplate = mockedAnswers => {
         const result = await exec('./node_modules/.bin/tsc --noEmit --strict');
 
         if (result.exitCode !== 0) {
+          console.log(result.stderr);
+          console.log(result.stdout);
           throw new Error(
             `"tsc --noEmit --strict" exited with code ${result.exitCode}.\nPlease see above for its output.`,
           );
@@ -154,6 +156,8 @@ const testTemplate = mockedAnswers => {
       const buildResult = await exec('npm run build');
 
       if (buildResult.exitCode !== 0) {
+        console.log(buildResult.stderr);
+        console.log(buildResult.stdout);
         throw new Error(
           `"npm run build" exited with code ${buildResult.exitCode}.\nPlease see above for its output.`,
         );

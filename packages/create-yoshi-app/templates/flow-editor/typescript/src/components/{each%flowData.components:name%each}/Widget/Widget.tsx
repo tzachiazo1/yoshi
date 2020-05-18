@@ -51,16 +51,22 @@ export default class extends React.Component<WidgetWrapperProps> {
 }
 
 export const Widget = translate()(
-  withExperiments<WidgetProps>(({ appName, t, ...rest }: WidgetProps) => {
-    return (
-      <div {...styles('root', {}, rest)} data-hook="CleanList-wrapper">
-        <div className={styles.header}>
-          <h2 data-hook="app-title">
-            {t('app.widget.welcome')} {appName}!
-          </h2>
+  withExperiments<WidgetProps>(
+    ({ appName, t, experiments, ...rest }: WidgetProps) => {
+      return (
+        <div {...styles('root', {}, rest)} data-hook="{%name%}-wrapper">
+          <div className={styles.header}>
+            <h2 data-hook="app-title">
+              {t('app.widget.welcome')} {appName}!
+            </h2>
+          </div>
+          {/* {This is a dummy experiment. To generate a new experiment,
+            check this guide: https://github.com/wix-private/fed-handbook/blob/master/EXPERIMENTS.md#create-experiment} */}
+          {experiments.enabled('specs.test.ShouldShowButton') ? (
+            <Button className={styles.mainButton}>Click me</Button>
+          ) : null}
         </div>
-        <Button className={styles.mainButton}>Click me</Button>
-      </div>
-    );
-  }),
+      );
+    },
+  ),
 );

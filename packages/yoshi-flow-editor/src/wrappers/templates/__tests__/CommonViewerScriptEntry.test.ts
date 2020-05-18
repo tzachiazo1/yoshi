@@ -6,7 +6,7 @@ describe('CommonViewerScriptEntry template', () => {
     const generateControllerEntryContent = commonViewerScriptEntry({
       viewerScriptWrapperPath:
         'yoshi-flow-editor-runtime/build/viewerScript.js',
-      sentry: null,
+      sentryConfig: null,
       controllersMeta: [
         {
           controllerFileName: 'project/src/components/button/controller.ts',
@@ -14,6 +14,9 @@ describe('CommonViewerScriptEntry template', () => {
           widgetType: OOI_WIDGET_COMPONENT_TYPE,
         },
       ],
+      experimentsConfig: {
+        scope: 'test-scope',
+      },
       viewerAppFileName: 'project/src/app.ts',
     });
 
@@ -24,7 +27,7 @@ describe('CommonViewerScriptEntry template', () => {
     const generateControllerEntryContent = commonViewerScriptEntry({
       viewerScriptWrapperPath:
         'yoshi-flow-editor-runtime/build/viewerScript.js',
-      sentry: null,
+      sentryConfig: null,
       controllersMeta: [
         {
           controllerFileName: 'project/src/components/todo/controller.ts',
@@ -37,6 +40,9 @@ describe('CommonViewerScriptEntry template', () => {
           widgetType: OOI_WIDGET_COMPONENT_TYPE,
         },
       ],
+      experimentsConfig: {
+        scope: 'test-scope',
+      },
       viewerAppFileName: 'project/src/app.ts',
     });
 
@@ -47,8 +53,11 @@ describe('CommonViewerScriptEntry template', () => {
     const generateControllerEntryContent = commonViewerScriptEntry({
       viewerScriptWrapperPath:
         'yoshi-flow-editor-runtime/build/viewerScript.js',
-      sentry: null,
+      sentryConfig: null,
       controllersMeta: [],
+      experimentsConfig: {
+        scope: 'test-scope',
+      },
       viewerAppFileName: 'project/src/app.ts',
     });
 
@@ -59,7 +68,7 @@ describe('CommonViewerScriptEntry template', () => {
     const generateControllerEntryContent = commonViewerScriptEntry({
       viewerScriptWrapperPath:
         'yoshi-flow-editor-runtime/build/viewerScript.js',
-      sentry: {
+      sentryConfig: {
         DSN: 'https:xxx@123',
         teamName: 'team-name',
         projectName: 'project-name',
@@ -72,6 +81,9 @@ describe('CommonViewerScriptEntry template', () => {
           widgetType: OOI_WIDGET_COMPONENT_TYPE,
         },
       ],
+      experimentsConfig: {
+        scope: 'test-scope',
+      },
       viewerAppFileName: 'project/src/app.ts',
     });
 

@@ -5,22 +5,21 @@ import {
   IWixAPI,
   IPlatformServices,
 } from '@wix/native-components-infra/dist/src/types/types';
-import {
-  createInstances,
-  objectPromiseAll,
-  fetchFrameworkData,
-  buildSentryOptions,
-  getArtifact,
-} from './utils';
+import { buildSentryOptions, getArtifact } from './utils';
 import {
   SentryConfig,
   WidgetType,
   OOI_WIDGET_COMPONENT_TYPE,
+  ExperimentsConfig,
 } from './constants';
+import { FlowData, ReportError } from './types';
+import { fetchExperiments, getEmptyExperiments } from './fetchExperiments';
 
-let frameworkData: any;
-// TODO: Add types
-let reportError: (error: Error | ErrorEvent | string) => void;
+const flowData: FlowData = {
+  // Initialize with an empty `Experiments`.
+  getExperiments: () => getEmptyExperiments(),
+};
+let reportError: ReportError;
 
 type ControllerDescriptor = {
   id: string | null;
@@ -41,7 +40,7 @@ const defaultControllerWrapper = (
 ) =>
   controllerDescriptor.method({
     controllerConfig,
-    frameworkData,
+    flowData,
     appData,
     reportError,
   });
@@ -86,7 +85,7 @@ function ooiControllerWrapper(
 
   const userControllerPromise = controllerDescriptor.method.call(context, {
     controllerConfig,
-    frameworkData,
+    flowData,
     appData,
     reportError,
     fedopsLogger,
@@ -97,12 +96,9 @@ function ooiControllerWrapper(
       return {
         ...userController,
         pageReady: async (...args: Array<any>) => {
-          const awaitedFrameworkData = await objectPromiseAll(frameworkData);
-
           // TODO: export by property (methods, state) so we won't have conflicting props
           setProps({
             __publicData__: controllerConfig.config.publicData,
-            ...awaitedFrameworkData,
             // Set initial state
             state: context.state,
             // Set methods
@@ -111,7 +107,7 @@ function ooiControllerWrapper(
 
           // Optional `pageReady`
           if (userController.pageReady) {
-            return userController.pageReady(setProps, ...args);
+            return userController.pageReady(...args);
           }
         },
         exports: userController.corvid,
@@ -179,7 +175,7 @@ export const createControllersWithDescriptors = (
     typeof mapPlatformStateToAppData === 'function'
       ? mapPlatformStateToAppData({
           controllerConfigs,
-          frameworkData,
+          flowData,
           appParams,
           platformAPIs,
           wixCodeApi,
@@ -199,8 +195,6 @@ export const createControllersWithDescriptors = (
       );
     }
 
-    initializeExperiments();
-
     return wrapControllerByWidgetType(
       controllerDescriptor,
       controllerConfig,
@@ -211,18 +205,10 @@ export const createControllersWithDescriptors = (
   return wrappedControllers;
 };
 
-const initializeExperiments = () => {
-  frameworkData = fetchFrameworkData();
-
-  // TODO: Generalize
-  frameworkData.experimentsPromise = frameworkData.experimentsPromise.then(
-    (experiments: any) => createInstances({ experiments }),
-  );
-};
-
 export const initAppForPageWrapper = (
   initAppForPage: Function,
   sentry: SentryConfig | null,
+  experimentsConfig: ExperimentsConfig | null,
 ) => (
   initParams: IAppData,
   apis: IPlatformAPI,
@@ -246,6 +232,11 @@ export const initAppForPageWrapper = (
     );
 
     reportError = sentryInstance.captureException.bind(sentryInstance);
+  }
+
+  // If user didn't configure experiments, we'll just mock it to empty object.
+  if (experimentsConfig) {
+    flowData.getExperiments = () => fetchExperiments(experimentsConfig);
   }
 
   if (initAppForPage) {
