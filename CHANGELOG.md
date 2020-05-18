@@ -1,5 +1,12 @@
 # Changelog
 
+## 4.77.3 (2020-05-18)
+
+#### :bug: Bug Fix
+
+- `create-yoshi-app`
+  - [#2425](https://github.com/wix/yoshi/pull/2425) Create a temporary `package.json` for `add-sentry` configuration ([@yavorsky](https://github.com/yavorsky))
+
 ## 4.77.2 (2020-05-18)
 
 #### :building_construction: Templates
