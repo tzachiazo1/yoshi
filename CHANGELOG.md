@@ -1,5 +1,28 @@
 # Changelog
 
+## 4.77.2 (2020-05-18)
+
+#### :building_construction: Templates
+
+- `create-yoshi-app`
+  - [#2363](https://github.com/wix/yoshi/pull/2363) Migrate BM templates to use `wix-i18n-config` ([@amitdahan](https://github.com/amitdahan))
+
+#### :bug: Bug Fix
+
+- `create-yoshi-app`
+  - [#2426](https://github.com/wix/yoshi/pull/2426) Fix dev.js script to support template loops ([@yavorsky](https://github.com/yavorsky))
+
+#### :house: Internal
+
+- `create-yoshi-app`
+  - [#2426](https://github.com/wix/yoshi/pull/2426) Fix dev.js script to support template loops ([@yavorsky](https://github.com/yavorsky))
+
+#### Committers: 3
+
+- Amit Dahan ([@amitdahan](https://github.com/amitdahan))
+- Artem Yavorsky ([@yavorsky](https://github.com/yavorsky))
+- barak igal ([@barak007](https://github.com/barak007))
+
 ## 4.77.1 (2020-05-17)
 
 #### :bug: Bug Fix
