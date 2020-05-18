@@ -10,7 +10,7 @@
   "dependencies": {
     "@stylable/jest": "3.5.0",
     "@stylable/module-utils": "3.5.0",
-    "@stylable/node": "3.5.0",
-    "@stylable/webpack-plugin": "3.5.0"
+    "@stylable/node": "3.5.1",
+    "@stylable/webpack-plugin": "3.5.1"
   }
 }
