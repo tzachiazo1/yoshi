@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.77.4 (2020-05-18)
+
+#### :bug: Bug Fix
+
+- `yoshi-common`
+  - [#2428](https://github.com/wix/yoshi/pull/2428) Don't load server HMR entry if Suricate is used ([@ronami](https://github.com/ronami))
+  - [#2419](https://github.com/wix/yoshi/pull/2419) Use a different runtime id in case we use stylable 3 ([@ranyitz](https://github.com/ranyitz))
+
 ## 4.77.3 (2020-05-18)
 
 #### :bug: Bug Fix
