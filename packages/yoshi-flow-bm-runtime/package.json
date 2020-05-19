@@ -20,7 +20,7 @@
     "react-module-container": "1.0.2256"
   },
   "devDependencies": {
-    "@types/history": "4.7.5",
+    "@types/history": "4.7.6",
     "@types/react": "16.9.34",
     "react": "16.8.3"
   },
