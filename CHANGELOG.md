@@ -1,5 +1,12 @@
 # Changelog
 
+## 4.79.0 (2020-05-19)
+
+#### :rocket: New Feature
+
+- `yoshi-common`
+  - [#2436](https://github.com/wix/yoshi/pull/2436) Add compression to yoshi's local `cdn` during serve ([@ranyitz](https://github.com/ranyitz))
+
 ## 4.78.0 (2020-05-19)
 
 #### :rocket: New Feature
