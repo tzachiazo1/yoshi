@@ -12,12 +12,12 @@ const getTunnelId = (namespace: string) => {
   const gitEmail = gitConfig.user ? gitConfig.user.email : '';
   const processUser = process.env.USER;
   let uniqueTunnelId;
-  if (gitEmail.endsWith(WIX_EMAIL_PATTERN)) {
+  if (process.env.SURICATE_TUNNEL_ID) {
+    uniqueTunnelId = process.env.SURICATE_TUNNEL_ID;
+  } else if (gitEmail.endsWith(WIX_EMAIL_PATTERN)) {
     uniqueTunnelId = gitEmail.replace(WIX_EMAIL_PATTERN, '');
   } else if (processUser) {
     uniqueTunnelId = processUser;
-  } else if (process.env.SURICATE_TUNNEL_ID) {
-    uniqueTunnelId = process.env.SURICATE_TUNNEL_ID;
   } else {
     return undefined;
   }
