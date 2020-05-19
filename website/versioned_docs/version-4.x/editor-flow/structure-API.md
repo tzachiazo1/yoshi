@@ -112,7 +112,7 @@ Object which aims to use data for all controllers. This is a data that comes fro
 
 #### `flowData`: *(flow)*
 Data with experiments, locations and other info being fetched.
-##### `getExperiments`: `() => Promise<Experiments>`
+##### `getExperiments`: `Promise<Experiments>`
 Return a Promise, which will be resolved with `Experiments` instance for current scope.
 Takes a configuration from `experiments` field in `.application.json`.
 

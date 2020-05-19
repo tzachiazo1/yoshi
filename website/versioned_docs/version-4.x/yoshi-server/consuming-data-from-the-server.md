@@ -6,18 +6,40 @@ sidebar_label: Consuming Data from the Server
 
 ### Server functions
 
-In Yoshi Server, a server function is a way of exposing data from your server to the client.
+> We use frontend server only for cases that we have data aggregation from multiple services. If you have a call to one platform service, use [Ambassador Client](https://github.com/wix-private/ambassador#using-ambassador-http-clients-in-your-frontend-applications)
 
-Server Functions are named exports, inside a file with an `*.api.[j|t]s` extension:
+In Yoshi Server, a server function is a way of exposing data from your server to the client.
+Server Functions are named exports, inside a file with an `*.api.[j|t]s` extension.
+
+In the following example we use [Ambassador](https://github.com/wix-private/ambassador) to fetch the user's recently viewed sites, from `wix-user-preferences-webapp` service, and then, fetch additional data about this site from the `wix-meta-site-manager-webapp` service.
 
 ```js
 import { method } from "yoshi-server";
+import { WixUserPreferencesWebapp } from '@wix/ambassador-wix-user-preferences-webapp/rpc';
+import { WixMetaSiteManagerWebapp } from '@wix/ambassador-wix-meta-site-manager-webapp/rpc';
 
-export const greeting = method(function(firstName: string, lastName: string) {
-  return {
-    greet: `hello ${firstName} ${lastName}!`,
-    name
-  };
+const userPreferencesService = WixUserPreferencesWebapp().UserPreferencesService();
+const siteListFacadeService = WixMetaSiteManagerWebapp().SiteListFacade();
+
+export const sites = method(function(pageSize: number) {
+  const recentlyViewedSites = await userPreferencesService(
+    this.req.aspects,
+  ).get({
+    userId: this.req.aspects.session.userGuid,
+    nameSpace: 'dashboard-recently-viewed-site',
+    key: 'recently-viewed-sites',
+  });
+
+  return siteListFacadeService(this.req.aspects).list({
+    userId: this.req.aspects.session.userGuid,
+    recentlyViewedSites: recentlyViewedSites[0].blob.sites.map(
+      ({ id, viewedOn }) => ({
+        id,
+        dateViewed: viewedOn,
+      }),
+    ),
+    pageSize,
+  });
 });
 ```
 
@@ -33,7 +55,7 @@ import ReactDOM from "react-dom";
 import HttpClient from "yoshi-server-client";
 import Component from "./component";
 
-const client = new HttpClient({ baseUrl: "/_api/projectName" });
+const client = new HttpClient();
 
 ReactDOM.render(
   <Component httpClient={client} />,
@@ -47,25 +69,28 @@ Now we import our server function and call it using a `httpClient.request` call:
 // component.tsx
 import React from "react";
 import { HttpClient } from "yoshi-server-client";
-import { greet } from "./api/greeting.api";
+import { sites } from "./api/data.api";
 
 interface PropsType {
   httpClient: HttpClient;
 }
 
 export default class App extends React.Component<PropsType> {
-  state = { text: "" };
+  state = { sites: [] };
   async componentDidMount() {
     const { httpClient } = this.props;
-    // trigger an http request that will "run" `greet('John', 'Doe')` on the server.
-    const result = await httpClient.request(greet)("John", "Doe");
-    this.setState({ text: result.greeting });
+    const result = await httpClient.request(sites)(10);
+    this.setState({ sites: result.sites });
   }
 
   render() {
     return (
       <div>
-        <h2 id="my-text">{this.state.text}</h2>
+        <h2 id="my-text">
+          {this.state.sites.map((site, index) => (
+            <div key={index}>{site.name}</div>
+          ))}
+        </h2>
       </div>
     );
   }
@@ -74,7 +99,7 @@ export default class App extends React.Component<PropsType> {
 
 How does it work?
 
-- When importing a server function, we have a Webpack loader that returns an object with types (try running: `console.log(greet);` on the client and see for yourself).
+- When importing a server function, we have a Webpack loader that returns an object with types (try running: `console.log(sites);` on the client and see for yourself).
 - Yoshi Server runtime triggers a post call to `/_api_`, with details about the request, and arguments (open the network tab and see for yourself).
 - Server file is not bundled with client code!
 - When using Typescript, the response and the request arguments are fully typed!
