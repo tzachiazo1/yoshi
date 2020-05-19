@@ -1,5 +1,24 @@
 # Changelog
 
+## 4.78.0 (2020-05-19)
+
+#### :rocket: New Feature
+
+- `create-yoshi-app`, `yoshi-flow-editor-runtime`, `yoshi-flow-editor`
+  - [#2424](https://github.com/wix/yoshi/pull/2424) Update experiments usage for editor flow. ([@yavorsky](https://github.com/yavorsky))
+
+#### :bug: Bug Fix
+
+- `create-yoshi-app`
+  - [#2427](https://github.com/wix/yoshi/pull/2427) Prevent running template tests twice for single-language templates ([@yavorsky](https://github.com/yavorsky))
+- `yoshi-common`
+  - [#2434](https://github.com/wix/yoshi/pull/2434) allow to always override SURICATE_TUNNEL_ID ([@cowchimp](https://github.com/cowchimp))
+
+#### :memo: Documentation
+
+- [#2435](https://github.com/wix/yoshi/pull/2435) Yoshi Server: update docs to use Ambassador ([@yanivefraim](https://github.com/yanivefraim))
+- [#2431](https://github.com/wix/yoshi/pull/2431) Update docs on shipping a `.css` bundle in library-flow ([@amitdahan](https://github.com/amitdahan))
+
 ## 4.77.4 (2020-05-18)
 
 #### :bug: Bug Fix
