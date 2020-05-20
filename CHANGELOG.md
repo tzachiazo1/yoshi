@@ -1,5 +1,16 @@
 # Changelog
 
+## 4.80.2 (2020-05-20)
+
+#### :bug: Bug Fix
+
+- `yoshi-common`, `yoshi-flow-app`, `yoshi-flow-monorepo`
+  - [#2446](https://github.com/wix/yoshi/pull/2446) fix `umdNamedDefine` config property ([@tuchk4](https://github.com/tuchk4))
+
+#### :memo: Documentation
+
+- [#2448](https://github.com/wix/yoshi/pull/2448) Sync main docs with versioned docs ([@yavorsky](https://github.com/yavorsky))
+
 ## 4.80.1 (2020-05-20)
 
 #### :bug: Bug Fix
