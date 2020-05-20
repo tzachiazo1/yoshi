@@ -1,5 +1,17 @@
 # Changelog
 
+## 4.80.0 (2020-05-20)
+
+#### :rocket: New Feature
+
+- `create-yoshi-app`, `yoshi-flow-editor-runtime`, `yoshi-flow-editor`
+  - [#2433](https://github.com/wix/yoshi/pull/2433) Add editor script support and `flowAPI` ([@yavorsky](https://github.com/yavorsky))
+
+#### :building_construction: Templates
+
+- `create-yoshi-app`
+  - [#2440](https://github.com/wix/yoshi/pull/2440) Replace ooi template with flow editor ([@yavorsky](https://github.com/yavorsky))
+
 ## 4.79.0 (2020-05-19)
 
 #### :rocket: New Feature
