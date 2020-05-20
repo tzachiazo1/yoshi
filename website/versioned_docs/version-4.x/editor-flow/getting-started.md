@@ -7,16 +7,6 @@ sidebar_label: Getting Started
 ## Generate an Editor Flow App with `create-yoshi-app` tool
 ![E52C44BF-55C7-407E-AA9C-0AE07E1B7A71](https://user-images.githubusercontent.com/1521229/77897090-e2d24480-7281-11ea-9cbf-e3fdc4d8c509.PNG)
 
-Install (or update to) the latest version of create-yoshi-app:
-
-```bash
-npm install create-yoshi-app@latest
-```
-or
-```bash
-yarn global add create-yoshi-app@latest
-```
-
 Run create-yoshi-app and generate the project:
 
 ```bash
