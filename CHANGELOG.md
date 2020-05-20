@@ -1,5 +1,19 @@
 # Changelog
 
+## 4.80.1 (2020-05-20)
+
+#### :bug: Bug Fix
+
+- `yoshi-flow-editor-runtime`, `yoshi-flow-editor`
+  - [#2447](https://github.com/wix/yoshi/pull/2447) Hotfixes for editor script and controller flow options ([@yavorsky](https://github.com/yavorsky))
+- `yoshi-flow-monorepo`
+  - [#2443](https://github.com/wix/yoshi/pull/2443) Type `serve.d.ts` correctly ([@Schniz](https://github.com/Schniz))
+  - [#2439](https://github.com/wix/yoshi/pull/2439) Ignore snapshot files when copying assets in monorepo flow ([@tuchk4](https://github.com/tuchk4))
+
+#### :memo: Documentation
+
+- [#2444](https://github.com/wix/yoshi/pull/2444) Adjust create new editor flow app instructions in docs ([@ranyitz](https://github.com/ranyitz))
+
 ## 4.80.0 (2020-05-20)
 
 #### :rocket: New Feature
