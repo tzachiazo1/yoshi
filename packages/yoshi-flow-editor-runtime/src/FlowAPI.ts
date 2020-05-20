@@ -109,6 +109,7 @@ export class EditorScriptFlowAPI extends FlowAPI {
         sentry.DSN,
         'Editor:Worker',
         getArtifact(),
+        true,
       );
 
       this.sentryMonitor = platformOptions.monitoring.createSentryMonitorForApp(

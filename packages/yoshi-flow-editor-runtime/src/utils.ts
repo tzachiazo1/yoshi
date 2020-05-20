@@ -66,10 +66,13 @@ export const isEditor = (): boolean => {
   return typeof window !== 'undefined' && !!window.__EDITOR_MODE__;
 };
 
+const dataCallback = (data: any) => data;
+
 export const buildSentryOptions = (
   dsn: string,
   environment: string,
   artifact: string,
+  withDataCallback?: boolean,
 ) => {
   return {
     dsn,
@@ -77,6 +80,7 @@ export const buildSentryOptions = (
       // This function will be never called if sentry is not enabled
       enabled: true,
       release: artifact,
+      dataCallback: withDataCallback ? dataCallback : undefined,
       environment,
     },
   };
