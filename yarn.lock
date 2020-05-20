@@ -3985,6 +3985,11 @@
   resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@types/lodash/-/lodash-4.14.151.tgz#7d58cac32bedb0ec37cb7f99094a167d6176c9d5"
   integrity sha1-fVjKwyvtsOw3y3+ZCUoWfWF2ydU=
 
+"@types/lodash@4.14.152":
+  version "4.14.152"
+  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@types/lodash/-/lodash-4.14.152.tgz#7e7679250adce14e749304cdb570969f77ec997c"
+  integrity sha1-fnZ5JQrc4U50kwTNtXCWn3fsmXw=
+
 "@types/lodash@^4.14.139", "@types/lodash@^4.14.146", "@types/lodash@^4.14.147", "@types/lodash@^4.14.149":
   version "4.14.149"
   resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@types/lodash/-/lodash-4.14.149.tgz#1342d63d948c6062838fbf961012f74d4e638440"
@@ -4814,10 +4819,10 @@
   dependencies:
     lodash "^4.17.15"
 
-"@wix/business-manager-api@1.0.1041":
-  version "1.0.1041"
-  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@wix/business-manager-api/-/@wix/business-manager-api-1.0.1041.tgz#a7fa6891d7e7c7ff2e63fe869e6645c2cd3953fe"
-  integrity sha1-p/pokdfnx/8uY/6GnmZFws05U/4=
+"@wix/business-manager-api@1.0.1043":
+  version "1.0.1043"
+  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@wix/business-manager-api/-/@wix/business-manager-api-1.0.1043.tgz#b45e8ff8f590e7dd0370c358d5730d69e9ac3468"
+  integrity sha1-tF6P+PWQ590DcMNY1XMNaemsNGg=
   dependencies:
     "@sentry/browser" "5.7.1"
     "@wix/wix-experiments" latest
@@ -4856,7 +4861,15 @@
   resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@wix/extensions/-/@wix/extensions-1.0.297.tgz#a6be8adfe43f89dc0653c9ab5d6fce654215c7d4"
   integrity sha1-pr6K3+Q/idwGU8mrXW/OZUIVx9Q=
 
-"@wix/fedops-logger@5.12.0", "@wix/fedops-logger@^5.12.0":
+"@wix/fedops-logger@5.12.1":
+  version "5.12.1"
+  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@wix/fedops-logger/-/@wix/fedops-logger-5.12.1.tgz#65aff84edc2e75de23654635297d67f64a938c60"
+  integrity sha1-Za/4Ttwudd4jZUY1KX1n9kqTjGA=
+  dependencies:
+    "@wix/fedops-presets" "^1.0.33"
+    "@wix/web-bi-logger" "^2.0.0"
+
+"@wix/fedops-logger@^5.12.0":
   version "5.12.0"
   resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@wix/fedops-logger/-/@wix/fedops-logger-5.12.0.tgz#3f212a655dfebf147d3c2c9298f37215cb65ecff"
   integrity sha1-PyEqZV3+vxR9PCySmPNyFctl7P8=
@@ -4898,10 +4911,10 @@
     lodash "4.17.10"
     raven-js "3.27.0"
 
-"@wix/platform-editor-sdk@^0.0.931":
-  version "0.0.931"
-  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@wix/platform-editor-sdk/-/@wix/platform-editor-sdk-0.0.931.tgz#5a2bb900b6653e1d6f8bbabd769e038a81bba86e"
-  integrity sha1-Wiu5ALZlPh1vi7q9dp4DioG7qG4=
+"@wix/platform-editor-sdk@^0.0.938":
+  version "0.0.938"
+  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@wix/platform-editor-sdk/-/@wix/platform-editor-sdk-0.0.938.tgz#7a9ec96eef4e4e2cc8801caffc0e2b08d93c32d9"
+  integrity sha1-ep7Jbu9OTizIgByv/A4rCNk8Mtk=
   dependencies:
     request "^2.87.0"
 
@@ -5261,10 +5274,10 @@
     http-status-codes "1.4.0"
     long "4.0.0"
 
-"@wix/wix-experiments-react@4.0.27":
-  version "4.0.27"
-  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@wix/wix-experiments-react/-/@wix/wix-experiments-react-4.0.27.tgz#23b5ac29f025f406cce83a088621d51bf9ff4cb4"
-  integrity sha1-I7WsKfAl9AbM6DoIhiHVG/n/TLQ=
+"@wix/wix-experiments-react@4.0.29":
+  version "4.0.29"
+  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@wix/wix-experiments-react/-/@wix/wix-experiments-react-4.0.29.tgz#7f179c72f460afe181040c329f0a7ae95cfcff68"
+  integrity sha1-fxeccvRgr+GBBAwynwp66Vz8/2g=
   dependencies:
     "@wix/wix-experiments" "^3.0.442"
 
@@ -20876,10 +20889,10 @@ performance-now@^2.1.0:
   resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
 
-petri-specs@1.3.253:
-  version "1.3.253"
-  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/petri-specs/-/petri-specs-1.3.253.tgz#fde9ef78d8cdfbbe10b22e4820bfb124985215b6"
-  integrity sha1-/enveNjN+74Qsi5IIL+xJJhSFbY=
+petri-specs@1.3.255:
+  version "1.3.255"
+  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/petri-specs/-/petri-specs-1.3.255.tgz#cb1b091a42f496994072b6d71b525428428b69b3"
+  integrity sha1-yxsJGkL0lplAcrbXG1JUKEKLabM=
   dependencies:
     ab-translate "~1.1.0"
     chalk "^1.1.3"
@@ -22450,10 +22463,10 @@ react-lifecycles-compat@^3.0.2, react-lifecycles-compat@^3.0.4:
   resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha1-TxonOv38jzSIqMUWv9p4+HI1I2I=
 
-react-module-container@1.0.2256:
-  version "1.0.2256"
-  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/react-module-container/-/react-module-container-1.0.2256.tgz#e8b2288b63a7aac8f3432e2b10551d6c683f41ee"
-  integrity sha1-6LIoi2OnqsjzQy4rEFUdbGg/Qe4=
+react-module-container@1.0.2260:
+  version "1.0.2260"
+  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/react-module-container/-/react-module-container-1.0.2260.tgz#c553586755f5a85ef861d97573f121b14fb5b190"
+  integrity sha1-xVNYZ1X1qF74Ydl1c/EhsU+1sZA=
   dependencies:
     lodash "^4.17.4"
     prop-types "^15.5.10"
@@ -27318,10 +27331,10 @@ webidl-conversions@^5.0.0:
   resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/webidl-conversions/-/webidl-conversions-5.0.0.tgz#ae59c8a00b121543a2acc65c0434f57b0fc11aff"
   integrity sha1-rlnIoAsSFUOirMZcBDT1ew/BGv8=
 
-webpack-bundle-analyzer@3.7.0:
-  version "3.7.0"
-  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/webpack-bundle-analyzer/-/webpack-bundle-analyzer-3.7.0.tgz#84da434e89442899b884d9ad38e466d0db02a56f"
-  integrity sha1-hNpDTolEKJm4hNmtOORm0NsCpW8=
+webpack-bundle-analyzer@3.8.0:
+  version "3.8.0"
+  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/webpack-bundle-analyzer/-/webpack-bundle-analyzer-3.8.0.tgz#ce6b3f908daf069fd1f7266f692cbb3bded9ba16"
+  integrity sha1-zms/kI2vBp/R9yZvaSy7O97ZuhY=
   dependencies:
     acorn "^7.1.1"
     acorn-walk "^7.1.1"

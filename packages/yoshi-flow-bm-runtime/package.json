@@ -11,13 +11,13 @@
   "author": "Amit Dahan <amitda@wix.com>",
   "dependencies": {
     "@sentry/browser": "5.7.1",
-    "@wix/business-manager-api": "1.0.1041",
-    "@wix/fedops-logger": "5.12.0",
+    "@wix/business-manager-api": "1.0.1043",
+    "@wix/fedops-logger": "5.12.1",
     "@wix/wix-axios-config": "2.0.2268",
     "@wix/wix-experiments": "3.0.442",
-    "@wix/wix-experiments-react": "4.0.27",
+    "@wix/wix-experiments-react": "4.0.29",
     "axios": "0.19.2",
-    "react-module-container": "1.0.2256"
+    "react-module-container": "1.0.2260"
   },
   "devDependencies": {
     "@types/history": "4.7.6",
