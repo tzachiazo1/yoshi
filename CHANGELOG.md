@@ -1,5 +1,12 @@
 # Changelog
 
+## 4.80.3 (2020-05-21)
+
+#### :bug: Bug Fix
+
+- `yoshi-flow-editor-runtime`
+  - [#2449](https://github.com/wix/yoshi/pull/2449) Pass `dataCallback` to editor sentry ([@yavorsky](https://github.com/yavorsky))
+
 ## 4.80.2 (2020-05-20)
 
 #### :bug: Bug Fix
