@@ -1,20 +1,49 @@
+import { EditorReadyFn as PlatformEditorReadyFn } from '@wix/platform-editor-sdk';
 import {
+  IInitAppForPage,
   IWidgetControllerConfig,
+  IWidgetController,
   IWidgetConfig,
   IAppData,
 } from '@wix/native-components-infra/dist/src/types/types';
-import Experiments from '@wix/wix-experiments';
+import {
+  EditorScriptFlowAPI,
+  ViewerScriptFlowAPI,
+  ControllerFlowAPI,
+} from './FlowAPI';
 
-export interface FlowData {
-  getExperiments: () => Promise<Experiments>;
-}
+export type ReportError = (error: Error | ErrorEvent | string) => void;
 
-export interface ControllerContext {
-  flowData: FlowData;
+export interface ControllerParams {
   appData?: IAppData;
   widgetConfig?: IWidgetConfig;
   controllerConfig: IWidgetControllerConfig;
-  fedopsLogger?: any;
+  flowAPI: ControllerFlowAPI;
 }
 
-export type ReportError = (error: Error | ErrorEvent | string) => void;
+type EditorReadyParams = Parameters<PlatformEditorReadyFn>;
+
+export type EditorReadyFn = (
+  editorSDK: EditorReadyParams[0],
+  appDefinitionId: EditorReadyParams[1],
+  platformOptions: EditorReadyParams[2],
+  flowAPI: EditorScriptFlowAPI,
+) => Promise<void> | void;
+
+type IInitAppForPageParams = Parameters<IInitAppForPage>;
+
+export type InitAppForPageFn = (
+  initParams: IInitAppForPageParams[0],
+  apis: IInitAppForPageParams[1],
+  namespaces: IInitAppForPageParams[2],
+  platformServices: IInitAppForPageParams[3],
+  flowAPI: ViewerScriptFlowAPI,
+) => Promise<any>;
+
+export type EditorScriptFedopsLoggerFactoryFn = (
+  loggerName: string,
+) => ReturnType<typeof Object>;
+
+export type CreateControllerFn = (
+  controllerContext: ControllerParams,
+) => Promise<IWidgetController> | IWidgetController;

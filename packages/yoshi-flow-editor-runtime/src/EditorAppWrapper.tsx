@@ -11,6 +11,7 @@ import {
 } from './react/SDK/SDKContext';
 import { WixSDKProvider } from './react/SDK/WixSDKProvider';
 import { SentryConfig, ExperimentsConfig } from './constants';
+import { InitAppForPageFn } from './types';
 
 declare global {
   interface Window {
@@ -22,7 +23,7 @@ interface IEditorAppCreatorProps {
   UserComponent: typeof React.Component;
   userController: Function;
   mapPlatformStateToAppData: Function;
-  customInitAppForPage: Function;
+  customInitAppForPage: InitAppForPageFn;
   name: string;
   sentry: SentryConfig | null;
   experimentsConfig: ExperimentsConfig | null;

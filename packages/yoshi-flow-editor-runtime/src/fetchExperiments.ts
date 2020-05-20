@@ -1,23 +1,28 @@
 import Experiments from '@wix/wix-experiments';
 import { ExperimentsConfig } from './constants';
 
-export async function fetchExperiments(
+export function initExperimentsGetter(
   config: ExperimentsConfig,
   baseUrl = 'https://www.wix.com',
-): Promise<Experiments> {
+): () => Promise<Experiments> {
   const experiments = new Experiments({
     baseUrl,
   });
-  await experiments.load(config.scope);
-  return experiments;
+  const loaderPromise = experiments.load(config.scope);
+  return async () => {
+    await loaderPromise;
+    return experiments;
+  };
 }
 
-export async function getEmptyExperiments(
+export function initEmptyExperimentsGetter(
   baseUrl = 'https://www.wix.com',
-): Promise<Experiments> {
+): () => Promise<Experiments> {
   const experiments = new Experiments({
     baseUrl,
     experiments: {},
   });
-  return experiments;
+  return async () => {
+    return experiments;
+  };
 }

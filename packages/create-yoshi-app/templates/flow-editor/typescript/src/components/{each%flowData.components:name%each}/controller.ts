@@ -1,39 +1,30 @@
-import { IWidgetControllerConfig } from '@wix/native-components-infra/dist/src/types/types';
-import { ControllerContext } from 'yoshi-flow-editor-runtime/build/types';
+import {
+  CreateControllerFn,
+  ControllerParams,
+} from 'yoshi-flow-editor-runtime';
 import { appName } from '../../../.application.json';
 import { getSiteTranslations } from '../../config/i18n';
-import { id as widgetId } from './.component.json';
 
-function getSiteLanguage({ wixCodeApi }: IWidgetControllerConfig) {
-  if (wixCodeApi.window.multilingual.isEnabled) {
-    return wixCodeApi.window.multilingual.currentLanguage;
-  }
-
-  // NOTE: language can be null (see WEED-18001)
-  return wixCodeApi.site.language || 'en';
-}
-
-function isMobile({ wixCodeApi }: IWidgetControllerConfig) {
-  return wixCodeApi.window.formFactor === 'Mobile';
-}
-
-function isSSR({ wixCodeApi }: IWidgetControllerConfig): boolean {
-  return wixCodeApi.window.rendering.env === 'backend';
-}
-
-async function createController({
+const createController: CreateControllerFn = async ({
   controllerConfig,
-  fedopsLogger,
-  flowData,
-}: ControllerContext) {
+  flowAPI,
+}: ControllerParams) => {
   const { appParams, setProps } = controllerConfig;
-  const language = getSiteLanguage(controllerConfig);
-  const mobile = isMobile(controllerConfig);
+  const {
+    fedopsLogger,
+    getExperiments,
+    getSiteLanguage,
+    widgetId,
+    isSSR,
+    isMobile,
+  } = flowAPI;
+
+  const language = getSiteLanguage();
   const [experiments, translations] = await Promise.all([
-    flowData.getExperiments(),
+    getExperiments(),
     getSiteTranslations(language),
   ]);
-  const { baseUrls = {} } = appParams;
+  const { baseUrls = {}, appDefinitionId } = appParams;
 
   // Read more about fedops and how to configure it: https://bo.wix.com/wix-docs/client/client-viewer-platform/articles/fedops#client-viewer-platform_articles_fedops_fedops
   fedopsLogger.appLoadStarted();
@@ -44,17 +35,17 @@ async function createController({
         appName,
         cssBaseUrl: baseUrls.staticsBaseUrl,
         language,
-        mobile,
+        mobile: isMobile(),
         experiments: experiments.all(),
         translations,
       });
 
       // report loaded SSR of widget
-      if (isSSR(controllerConfig)) {
-        fedopsLogger.appLoaded({ appId: appParams.appDefinitionId, widgetId });
+      if (isSSR()) {
+        fedopsLogger.appLoaded({ appId: appDefinitionId, widgetId });
       }
     },
   };
-}
+};
 
 export default createController;

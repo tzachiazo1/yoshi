@@ -31,13 +31,25 @@ describe('createController', () => {
     });
 
     const controller = await createAppController({
-      flowData: {
+      flowAPI: {
+        fedopsLogger: getFedopsLoggerMock(),
+        widgetId: 'WIDGET_ID',
+        controllerConfig,
+        getSiteLanguage() {
+          return 'en';
+        },
+        isSSR() {
+          return true;
+        },
+        isMobile() {
+          return false;
+        },
+        reportError: jest.fn(),
         getExperiments() {
           return Promise.resolve(experiments);
         },
       },
       controllerConfig,
-      fedopsLogger: getFedopsLoggerMock(),
     });
 
     await controller.pageReady();

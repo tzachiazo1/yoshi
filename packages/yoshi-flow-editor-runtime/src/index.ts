@@ -19,4 +19,5 @@ export * from './react/BILogger/BILoggerRenderProp';
 export * from './react/BILogger/useBILogger';
 
 export * from './react/ErrorBoundary';
+export * from './types';
 export { getEditorParams, isEditor } from './utils';

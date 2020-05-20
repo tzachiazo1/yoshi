@@ -1,25 +1,21 @@
 import {
   IWidgetControllerConfig,
+  IInitAppForPage,
   IAppData,
   IPlatformAPI,
   IWixAPI,
   IPlatformServices,
 } from '@wix/native-components-infra/dist/src/types/types';
-import { buildSentryOptions, getArtifact } from './utils';
 import {
   SentryConfig,
   WidgetType,
   OOI_WIDGET_COMPONENT_TYPE,
   ExperimentsConfig,
 } from './constants';
-import { FlowData, ReportError } from './types';
-import { fetchExperiments, getEmptyExperiments } from './fetchExperiments';
+import { InitAppForPageFn } from './types';
+import { ViewerScriptFlowAPI, ControllerFlowAPI } from './FlowAPI';
 
-const flowData: FlowData = {
-  // Initialize with an empty `Experiments`.
-  getExperiments: () => getEmptyExperiments(),
-};
-let reportError: ReportError;
+let viewerScriptFlowAPI: ViewerScriptFlowAPI;
 
 type ControllerDescriptor = {
   id: string | null;
@@ -37,20 +33,26 @@ const defaultControllerWrapper = (
   controllerDescriptor: ControllerDescriptor,
   controllerConfig: IWidgetControllerConfig,
   appData: any,
-) =>
-  controllerDescriptor.method({
+) => {
+  const flowAPI = new ControllerFlowAPI({
+    viewerScriptFlowAPI,
+    appDefinitionId: controllerConfig.appParams.appDefinitionId,
+    widgetId: controllerDescriptor.id,
     controllerConfig,
-    flowData,
-    appData,
-    reportError,
   });
+  return controllerDescriptor.method({
+    controllerConfig,
+    flowAPI,
+    appData,
+  });
+};
 
 function ooiControllerWrapper(
   controllerDescriptor: ControllerDescriptor,
   controllerConfig: IWidgetControllerConfig,
   appData: any,
 ) {
-  const { setProps, appParams, platformAPIs } = controllerConfig;
+  const { setProps, appParams } = controllerConfig;
 
   const setState = (newState: any) => {
     const updatedState = {
@@ -78,17 +80,17 @@ function ooiControllerWrapper(
   };
 
   const { appDefinitionId } = appParams;
-  const fedopsLogger = platformAPIs.fedOpsLoggerFactory?.getLoggerForWidget({
-    appId: appDefinitionId,
+  const flowAPI = new ControllerFlowAPI({
+    viewerScriptFlowAPI,
+    appDefinitionId,
     widgetId: controllerDescriptor.id,
+    controllerConfig,
   });
 
   const userControllerPromise = controllerDescriptor.method.call(context, {
     controllerConfig,
-    flowData,
+    flowAPI,
     appData,
-    reportError,
-    fedopsLogger,
   });
 
   const wrappedController = Promise.resolve(userControllerPromise).then(
@@ -175,7 +177,7 @@ export const createControllersWithDescriptors = (
     typeof mapPlatformStateToAppData === 'function'
       ? mapPlatformStateToAppData({
           controllerConfigs,
-          flowData,
+          flowAPI: viewerScriptFlowAPI,
           appParams,
           platformAPIs,
           wixCodeApi,
@@ -206,38 +208,20 @@ export const createControllersWithDescriptors = (
 };
 
 export const initAppForPageWrapper = (
-  initAppForPage: Function,
+  initAppForPage: InitAppForPageFn,
   sentry: SentryConfig | null,
   experimentsConfig: ExperimentsConfig | null,
-) => (
+): IInitAppForPage => async (
   initParams: IAppData,
   apis: IPlatformAPI,
   namespaces: IWixAPI,
   platformServices: IPlatformServices,
-  ...other: Array<any>
 ) => {
-  if (sentry) {
-    const sentryOptions = buildSentryOptions(
-      sentry.DSN,
-      'Viewer:Worker',
-      getArtifact(),
-    );
-
-    const sentryInstance = platformServices.monitoring.createMonitor(
-      sentryOptions.dsn,
-      config => ({
-        ...config,
-        ...sentryOptions.config,
-      }),
-    );
-
-    reportError = sentryInstance.captureException.bind(sentryInstance);
-  }
-
-  // If user didn't configure experiments, we'll just mock it to empty object.
-  if (experimentsConfig) {
-    flowData.getExperiments = () => fetchExperiments(experimentsConfig);
-  }
+  viewerScriptFlowAPI = new ViewerScriptFlowAPI({
+    experimentsConfig,
+    platformServices,
+    sentry,
+  });
 
   if (initAppForPage) {
     return initAppForPage(
@@ -245,7 +229,7 @@ export const initAppForPageWrapper = (
       apis,
       namespaces,
       platformServices,
-      ...other,
+      viewerScriptFlowAPI,
     );
   }
   return {};

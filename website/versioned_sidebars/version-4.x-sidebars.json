@@ -87,8 +87,26 @@
       "id": "version-4.x/editor-flow/cli-API"
     },
     {
-      "type": "doc",
-      "id": "version-4.x/editor-flow/structure-API"
+      "type": "category",
+      "label": "Structure API",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-4.x/editor-flow/structure-api/overview"
+        },
+        {
+          "type": "doc",
+          "id": "version-4.x/editor-flow/structure-api/app-configuration"
+        },
+        {
+          "type": "doc",
+          "id": "version-4.x/editor-flow/structure-api/application"
+        },
+        {
+          "type": "doc",
+          "id": "version-4.x/editor-flow/structure-api/component"
+        }
+      ]
     },
     {
       "type": "doc",

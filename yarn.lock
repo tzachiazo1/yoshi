@@ -4856,7 +4856,7 @@
   resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@wix/extensions/-/@wix/extensions-1.0.297.tgz#a6be8adfe43f89dc0653c9ab5d6fce654215c7d4"
   integrity sha1-pr6K3+Q/idwGU8mrXW/OZUIVx9Q=
 
-"@wix/fedops-logger@5.12.0":
+"@wix/fedops-logger@5.12.0", "@wix/fedops-logger@^5.12.0":
   version "5.12.0"
   resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@wix/fedops-logger/-/@wix/fedops-logger-5.12.0.tgz#3f212a655dfebf147d3c2c9298f37215cb65ecff"
   integrity sha1-PyEqZV3+vxR9PCySmPNyFctl7P8=
@@ -22192,6 +22192,11 @@ raven-js@3.27.0:
   version "3.27.0"
   resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/raven-js/-/raven-js-3.27.0.tgz#9f47c03e17933ce756e189f3669d49c441c1ba6e"
   integrity sha1-n0fAPheTPOdW4YnzZp1JxEHBum4=
+
+raven-js@^3.27.2:
+  version "3.27.2"
+  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/raven-js/-/raven-js-3.27.2.tgz#6c33df952026cd73820aa999122b7b7737a66775"
+  integrity sha1-bDPflSAmzXOCCqmZEit7dzemZ3U=
 
 raw-body@1.1.2:
   version "1.1.2"

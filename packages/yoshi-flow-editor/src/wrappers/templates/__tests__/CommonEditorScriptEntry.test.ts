@@ -4,6 +4,33 @@ describe('CommonEditorScriptEntry template', () => {
   it('generates correct template with entry editorScript file for OOI components', () => {
     const generateEditorScriptEntryContent = commonEditorScriptEntry({
       editorEntryFileName: 'project/src/editor.app.ts',
+      artifactId: 'some-app',
+      experimentsConfig: {
+        scope: 'test-scope',
+      },
+      editorScriptWrapperPath:
+        'yoshi-flow-editor-runtime/build/editorScript.js',
+      sentry: null,
+      controllersMeta: [],
+      shouldUseAppBuilder: false,
+    });
+
+    expect(generateEditorScriptEntryContent).toMatchSnapshot();
+  });
+
+  it('generates correct template with entry editorScript file for OOI components using sentry', () => {
+    const generateEditorScriptEntryContent = commonEditorScriptEntry({
+      editorEntryFileName: 'project/src/editor.app.ts',
+      experimentsConfig: null,
+      sentry: {
+        DSN: 'kkk',
+        id: '1',
+        teamName: 'some-team',
+        projectName: 'some-project',
+      },
+      artifactId: 'some-app',
+      editorScriptWrapperPath:
+        'yoshi-flow-editor-runtime/build/editorScript.js',
       controllersMeta: [],
       shouldUseAppBuilder: false,
     });
@@ -14,6 +41,13 @@ describe('CommonEditorScriptEntry template', () => {
   it('generates correct template with entry editorScript file for app builder components', () => {
     const generateEditorScriptEntryContent = commonEditorScriptEntry({
       editorEntryFileName: 'project/src/editor.app.ts',
+      artifactId: 'some-app',
+      experimentsConfig: {
+        scope: 'test-scope',
+      },
+      editorScriptWrapperPath:
+        'yoshi-flow-editor-runtime/build/editorScript.js',
+      sentry: null,
       controllersMeta: [
         {
           controllerFileName: 'project/src/components/a/editor.controller.ts',
@@ -30,6 +64,13 @@ describe('CommonEditorScriptEntry template', () => {
   it('generates correct template with entry editorScript file for multiple app builder components', () => {
     const generateEditorScriptEntryContent = commonEditorScriptEntry({
       editorEntryFileName: 'project/src/editor.app.ts',
+      artifactId: 'some-app',
+      experimentsConfig: {
+        scope: 'test-scope',
+      },
+      editorScriptWrapperPath:
+        'yoshi-flow-editor-runtime/build/editorScript.js',
+      sentry: null,
       controllersMeta: [
         {
           controllerFileName: 'project/src/components/a/editor.controller.ts',
