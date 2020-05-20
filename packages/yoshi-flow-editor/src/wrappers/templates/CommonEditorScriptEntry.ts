@@ -20,6 +20,8 @@ export default t<Opts>`
   var editorScriptEntry = require('${({ editorEntryFileName }) =>
     editorEntryFileName}');
 
+  var editorReady = editorScriptEntry.editorReady;
+
   ${({ shouldUseAppBuilder, controllersMeta }) =>
     shouldUseAppBuilder
       ? `
@@ -77,10 +79,13 @@ export default t<Opts>`
   };
 
   if (editorScriptEntry.editorReady) {
-    editorScriptEntry.editorReady = editorReadyWrapper(editorScriptEntry.editorReady, sentry, '${artifactId}');
+    editorReady = editorReadyWrapper(editorScriptEntry.editorReady, sentry, experimentsConfig, '${artifactId}');
   }
   `
       : ''}
 
-  module.exports = editorScriptEntry.default || editorScriptEntry;
+  module.exports = editorScriptEntry.default || {
+    ...editorScriptEntry,
+    editorReady,
+  };
 `;

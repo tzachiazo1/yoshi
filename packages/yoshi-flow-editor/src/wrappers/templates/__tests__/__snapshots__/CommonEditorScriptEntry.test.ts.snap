@@ -4,6 +4,8 @@ exports[`CommonEditorScriptEntry template generates correct template with entry 
 "
   var editorScriptEntry = require('project/src/editor.app.ts');
 
+  var editorReady = editorScriptEntry.editorReady;
+
   
 
   
@@ -15,17 +17,22 @@ exports[`CommonEditorScriptEntry template generates correct template with entry 
   };
 
   if (editorScriptEntry.editorReady) {
-    editorScriptEntry.editorReady = editorReadyWrapper(editorScriptEntry.editorReady, sentry, 'some-app');
+    editorReady = editorReadyWrapper(editorScriptEntry.editorReady, sentry, experimentsConfig, 'some-app');
   }
   
 
-  module.exports = editorScriptEntry.default || editorScriptEntry;
+  module.exports = editorScriptEntry.default || {
+    ...editorScriptEntry,
+    editorReady,
+  };
 "
 `;
 
 exports[`CommonEditorScriptEntry template generates correct template with entry editorScript file for OOI components using sentry 1`] = `
 "
   var editorScriptEntry = require('project/src/editor.app.ts');
+
+  var editorReady = editorScriptEntry.editorReady;
 
   
 
@@ -41,17 +48,22 @@ exports[`CommonEditorScriptEntry template generates correct template with entry 
   var experimentsConfig = null;
 
   if (editorScriptEntry.editorReady) {
-    editorScriptEntry.editorReady = editorReadyWrapper(editorScriptEntry.editorReady, sentry, 'some-app');
+    editorReady = editorReadyWrapper(editorScriptEntry.editorReady, sentry, experimentsConfig, 'some-app');
   }
   
 
-  module.exports = editorScriptEntry.default || editorScriptEntry;
+  module.exports = editorScriptEntry.default || {
+    ...editorScriptEntry,
+    editorReady,
+  };
 "
 `;
 
 exports[`CommonEditorScriptEntry template generates correct template with entry editorScript file for app builder components 1`] = `
 "
   var editorScriptEntry = require('project/src/editor.app.ts');
+
+  var editorReady = editorScriptEntry.editorReady;
 
   
   var editorScriptBuilder = require('@wix/bob-widget-services').editorScriptBuilder;
@@ -74,13 +86,18 @@ exports[`CommonEditorScriptEntry template generates correct template with entry 
 
   
 
-  module.exports = editorScriptEntry.default || editorScriptEntry;
+  module.exports = editorScriptEntry.default || {
+    ...editorScriptEntry,
+    editorReady,
+  };
 "
 `;
 
 exports[`CommonEditorScriptEntry template generates correct template with entry editorScript file for multiple app builder components 1`] = `
 "
   var editorScriptEntry = require('project/src/editor.app.ts');
+
+  var editorReady = editorScriptEntry.editorReady;
 
   
   var editorScriptBuilder = require('@wix/bob-widget-services').editorScriptBuilder;
@@ -109,6 +126,9 @@ exports[`CommonEditorScriptEntry template generates correct template with entry 
 
   
 
-  module.exports = editorScriptEntry.default || editorScriptEntry;
+  module.exports = editorScriptEntry.default || {
+    ...editorScriptEntry,
+    editorReady,
+  };
 "
 `;

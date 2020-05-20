@@ -75,17 +75,17 @@ export class ControllerFlowAPI extends FlowAPI {
     }
   }
 
-  getSiteLanguage(fallbackLanguage: string = 'en') {
+  getSiteLanguage = (fallbackLanguage: string = 'en') => {
     return getSiteLanguage(this.controllerConfig.wixCodeApi, fallbackLanguage);
-  }
+  };
 
-  isSSR() {
+  isSSR = () => {
     return isSSR(this.controllerConfig.wixCodeApi);
-  }
+  };
 
-  isMobile() {
+  isMobile = () => {
     return isMobile(this.controllerConfig.wixCodeApi);
-  }
+  };
 }
 
 export class EditorScriptFlowAPI extends FlowAPI {
