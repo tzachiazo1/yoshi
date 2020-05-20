@@ -3,7 +3,7 @@ import { launch, LaunchedChrome } from 'chrome-launcher';
 
 const LOCAL_AUTH_APP_PORT = 5151;
 const LOCAL_AUTH_APP_URL = `https://editor.wix.com/html/editor/web/renderer/render/document/828d4907-cc59-4f83-82fb-b2e5a931e414?isEdited=true&isEditor=true&isSantaEditor=true&dsOrigin=Editor1.4&controllersUrlOverride=&lang=en&metaSiteId=104f095d-3d11-48e0-807a-38786d6cae12`;
-const FALLBACK_DELAY = 20000;
+const FALLBACK_DELAY = 60000;
 
 function waitForInstance(): Promise<string | null> {
   return new Promise(async resolve => {

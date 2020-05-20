@@ -22,9 +22,10 @@ const templates: Array<TemplateDefinition> = [
     language: ['typescript', 'javascript'],
   },
   {
-    name: 'server',
-    path: toTemplatePath('server'),
-    language: ['typescript', 'javascript'],
+    name: OOI_TEMPLATE_NAME,
+    title: 'flow-editor - Out of iFrame',
+    path: toTemplatePath('flow-editor'),
+    language: ['typescript'],
   },
   {
     name: 'library',
@@ -32,8 +33,8 @@ const templates: Array<TemplateDefinition> = [
     language: ['typescript', 'javascript'],
   },
   {
-    name: 'out-of-iframe',
-    path: toTemplatePath('out-of-iframe'),
+    name: 'server',
+    path: toTemplatePath('server'),
     language: ['typescript', 'javascript'],
   },
 ];
@@ -42,15 +43,6 @@ if (process.env.EXPERIMENTAL_FLOW_BM === 'true') {
   templates.push({
     name: 'flow-bm',
     path: toTemplatePath('flow-bm'),
-    language: ['typescript'],
-  });
-}
-
-if (process.env.EXPERIMENTAL_FLOW_EDITOR === 'true') {
-  templates.push({
-    name: OOI_TEMPLATE_NAME,
-    title: 'flow-editor - Out of iFrame',
-    path: toTemplatePath('flow-editor'),
     language: ['typescript'],
   });
 }
