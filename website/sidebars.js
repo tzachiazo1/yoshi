@@ -28,7 +28,14 @@ module.exports = {
     'editor-flow/overview',
     'editor-flow/getting-started',
     'editor-flow/cli-API',
-    'editor-flow/structure-API',
+    {
+      'Structure API': [
+        'editor-flow/structure-api/overview',
+        'editor-flow/structure-api/app-configuration',
+        'editor-flow/structure-api/application',
+        'editor-flow/structure-api/component',
+      ],
+    },
     'editor-flow/runtime-API',
     'editor-flow/local-development',
     'editor-flow/testing',
