@@ -56,6 +56,7 @@ const createDefaultOptions = (
         m => new RegExp(`node_modules/${m}`),
       ),
     ],
+    umdNamedDefine: pkg.config.umdNamedDefine,
   };
 };
 

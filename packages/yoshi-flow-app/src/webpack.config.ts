@@ -31,6 +31,7 @@ const createDefaultOptions = (config: Config) => {
     useAngular: config.isAngularProject,
     devServerUrl: config.servers.cdn.url,
     separateCss,
+    umdNamedDefine: config.umdNamedDefine,
   };
 };
 

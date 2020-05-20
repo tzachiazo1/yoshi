@@ -346,6 +346,7 @@ export function createBaseWebpackConfig({
   forceMinimizeServer = false,
   useAbsoluteUrlsForCssAssets = false,
   serverExternals,
+  umdNamedDefine = false,
 }: {
   name: string;
   configName:
@@ -391,6 +392,7 @@ export function createBaseWebpackConfig({
   forceMinimizeServer?: boolean;
   useAbsoluteUrlsForCssAssets?: boolean;
   serverExternals?: ExternalsElement | Array<ExternalsElement>;
+  umdNamedDefine?: boolean;
 }): webpack.Configuration {
   const join = (...dirs: Array<string>) => path.join(cwd, ...dirs);
 
@@ -471,6 +473,7 @@ export function createBaseWebpackConfig({
         ? {
             library: exportAsLibraryName,
             libraryTarget: 'umd',
+            umdNamedDefine,
             globalObject: "(typeof self !== 'undefined' ? self : this)",
           }
         : {}),
@@ -481,6 +484,7 @@ export function createBaseWebpackConfig({
             filename: '[name].js',
             chunkFilename: `${SERVER_CHUNKS_DIR}/[name].js`,
             libraryTarget: 'umd',
+            umdNamedDefine,
             globalObject: "(typeof self !== 'undefined' ? self : this)",
             // Point sourcemap entries to original disk location (format as URL on Windows)
             // todo: remove once useCustomSourceMapPlugin option is getting merged
