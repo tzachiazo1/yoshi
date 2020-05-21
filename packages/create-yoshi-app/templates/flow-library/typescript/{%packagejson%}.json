@@ -30,7 +30,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,ts}": "yoshi lint"
+    "*.{js,ts}": "npm run lint"
   },
   "devDependencies": {
     "husky": "^4.2.1",
