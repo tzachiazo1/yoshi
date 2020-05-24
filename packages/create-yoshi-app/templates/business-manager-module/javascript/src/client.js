@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect } from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { I18nextProvider, initI18n } from '@wix/wix-i18n-config';
 import { notifyViewStartLoading } from '@wix/business-manager-api';
@@ -6,7 +6,8 @@ import { COMPONENT_NAME } from './config';
 import App from './components/App';
 
 const AppContainer = ({ locale = 'en' }) => {
-  useEffect(() => {
+  // Run immediately on first render
+  useMemo(() => {
     notifyViewStartLoading(COMPONENT_NAME);
   }, []);
 

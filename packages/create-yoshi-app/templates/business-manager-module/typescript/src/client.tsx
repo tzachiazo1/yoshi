@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useEffect } from 'react';
+import React, { FC, useMemo } from 'react';
 import {
   notifyViewStartLoading,
   TModuleParams,
@@ -9,7 +9,8 @@ import { COMPONENT_NAME } from './config';
 import App from './components/App';
 
 const AppContainer: FC<TModuleParams> = ({ locale = 'en' }) => {
-  useEffect(() => {
+  // Run immediately on first render
+  useMemo(() => {
     notifyViewStartLoading(COMPONENT_NAME);
   }, []);
 
