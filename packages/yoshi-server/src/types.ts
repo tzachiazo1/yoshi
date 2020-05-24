@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { BootstrapContext } from '@wix/wix-bootstrap-ng/typed';
+import { WithAspects } from '@wix/wix-express-aspects';
 import * as t from 'io-ts';
 
 // io-ts' types
@@ -19,7 +20,7 @@ export type FunctionResult = OptionalPromise<any>;
 
 // Server function types
 export type FunctionContext = {
-  req: Request;
+  req: Request & WithAspects;
   res: Response;
   context: BootstrapContext;
   initData: any;
@@ -39,7 +40,7 @@ export type DSL<Result extends FunctionResult, Args extends FunctionArgs> = {
 
 // Route function types
 export type RouteContext = {
-  req: Request;
+  req: Request & WithAspects;
   res: Response;
   context: BootstrapContext;
   params: { [name: string]: any | undefined };

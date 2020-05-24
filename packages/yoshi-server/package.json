@@ -19,6 +19,7 @@
     "@wix/wix-bootstrap-ng": "^1.0.0",
     "@wix/wix-bootstrap-renderer": "^1.0.0",
     "@wix/wix-bootstrap-require-login": "^1.0.0",
+    "@wix/wix-express-aspects": "^1.0.0",
     "@wix/wix-errors": "^1.0.0",
     "@wix/wix-express-csrf": "^1.0.0",
     "@wix/wix-express-require-https": "^1.0.0",
