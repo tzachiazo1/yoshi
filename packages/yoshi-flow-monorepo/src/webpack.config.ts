@@ -53,7 +53,7 @@ const createDefaultOptions = (
     includeInTranspilation: [
       ...[...apps, ...libs].map(({ location }) => path.join(location, SRC_DIR)),
       ...rootConfig.externalUnprocessedModules.map(
-        m => new RegExp(`node_modules/${m}`),
+        m => new RegExp(`node_modules/${m}/[^node_modules]`),
       ),
     ],
     umdNamedDefine: pkg.config.umdNamedDefine,
