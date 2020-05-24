@@ -20,32 +20,35 @@ export default t<Opts>`
   var editorScriptEntry = require('${({ editorEntryFileName }) =>
     editorEntryFileName}');
 
-  var editorReady = editorScriptEntry.editorReady;
-
   ${({ shouldUseAppBuilder, controllersMeta }) =>
     shouldUseAppBuilder
       ? `
-  var editorScriptBuilder = require('@wix/bob-widget-services').editorScriptBuilder;
+    if (editorScriptEntry.default) {
+      module.exports = editorScriptEntry.default;
+    } else {
+      var editorScriptBuilder = require('@wix/bob-widget-services').editorScriptBuilder;
 
-  var builder = editorScriptBuilder();
-  if (editorScriptEntry.editorReady) {
-    builder = builder.withEditorReady(editorScriptEntry.editorReady);
+      var builder = editorScriptBuilder();
+      if (editorScriptEntry.editorReady) {
+        builder = builder.withEditorReady(editorScriptEntry.editorReady);
+      }
+      if (editorScriptEntry.appManifest) {
+        builder = builder.withAppManifest(editorScriptEntry.appManifest);
+      }
+      if (editorScriptEntry.eventHandler) {
+        builder = builder.withEventHandler(editorScriptEntry.eventHandler);
+      }
+      ${controllersMeta
+        .map(
+          (meta, i) =>
+            `
+      var userController_${i} = require('${meta.controllerFileName}');
+      builder = builder.withWidget(userController_${i}.default || userController_${i});`,
+        )
+        .join('\n  ')}
+
+      module.exports = builder.build();
   }
-  if (editorScriptEntry.appManifest) {
-    builder = builder.withAppManifest(editorScriptEntry.appManifest);
-  }
-  if (editorScriptEntry.eventHandler) {
-    builder = builder.withEventHandler(editorScriptEntry.eventHandler);
-  }
-  ${controllersMeta
-    .map(
-      (meta, i) =>
-        `
-  var userController_${i} = require('${meta.controllerFileName}');
-  builder = builder.withWidget(userController_${i}.default || userController_${i});`,
-    )
-    .join('\n  ')}
-  editorScriptEntry = builder.build();
   `
       : ''}
 
@@ -59,6 +62,8 @@ export default t<Opts>`
     !shouldUseAppBuilder
       ? `
   var editorReadyWrapper = require('${editorScriptWrapperPath}').editorReadyWrapper;
+  var editorReady = editorScriptEntry.editorReady;
+
   var sentry = ${
     sentry
       ? `{
@@ -78,14 +83,14 @@ export default t<Opts>`
       : 'null'
   };
 
-  if (editorScriptEntry.editorReady) {
-    editorReady = editorReadyWrapper(editorScriptEntry.editorReady, sentry, experimentsConfig, '${artifactId}');
+  if (editorReady) {
+    editorReady = editorReadyWrapper(editorReady, sentry, experimentsConfig, '${artifactId}');
   }
-  `
-      : ''}
 
   module.exports = editorScriptEntry.default || {
     ...editorScriptEntry,
     editorReady,
   };
+  `
+      : ''}
 `;

@@ -4,27 +4,27 @@ exports[`CommonEditorScriptEntry template generates correct template with entry 
 "
   var editorScriptEntry = require('project/src/editor.app.ts');
 
-  var editorReady = editorScriptEntry.editorReady;
-
   
 
   
   var editorReadyWrapper = require('yoshi-flow-editor-runtime/build/editorScript.js').editorReadyWrapper;
+  var editorReady = editorScriptEntry.editorReady;
+
   var sentry = null;
 
   var experimentsConfig = {
     scope: 'test-scope'
   };
 
-  if (editorScriptEntry.editorReady) {
-    editorReady = editorReadyWrapper(editorScriptEntry.editorReady, sentry, experimentsConfig, 'some-app');
+  if (editorReady) {
+    editorReady = editorReadyWrapper(editorReady, sentry, experimentsConfig, 'some-app');
   }
-  
 
   module.exports = editorScriptEntry.default || {
     ...editorScriptEntry,
     editorReady,
   };
+  
 "
 `;
 
@@ -32,12 +32,12 @@ exports[`CommonEditorScriptEntry template generates correct template with entry 
 "
   var editorScriptEntry = require('project/src/editor.app.ts');
 
-  var editorReady = editorScriptEntry.editorReady;
-
   
 
   
   var editorReadyWrapper = require('yoshi-flow-editor-runtime/build/editorScript.js').editorReadyWrapper;
+  var editorReady = editorScriptEntry.editorReady;
+
   var sentry = {
     DSN: 'kkk',
     id: '1',
@@ -47,15 +47,15 @@ exports[`CommonEditorScriptEntry template generates correct template with entry 
 
   var experimentsConfig = null;
 
-  if (editorScriptEntry.editorReady) {
-    editorReady = editorReadyWrapper(editorScriptEntry.editorReady, sentry, experimentsConfig, 'some-app');
+  if (editorReady) {
+    editorReady = editorReadyWrapper(editorReady, sentry, experimentsConfig, 'some-app');
   }
-  
 
   module.exports = editorScriptEntry.default || {
     ...editorScriptEntry,
     editorReady,
   };
+  
 "
 `;
 
@@ -63,33 +63,31 @@ exports[`CommonEditorScriptEntry template generates correct template with entry 
 "
   var editorScriptEntry = require('project/src/editor.app.ts');
 
-  var editorReady = editorScriptEntry.editorReady;
-
   
-  var editorScriptBuilder = require('@wix/bob-widget-services').editorScriptBuilder;
+    if (editorScriptEntry.default) {
+      module.exports = editorScriptEntry.default;
+    } else {
+      var editorScriptBuilder = require('@wix/bob-widget-services').editorScriptBuilder;
 
-  var builder = editorScriptBuilder();
-  if (editorScriptEntry.editorReady) {
-    builder = builder.withEditorReady(editorScriptEntry.editorReady);
+      var builder = editorScriptBuilder();
+      if (editorScriptEntry.editorReady) {
+        builder = builder.withEditorReady(editorScriptEntry.editorReady);
+      }
+      if (editorScriptEntry.appManifest) {
+        builder = builder.withAppManifest(editorScriptEntry.appManifest);
+      }
+      if (editorScriptEntry.eventHandler) {
+        builder = builder.withEventHandler(editorScriptEntry.eventHandler);
+      }
+      
+      var userController_0 = require('project/src/components/a/editor.controller.ts');
+      builder = builder.withWidget(userController_0.default || userController_0);
+
+      module.exports = builder.build();
   }
-  if (editorScriptEntry.appManifest) {
-    builder = builder.withAppManifest(editorScriptEntry.appManifest);
-  }
-  if (editorScriptEntry.eventHandler) {
-    builder = builder.withEventHandler(editorScriptEntry.eventHandler);
-  }
-  
-  var userController_0 = require('project/src/components/a/editor.controller.ts');
-  builder = builder.withWidget(userController_0.default || userController_0);
-  editorScriptEntry = builder.build();
   
 
   
-
-  module.exports = editorScriptEntry.default || {
-    ...editorScriptEntry,
-    editorReady,
-  };
 "
 `;
 
@@ -97,38 +95,36 @@ exports[`CommonEditorScriptEntry template generates correct template with entry 
 "
   var editorScriptEntry = require('project/src/editor.app.ts');
 
-  var editorReady = editorScriptEntry.editorReady;
-
   
-  var editorScriptBuilder = require('@wix/bob-widget-services').editorScriptBuilder;
+    if (editorScriptEntry.default) {
+      module.exports = editorScriptEntry.default;
+    } else {
+      var editorScriptBuilder = require('@wix/bob-widget-services').editorScriptBuilder;
 
-  var builder = editorScriptBuilder();
-  if (editorScriptEntry.editorReady) {
-    builder = builder.withEditorReady(editorScriptEntry.editorReady);
+      var builder = editorScriptBuilder();
+      if (editorScriptEntry.editorReady) {
+        builder = builder.withEditorReady(editorScriptEntry.editorReady);
+      }
+      if (editorScriptEntry.appManifest) {
+        builder = builder.withAppManifest(editorScriptEntry.appManifest);
+      }
+      if (editorScriptEntry.eventHandler) {
+        builder = builder.withEventHandler(editorScriptEntry.eventHandler);
+      }
+      
+      var userController_0 = require('project/src/components/a/editor.controller.ts');
+      builder = builder.withWidget(userController_0.default || userController_0);
+  
+      var userController_1 = require('project/src/components/c/editor.controller.ts');
+      builder = builder.withWidget(userController_1.default || userController_1);
+  
+      var userController_2 = require('project/src/components/d/editor.controller.ts');
+      builder = builder.withWidget(userController_2.default || userController_2);
+
+      module.exports = builder.build();
   }
-  if (editorScriptEntry.appManifest) {
-    builder = builder.withAppManifest(editorScriptEntry.appManifest);
-  }
-  if (editorScriptEntry.eventHandler) {
-    builder = builder.withEventHandler(editorScriptEntry.eventHandler);
-  }
-  
-  var userController_0 = require('project/src/components/a/editor.controller.ts');
-  builder = builder.withWidget(userController_0.default || userController_0);
-  
-  var userController_1 = require('project/src/components/c/editor.controller.ts');
-  builder = builder.withWidget(userController_1.default || userController_1);
-  
-  var userController_2 = require('project/src/components/d/editor.controller.ts');
-  builder = builder.withWidget(userController_2.default || userController_2);
-  editorScriptEntry = builder.build();
   
 
   
-
-  module.exports = editorScriptEntry.default || {
-    ...editorScriptEntry,
-    editorReady,
-  };
 "
 `;
