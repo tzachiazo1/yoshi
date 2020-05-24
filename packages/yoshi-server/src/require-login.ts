@@ -13,7 +13,7 @@ export const forbid = async (
   const requireLogin: RequireLogin = context.requireLogin;
 
   return new Promise((resolve, reject) => {
-    requireLogin.forbid(options)(req, res, error =>
+    requireLogin.forbid(options)(req, res, (error?: any) =>
       error ? reject(error) : resolve(),
     );
   });
@@ -26,7 +26,7 @@ export const redirect = async (
   const requireLogin: RequireLogin = context.requireLogin;
 
   return new Promise((resolve, reject) => {
-    requireLogin.redirect(options)(req, res, error =>
+    requireLogin.redirect(options)(req, res, (error?: any) =>
       error ? reject(error) : resolve(),
     );
   });

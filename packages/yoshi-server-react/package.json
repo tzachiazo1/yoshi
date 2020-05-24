@@ -15,7 +15,7 @@
     "yoshi-server-client": "^4.14.0"
   },
   "devDependencies": {
-    "@types/react": "16.9.34",
+    "@types/react": "16.9.35",
     "react": "^16.9.0",
     "yoshi-server": "4.78.0",
     "yoshi-server-client": "4.78.0"

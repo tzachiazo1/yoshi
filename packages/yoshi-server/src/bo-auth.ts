@@ -9,7 +9,9 @@ export const forbid = async ({
   const boAuth: WixBootstrapBoAuth.BoAuth = context.boAuth;
 
   return new Promise((resolve, reject) => {
-    boAuth.forbid()(req, res, error => (error ? reject(error) : resolve()));
+    boAuth.forbid()(req, res, (error?: any) =>
+      error ? reject(error) : resolve(),
+    );
   });
 };
 
@@ -21,6 +23,8 @@ export const redirect = async ({
   const boAuth: WixBootstrapBoAuth.BoAuth = context.boAuth;
 
   return new Promise((resolve, reject) => {
-    boAuth.redirect()(req, res, error => (error ? reject(error) : resolve()));
+    boAuth.redirect()(req, res, (error?: any) =>
+      error ? reject(error) : resolve(),
+    );
   });
 };
