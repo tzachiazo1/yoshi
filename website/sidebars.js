@@ -8,6 +8,7 @@ module.exports = {
     'node-api',
     {
       'Styles and Assets': [
+        'styles-and-assets/assets',
         'styles-and-assets/disable-css-modules',
         'styles-and-assets/stylelint-setup',
         'styles-and-assets/svg',
