@@ -1,5 +1,6 @@
 import path from 'path';
 import chalk from 'chalk';
+import { PackageJson } from 'type-fest';
 import { existsSync, isTypescriptProject } from './queries';
 
 const serverStartFileOrder = [
@@ -14,9 +15,11 @@ const serverStartFileOrder = [
 export const getServerStartFile = ({
   serverStartFileCLI,
   cwd = process.cwd(),
+  pkgJson,
 }: {
   serverStartFileCLI?: string;
   cwd?: string;
+  pkgJson?: PackageJson;
 }) => {
   const extension = isTypescriptProject() ? 'ts' : 'js';
 
@@ -33,16 +36,20 @@ Please remove the flags and use these default entry points:
     return serverStartFileCLI;
   }
 
-  const serverStartFile = serverStartFileOrder
+  let serverStartFile = serverStartFileOrder
     .map(filePath => path.join(cwd, filePath))
     .find(existsSync);
 
   if (!serverStartFile) {
-    throw new Error(
-      `Entry point is missing! Please create the entry point:
-  - fullstack: index-dev.${extension}
-  - client:    dev/server.${extension}`,
-    );
+    if (pkgJson?.main) {
+      serverStartFile = pkgJson.main;
+    } else {
+      throw new Error(
+        `Entry point is missing! Please create the entry point:
+    - fullstack: index-dev.${extension}
+    - client:    dev/server.${extension}`,
+      );
+    }
   }
 
   if (path.basename(serverStartFile).split('.')[0] === 'index') {

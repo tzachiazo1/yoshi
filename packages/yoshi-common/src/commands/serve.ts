@@ -38,7 +38,8 @@ export const serveApp = async ({
   useAppName?: boolean;
 }) => {
   const serverFilePath =
-    serverStartFileParser(config.pkgJson) ?? getServerStartFile({ cwd });
+    serverStartFileParser(config.pkgJson) ??
+    getServerStartFile({ cwd, pkgJson: config.pkgJson });
 
   const staticsDir = path.join(cwd, STATICS_DIR);
   if (!fs.existsSync(staticsDir) || fs.readdirSync(staticsDir).length === 0) {
