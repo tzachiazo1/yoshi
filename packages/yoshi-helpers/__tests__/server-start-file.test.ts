@@ -82,6 +82,13 @@ describe('GetServerStarFile', () => {
 
       expect(getServerStartFile({})).toMatch('index.js');
     });
+
+    it('should use "main" as entry, if no other entries', () => {
+      jest.spyOn(queries, 'existsSync').mockReturnValue(false);
+      expect(
+        getServerStartFile({ pkgJson: { main: 'yoshi-server/bootstrap' } }),
+      ).toMatch('yoshi-server/bootstrap');
+    });
   });
 
   describe('Missing entry / Legacy Project', () => {
