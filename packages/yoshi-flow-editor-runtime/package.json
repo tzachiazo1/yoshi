@@ -14,7 +14,7 @@
     "@sentry/browser": "^5.15.5",
     "@wix/fedops-logger": "^5.12.0",
     "@wix/native-components-infra": "^1.0.668",
-    "@wix/platform-editor-sdk": "^0.0.938",
+    "@wix/platform-editor-sdk": "^0.0.940",
     "@wix/wix-base-ui": "^3.0.0",
     "@wix/wix-experiments": "^3.0.442",
     "prop-types": "^15.7.2",
