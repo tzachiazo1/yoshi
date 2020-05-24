@@ -1,3 +1,4 @@
+const { bootstrapServer } = require('yoshi-server');
 const { environment } = require('./environment');
 
 // The purpose of this file is to start your server and possibly additional servers
@@ -11,7 +12,8 @@ const { environment } = require('./environment');
 module.exports = {
   bootstrap: {
     setup: async ({ globalObject }) => {
-      const { bmApp, app } = await environment({ withRandomPorts: true });
+      const { bmApp } = await environment({ withRandomPorts: true });
+      const app = bootstrapServer();
       await app.start();
       await bmApp.start();
       globalObject.testKitBMApp = bmApp;

@@ -5,6 +5,8 @@ import * as boAuth from './bo-auth';
 export * from './wrap';
 export { default as Server } from './server';
 
+export { bootstrapServer } from './bootstrap-env';
+
 export { default as render } from './render';
 
 export { default as renderView } from './renderView';

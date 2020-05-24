@@ -1,16 +1,8 @@
-const testkit = require('@wix/wix-bootstrap-testkit');
 const {
   createTestkit,
   testkitConfigBuilder,
   anAppConfigBuilder,
 } = require('@wix/business-manager/dist/testkit');
-
-// start the server
-const bootstrapServer = () => {
-  return testkit.server(require.resolve('yoshi-server/bootstrap'), {
-    env: process.env,
-  });
-};
 
 const getTestKitConfig = async (
   { withRandomPorts } = { withRandomPorts: false },
@@ -42,10 +34,8 @@ const getTestKitConfig = async (
 };
 
 module.exports.environment = async envConfig => {
-  const app = bootstrapServer();
   const bmApp = createTestkit(await getTestKitConfig(envConfig, app));
   return {
-    app,
     bmApp,
   };
 };

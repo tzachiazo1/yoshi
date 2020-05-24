@@ -1,7 +1,9 @@
+const { bootstrapServer } = require('yoshi-server');
 const { environment } = require('./environment');
 
 (async () => {
-  const { bmApp, app } = await environment();
+  const { bmApp } = await environment();
+  const app = bootstrapServer();
   // Order matters here!
   // Yoshi waits for 'app.start()', so it should be last
   await bmApp.start();
