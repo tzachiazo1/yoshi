@@ -12,8 +12,8 @@ const { environment } = require('./environment');
 module.exports = {
   bootstrap: {
     setup: async ({ globalObject }) => {
-      const { bmApp } = await environment({ withRandomPorts: true });
       const app = bootstrapServer();
+      const { bmApp } = await environment(app, { withRandomPorts: true });
       await app.start();
       await bmApp.start();
       globalObject.testKitBMApp = bmApp;
