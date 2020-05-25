@@ -27,7 +27,11 @@ const getTunnelId = (namespace: string) => {
   return `${uniqueTunnelId}.${normalizedNamespace}`;
 };
 
-export const createSocket = (namespace: string, targetPort: number) => {
+export const createSocket = (
+  namespace: string,
+  targetPort: number,
+  options = {},
+) => {
   // The consumer project needs to install @wix/suricate-client > 0.0.3
   // by itself because this is a private dependency
   // eslint-disable-next-line import/no-unresolved
@@ -37,6 +41,7 @@ export const createSocket = (namespace: string, targetPort: number) => {
     target: { port: targetPort },
     url: suricateURL,
     tunnelID: getTunnelId(namespace),
+    ...options,
   });
 };
 
@@ -46,8 +51,11 @@ export const getUrl = (namespace: string) =>
 export const getDevServerUrl = (appName: string) =>
   getUrl(`${appName}-dev-server`);
 
-export const createDevServerSocket = (appName: string, port: number) =>
-  createSocket(`${appName}-dev-server`, port);
+export const createDevServerSocket = (
+  appName: string,
+  port: number,
+  options = {},
+) => createSocket(`${appName}-dev-server`, port, options);
 
 export const getDevServerSocketPath = (appName: string) => {
   const devServerUrl = getDevServerUrl(appName);

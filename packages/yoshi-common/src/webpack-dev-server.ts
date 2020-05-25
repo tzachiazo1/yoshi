@@ -47,6 +47,7 @@ export class WebpackDevServer extends OriginalWebpackDevServer {
   public compiler: webpack.Compiler;
   public suricate: boolean;
   public appName: string;
+  private suricateApi: any;
 
   constructor(
     compiler: webpack.Compiler,
@@ -66,6 +67,15 @@ export class WebpackDevServer extends OriginalWebpackDevServer {
       cwd?: string;
     },
   ) {
+    if (suricate) {
+      compiler.hooks.done.tapPromise(
+        'webpack-dev-server/suricate',
+        async () => {
+          this.suricateApi.updateCache();
+        },
+      );
+    }
+
     super(compiler, {
       // Enable gzip compression for everything served
       compress: true,
@@ -126,8 +136,14 @@ export class WebpackDevServer extends OriginalWebpackDevServer {
 
   listenPromise() {
     const listenTarget = this.suricate
-      ? createDevServerTunnelSocket(this.appName, this.port)
+      ? createDevServerTunnelSocket(this.appName, this.port, {
+          cache: process.env.ENABLE_SURICATE_CACHE === 'true',
+        })
       : this.port;
+
+    if (this.suricate) {
+      this.suricateApi = listenTarget;
+    }
 
     return new Promise((resolve, reject) => {
       super.listen(listenTarget, host, err => (err ? reject(err) : resolve()));
