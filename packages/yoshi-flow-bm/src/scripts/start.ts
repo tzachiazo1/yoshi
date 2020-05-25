@@ -12,12 +12,12 @@ import {
   createServerWebpackConfig,
 } from '../webpack.config';
 import createFlowBMModel, { watchFlowBMModel } from '../model';
-import renderModule, { moduleEntryPath } from '../renderModule';
+import renderModule, { getModuleEntry } from '../renderModule';
 import renderModuleConfig from '../renderModuleConfig';
 
 const join = (...dirs: Array<string>) => path.join(process.cwd(), ...dirs);
 
-const start: CliCommand = async function(argv, config) {
+const start: CliCommand = async function(argv, yoshiConfig) {
   const args = arg(
     {
       // Types
@@ -89,34 +89,34 @@ const start: CliCommand = async function(argv, config) {
     renderModuleConfig(model);
   });
 
-  const clientConfig = createClientWebpackConfig(config, {
-    isDev: true,
-    isHot: config.hmr as boolean,
-  });
-  clientConfig.entry = { module: moduleEntryPath };
+  const model = createFlowBMModel();
 
-  const serverConfig = createServerWebpackConfig(config, {
+  const clientConfig = createClientWebpackConfig(yoshiConfig, {
+    isDev: true,
+    isHot: yoshiConfig.hmr as boolean,
+  });
+  clientConfig.entry = getModuleEntry(model);
+
+  const serverConfig = createServerWebpackConfig(yoshiConfig, {
     isDev: true,
     isHot: true,
   });
 
-  const { pages } = createFlowBMModel();
-
   const startUrl = `http://localhost:5000/business-manager/${uuid()}/${
-    pages[0].route
+    model.pages[0].route
   }`;
 
   const devEnvironment = await DevEnvironment.create({
     webpackConfigs: [clientConfig, serverConfig],
-    https: config.servers.cdn.ssl,
-    webpackDevServerPort: config.servers.cdn.port,
-    appServerPort: config.servers.app.port,
+    https: yoshiConfig.servers.cdn.ssl,
+    webpackDevServerPort: yoshiConfig.servers.cdn.port,
+    appServerPort: yoshiConfig.servers.app.port,
     serverFilePath: serverStartFile,
-    appName: config.name,
+    appName: yoshiConfig.name,
     startUrl,
-    enableClientHotUpdates: Boolean(config.hmr),
-    createEjsTemplates: config.experimentalBuildHtml,
-    yoshiServer: config.yoshiServer,
+    enableClientHotUpdates: Boolean(yoshiConfig.hmr),
+    createEjsTemplates: yoshiConfig.experimentalBuildHtml,
+    yoshiServer: yoshiConfig.yoshiServer,
   });
 
   await devEnvironment.start();

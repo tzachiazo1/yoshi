@@ -1,5 +1,6 @@
 import path from 'path';
 import fs from 'fs-extra';
+import { Entry } from 'webpack';
 import { FlowBMModel } from './model';
 import renderPage from './renderPage';
 import renderExportedComponent from './renderExportedComponent';
@@ -51,7 +52,11 @@ createModule({
   ${sentryDsn ? `sentryDsn: '${sentryDsn}',` : ''}
 });`;
 
-export const moduleEntryPath = path.resolve(__dirname, '../tmp/module.ts');
+const MODULE_ENTRY_PATH = path.resolve(__dirname, '../tmp/module.ts');
+
+export const getModuleEntry = (model: FlowBMModel): Entry => ({
+  [model.config.moduleBundleName]: MODULE_ENTRY_PATH,
+});
 
 const renderModule = (model: FlowBMModel) => {
   model.pages.forEach(page => renderPage(page, model));
@@ -60,7 +65,7 @@ const renderModule = (model: FlowBMModel) => {
     renderExportedComponent(component, model),
   );
 
-  fs.outputFileSync(moduleEntryPath, generateModuleCode(model));
+  fs.outputFileSync(MODULE_ENTRY_PATH, generateModuleCode(model));
 };
 
 export default renderModule;

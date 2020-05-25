@@ -26,6 +26,7 @@ export const normalizeModuleConfig = (
         artifactId: `com.wixpress.${artifactId}`,
       },
     },
+    moduleBundleName: 'module',
   };
 
   return defaultsDeep(initialConfig, moduleConfigDefaults) as ModuleConfig;

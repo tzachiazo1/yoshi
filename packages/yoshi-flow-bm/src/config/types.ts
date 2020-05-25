@@ -6,6 +6,7 @@ export interface ModuleConfig {
   sentryDsn?: string;
   routeNamespace: string;
   topology: Record<string, { artifactId: string }>;
+  moduleBundleName: string;
 }
 
 export type InitialPageConfig = Partial<PageConfig>;

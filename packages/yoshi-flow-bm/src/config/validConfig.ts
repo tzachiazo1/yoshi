@@ -11,6 +11,7 @@ export const validModuleConfig: InitialModuleConfig = {
   routeNamespace: 'some-route',
   sentryDsn: '1337',
   experimentsScopes: ['yoshi', 'wos'],
+  moduleBundleName: 'some-module',
   topology: multipleValidOptions(
     {
       fooUrl: { artifactId: 'foo' },

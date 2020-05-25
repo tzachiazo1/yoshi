@@ -14,7 +14,7 @@ import {
 } from '../webpack.config';
 import { CliCommand } from '../bin/yoshi-bm';
 import createFlowBMModel from '../model';
-import renderModule, { moduleEntryPath } from '../renderModule';
+import renderModule, { getModuleEntry } from '../renderModule';
 import renderModuleConfig from '../renderModuleConfig';
 
 const join = (...dirs: Array<string>) => path.join(process.cwd(), ...dirs);
@@ -85,18 +85,20 @@ const build: CliCommand = async function(argv, config) {
     ]);
   }
 
+  const moduleEntry = getModuleEntry(model);
+
   const clientDebugConfig = createClientWebpackConfig(config, {
     isDev: true,
     forceEmitSourceMaps,
   });
-  clientDebugConfig.entry = { module: moduleEntryPath };
+  clientDebugConfig.entry = moduleEntry;
 
   const clientOptimizedConfig = createClientWebpackConfig(config, {
     isAnalyze,
     forceEmitSourceMaps,
     forceEmitStats,
   });
-  clientOptimizedConfig.entry = { module: moduleEntryPath };
+  clientOptimizedConfig.entry = moduleEntry;
 
   const serverConfig = createServerWebpackConfig(config, {
     isDev: true,
