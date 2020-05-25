@@ -15,5 +15,5 @@ export default t<Opts>`
   var importedApp = viewerApp;
 
   export const initAppForPage = initAppForPageWrapper(importedApp.initAppForPage);
-  export const createControllers = createControllersWrapper(userController, importedApp.mapPlatformStateToAppData);
+  export const createControllers = createControllersWrapper(userController);
 `;

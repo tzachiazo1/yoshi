@@ -78,5 +78,5 @@ export default t<Opts>`
   }) =>
     controllerConfigs({
       controllersMeta,
-    })}], importedApp.mapPlatformStateToAppData);
+    })}]);
 `;

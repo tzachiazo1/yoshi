@@ -11,7 +11,7 @@ import {
 } from './react/SDK/SDKContext';
 import { WixSDKProvider } from './react/SDK/WixSDKProvider';
 import { SentryConfig, ExperimentsConfig } from './constants';
-import { InitAppForPageFn } from './types';
+import { InitAppForPageFn, CreateControllerFn } from './types';
 
 declare global {
   interface Window {
@@ -21,8 +21,7 @@ declare global {
 }
 interface IEditorAppCreatorProps {
   UserComponent: typeof React.Component;
-  userController: Function;
-  mapPlatformStateToAppData: Function;
+  userController: CreateControllerFn;
   customInitAppForPage: InitAppForPageFn;
   name: string;
   sentry: SentryConfig | null;
@@ -40,7 +39,6 @@ interface IEditorAppWrapperProps extends IEditorAppCreatorProps {
 const createEditorAppForWixSDK = ({
   UserComponent,
   userController,
-  mapPlatformStateToAppData,
   customInitAppForPage,
   name,
   sentry,
@@ -56,10 +54,7 @@ const createEditorAppForWixSDK = ({
 
   return ViewerScriptWrapper(WithComponent, {
     viewerScript: {
-      createControllers: createControllers(
-        userController,
-        mapPlatformStateToAppData,
-      ),
+      createControllers: createControllers(userController),
       initAppForPage: initAppForPageWrapper(
         customInitAppForPage,
         sentry,

@@ -12,10 +12,11 @@ import {
   OOI_WIDGET_COMPONENT_TYPE,
   ExperimentsConfig,
 } from './constants';
-import { InitAppForPageFn } from './types';
+import { InitAppForPageFn, CreateControllerFn } from './types';
 import { ViewerScriptFlowAPI, ControllerFlowAPI } from './FlowAPI';
 
 let viewerScriptFlowAPI: ViewerScriptFlowAPI;
+let appData: any = {};
 
 type ControllerDescriptor = {
   id: string | null;
@@ -32,7 +33,6 @@ const getFirstDescriptor = (descriptors: Array<ControllerDescriptor>) => {
 const defaultControllerWrapper = (
   controllerDescriptor: ControllerDescriptor,
   controllerConfig: IWidgetControllerConfig,
-  appData: any,
 ) => {
   const flowAPI = new ControllerFlowAPI({
     viewerScriptFlowAPI,
@@ -50,7 +50,6 @@ const defaultControllerWrapper = (
 function ooiControllerWrapper(
   controllerDescriptor: ControllerDescriptor,
   controllerConfig: IWidgetControllerConfig,
-  appData: any,
 ) {
   const { setProps, appParams } = controllerConfig;
 
@@ -123,21 +122,12 @@ function ooiControllerWrapper(
 const wrapControllerByWidgetType = (
   controllerDescriptor: ControllerDescriptor,
   controllerConfig: IWidgetControllerConfig,
-  appData: any,
 ) => {
   switch (controllerDescriptor.widgetType) {
     case OOI_WIDGET_COMPONENT_TYPE:
-      return ooiControllerWrapper(
-        controllerDescriptor,
-        controllerConfig,
-        appData,
-      );
+      return ooiControllerWrapper(controllerDescriptor, controllerConfig);
     default:
-      return defaultControllerWrapper(
-        controllerDescriptor,
-        controllerConfig,
-        appData,
-      );
+      return defaultControllerWrapper(controllerDescriptor, controllerConfig);
   }
 };
 
@@ -151,38 +141,20 @@ const getDescriptorForConfig = (
   );
 };
 
-export const createControllers = (
-  createController: Function,
-  mapPlatformStateToAppData: Function,
-) => {
-  return createControllersWithDescriptors(
-    [
-      {
-        method: createController,
-        id: null,
-        widgetType: OOI_WIDGET_COMPONENT_TYPE,
-      },
-    ],
-    mapPlatformStateToAppData,
-  );
+export const createControllers = (createController: CreateControllerFn) => {
+  return createControllersWithDescriptors([
+    {
+      method: createController,
+      id: null,
+      widgetType: OOI_WIDGET_COMPONENT_TYPE,
+    },
+  ]);
 };
 
 export const createControllersWithDescriptors = (
   controllerDescriptors: Array<ControllerDescriptor>,
-  mapPlatformStateToAppData: Function,
 ) => (controllerConfigs: Array<IWidgetControllerConfig>) => {
   // It should be called inside initAppForPage
-  const { appParams, platformAPIs, wixCodeApi } = controllerConfigs[0];
-  const appData =
-    typeof mapPlatformStateToAppData === 'function'
-      ? mapPlatformStateToAppData({
-          controllerConfigs,
-          flowAPI: viewerScriptFlowAPI,
-          appParams,
-          platformAPIs,
-          wixCodeApi,
-        })
-      : {};
 
   const wrappedControllers = controllerConfigs.map(controllerConfig => {
     // [Platform surprise] `type` here, is a widgetId. :(
@@ -197,11 +169,7 @@ export const createControllersWithDescriptors = (
       );
     }
 
-    return wrapControllerByWidgetType(
-      controllerDescriptor,
-      controllerConfig,
-      appData,
-    );
+    return wrapControllerByWidgetType(controllerDescriptor, controllerConfig);
   });
 
   return wrappedControllers;
@@ -224,7 +192,7 @@ export const initAppForPageWrapper = (
   });
 
   if (initAppForPage) {
-    return initAppForPage(
+    appData = initAppForPage(
       initParams,
       apis,
       namespaces,
@@ -232,5 +200,5 @@ export const initAppForPageWrapper = (
       viewerScriptFlowAPI,
     );
   }
-  return {};
+  return appData;
 };

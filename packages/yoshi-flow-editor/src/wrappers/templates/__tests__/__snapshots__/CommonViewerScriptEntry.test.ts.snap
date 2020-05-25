@@ -16,7 +16,7 @@ exports[`CommonViewerScriptEntry template generates correct template w/o control
   };
 
   export const initAppForPage = initAppForPageWrapper(importedApp.initAppForPage, sentryConfig, experimentsConfig);
-  export const createControllers = createControllersWithDescriptors([], importedApp.mapPlatformStateToAppData);
+  export const createControllers = createControllersWithDescriptors([]);
 "
 `;
 
@@ -41,7 +41,7 @@ import controller1 from 'project/src/components/todo/controller.ts';
           widgetType: \\"WIDGET_OUT_OF_IFRAME\\",
           id: \\"123\\" }, { method: controller1,
           widgetType: \\"WIDGET_OUT_OF_IFRAME\\",
-          id: \\"567\\" }], importedApp.mapPlatformStateToAppData);
+          id: \\"567\\" }]);
 "
 `;
 
@@ -68,7 +68,7 @@ exports[`CommonViewerScriptEntry template generates correct template with sentry
   export const initAppForPage = initAppForPageWrapper(importedApp.initAppForPage, sentryConfig, experimentsConfig);
   export const createControllers = createControllersWithDescriptors([{ method: controller0,
           widgetType: \\"WIDGET_OUT_OF_IFRAME\\",
-          id: \\"123\\" }], importedApp.mapPlatformStateToAppData);
+          id: \\"123\\" }]);
 "
 `;
 
@@ -90,6 +90,6 @@ exports[`CommonViewerScriptEntry template generates correct template with single
   export const initAppForPage = initAppForPageWrapper(importedApp.initAppForPage, sentryConfig, experimentsConfig);
   export const createControllers = createControllersWithDescriptors([{ method: controller0,
           widgetType: \\"WIDGET_OUT_OF_IFRAME\\",
-          id: \\"123\\" }], importedApp.mapPlatformStateToAppData);
+          id: \\"123\\" }]);
 "
 `;
