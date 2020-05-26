@@ -111,3 +111,13 @@ export const generateSentryScript = (sentry: SentryConfig) => {
   var t=c[p];c[p]=function(a){m({p:a.reason});t&&t.apply(c,arguments)};f||setTimeout(function(){k(h)})})(window,document,"script","onerror","onunhandledrejection","Sentry","${sentry.id}","${BROWSER_LIB_URL}",{"dsn":"${sentry.DSN}"});
   </script>\n`;
 };
+
+export const normalizeEditorFlowConfig = (config: Config) => {
+  // This line is because the default ssl config is false,
+  // and since we use yoshi-flow-legacy test command,
+  // we need to configure ssl to true becase we did implement build and start commands
+  // with ssl true as default (this should be removed when test cmd is implemented)
+  config.servers.cdn.ssl = true;
+  config.servers.cdn.url = `https://localhost:${config.servers.cdn.port}`;
+  return config;
+};
