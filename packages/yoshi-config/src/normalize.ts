@@ -2,17 +2,24 @@ import { PackageJson } from 'read-pkg';
 import { Config, InitialConfig } from './config';
 import { multipleModules, singleModule } from './globs';
 
+const FLOWS_WITH_SSL = ['yoshi-flow-editor'];
+
 export default (initialConfig: InitialConfig, pkgJson: PackageJson): Config => {
   const {
     name,
     unpkg,
     dependencies = {},
+    devDependencies = {},
     peerDependencies = {},
     jest = {},
   } = pkgJson;
 
+  const flowWithSSL = FLOWS_WITH_SSL.some(
+    project => devDependencies[project] || dependencies[project],
+  );
+
   const cdnPort = initialConfig.servers?.cdn?.port ?? 3200;
-  const cdnSsl = initialConfig.servers?.cdn?.ssl ?? false;
+  const cdnSsl = flowWithSSL || (initialConfig.servers?.cdn?.ssl ?? false);
   const cdnUrl =
     initialConfig.servers?.cdn?.url ??
     `${cdnSsl ? 'https:' : 'http:'}//localhost:${cdnPort}/`;

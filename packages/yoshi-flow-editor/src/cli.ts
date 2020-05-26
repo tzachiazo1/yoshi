@@ -9,7 +9,6 @@ import normalizeDebuggingArgs from 'yoshi-common/build/normalize-debugging-args'
 import verifyDependencies from 'yoshi-common/build/verify-dependencies';
 import verifyNodeVersion from 'yoshi-common/build/verify-node-version';
 import { generateFlowEditorModel, FlowEditorModel } from './model';
-import { normalizeEditorFlowConfig } from './utils';
 
 const defaultCommand = 'start';
 
@@ -91,7 +90,7 @@ Promise.resolve().then(async () => {
     process.env.BABEL_ENV = 'production';
   }
 
-  const config = normalizeEditorFlowConfig(loadConfig());
+  const config = loadConfig();
 
   const model = await generateFlowEditorModel(config);
 
