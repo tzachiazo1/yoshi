@@ -121,6 +121,7 @@ const build: cliCommand = async function(argv, rootConfig, { apps, libs }) {
   if (inTeamCity) {
     const petriSpecs = await import('yoshi-common/build/sync-petri-specs');
     const wixMavenStatics = await import('yoshi-common/build/maven-statics');
+    const copyDocker = await import('yoshi-common/build/copy-docker');
 
     await Promise.all(
       apps.reduce((acc: Array<Promise<void>>, app) => {
@@ -135,6 +136,7 @@ const build: cliCommand = async function(argv, rootConfig, { apps, libs }) {
             staticsDir: app.config.clientFilesPath,
             cwd: app.location,
           }),
+          copyDocker.default(app.config, app.location),
         ];
       }, []),
     );

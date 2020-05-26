@@ -4,6 +4,7 @@ export const SRC_DIR = 'src';
 export const BUILD_DIR = 'dist';
 export const TARGET_DIR = 'target';
 export const SERVER_CHUNKS_DIR = 'chunks';
+export const DOCKER_FILE = 'Dockerfile';
 
 export const ROUTES_DIR = path.join(SRC_DIR, 'routes');
 export const SERVER_CHUNKS_BUILD_DIR = path.join(BUILD_DIR, SERVER_CHUNKS_DIR);

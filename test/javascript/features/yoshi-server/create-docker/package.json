@@ -1,0 +1,20 @@
+{
+  "name": "yoshi-server-javacript-docker",
+  "private": true,
+  "author": {
+    "name": "yaniv",
+    "email": "yanivef@wix.com"
+  },
+  "yoshi": {
+    "projectType": "app",
+    "experimentalBuildHtml": true,
+    "yoshiServer": true,
+    "externals": {
+      "react": "React",
+      "react-dom": "ReactDOM"
+    }
+  },
+  "jest": {
+    "preset": "jest-yoshi-preset"
+  }
+}
