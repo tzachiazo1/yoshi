@@ -1,21 +1,23 @@
 import path from 'path';
 import { URL } from 'url';
 import urlJoin from 'url-join';
-import { StartUrl } from 'yoshi-config/build/config';
 import { BROWSER_LIB_URL } from '@wix/add-sentry/lib/constants';
 import { SentryConfig } from 'yoshi-flow-editor-runtime/build/constants';
-import { FlowEditorModel, ComponentModel } from './model';
+import { Config } from 'yoshi-config/build/config';
+import { FlowEditorModel, ComponentModel, URLsConfig } from './model';
 
 export const joinDirs = (...dirs: Array<string>) =>
   path.join(process.cwd(), ...dirs);
 
-export const normalizeStartUrlOption = (urls: StartUrl): Array<string> => {
-  if (Array.isArray(urls)) {
-    return urls;
-  } else if (typeof urls === 'string') {
-    return [urls];
+export const normalizeStartUrlOption = (urls: URLsConfig): Array<string> => {
+  const result: Array<string> = [];
+  if (urls.viewerUrl) {
+    result.push(urls.viewerUrl);
   }
-  return [];
+  if (urls.editorUrl) {
+    result.push(urls.editorUrl);
+  }
+  return result;
 };
 
 const widgetUrlFormatter = (component: ComponentModel, baseUrl: string) => {
@@ -108,4 +110,14 @@ export const generateSentryScript = (sentry: SentryConfig) => {
   -1<a.f.indexOf("capture")||a.f&&-1<a.f.indexOf("showReportDialog"))&&f&&k(h);m.data.push(a)};m.data=[];c[e]=c[e]||{};c[e].onLoad=function(a){h.push(a);f&&!y||k(h)};c[e].forceLoad=function(){y=!0;f&&setTimeout(function(){k(h)})};"init addBreadcrumb captureMessage captureException captureEvent configureScope withScope showReportDialog".split(" ").forEach(function(a){c[e][a]=function(){m({f:a,a:arguments})}});var r=c[n];c[n]=function(a,e,d,b,f){m({e:[].slice.call(arguments)});r&&r.apply(c,arguments)};
   var t=c[p];c[p]=function(a){m({p:a.reason});t&&t.apply(c,arguments)};f||setTimeout(function(){k(h)})})(window,document,"script","onerror","onunhandledrejection","Sentry","${sentry.id}","${BROWSER_LIB_URL}",{"dsn":"${sentry.DSN}"});
   </script>\n`;
+};
+
+export const normalizeEditorFlowConfig = (config: Config) => {
+  // This line is because the default ssl config is false,
+  // and since we use yoshi-flow-legacy test command,
+  // we need to configure ssl to true becase we did implement build and start commands
+  // with ssl true as default (this should be removed when test cmd is implemented)
+  config.servers.cdn.ssl = true;
+  config.servers.cdn.url = `https://localhost:${config.servers.cdn.port}`;
+  return config;
 };

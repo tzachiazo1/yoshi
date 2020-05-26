@@ -15,6 +15,10 @@ describe('addOverrideQueryParamsWithModel', () => {
         editorEntryFileName: 'a/b/editor.app.ts',
         viewerAppFileName: 'a/b',
         appDefId: 'APP_DEF_ID',
+        urls: {
+          viewerUrl: 'https://google.com',
+          editorUrl: 'https://google.com',
+        },
         sentry: null,
         experimentsConfig: {
           scope: 'test-scope',
@@ -45,6 +49,7 @@ describe('addOverrideQueryParamsWithModel', () => {
       {
         appName: 'app',
         artifactId: '7891',
+        urls: {},
         experimentsConfig: {
           scope: 'test-scope',
         },
@@ -87,6 +92,7 @@ describe('addOverrideQueryParamsWithModel', () => {
       {
         appName: 'app',
         artifactId: '7891',
+        urls: {},
         editorEntryFileName: null,
         viewerAppFileName: 'a/b',
         appDefId: 'APP_DEF_ID',

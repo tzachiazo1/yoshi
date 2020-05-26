@@ -26,7 +26,6 @@ const start: cliCommand = async function(argv, config, model) {
       // Types
       '--help': Boolean,
       '--server': String,
-      '--url': String,
       '--production': Boolean,
       '--debug': Boolean,
       '--debug-brk': Boolean,
@@ -34,11 +33,7 @@ const start: cliCommand = async function(argv, config, model) {
     { argv },
   );
 
-  const {
-    '--help': help,
-    '--url': urlFromCliArgs,
-    '--production': shouldRunAsProduction,
-  } = args;
+  const { '--help': help, '--production': shouldRunAsProduction } = args;
 
   if (help) {
     console.log(
@@ -51,7 +46,6 @@ const start: cliCommand = async function(argv, config, model) {
 
       Options
         --help, -h      Displays this message
-        --url           Opens the browser with the supplied URL
         --production    Start using unminified production build
         --debug         Allow app-server debugging
         --debug-brk     Allow app-server debugging, process won't start until debugger will be attached
@@ -91,9 +85,8 @@ const start: cliCommand = async function(argv, config, model) {
     webWorkerExternals,
   });
 
-  const normalizedUrls = normalizeStartUrlOption(
-    urlFromCliArgs || config.startUrl,
-  );
+  const normalizedUrls = normalizeStartUrlOption(model.urls);
+
   const startUrl = normalizedUrls.map(
     overrideQueryParamsWithModel(model, {
       cdnUrl: config.servers.cdn.url,

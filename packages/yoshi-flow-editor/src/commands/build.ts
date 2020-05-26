@@ -112,13 +112,13 @@ const build: cliCommand = async function(argv, config, model) {
 
   const webWorkerCustomEntry = buildViewerScriptEntry(model);
 
-  const webWorkerConfig = createWebWorkerWebpackConfig(config, {
+  const webWorkerDebugConfig = createWebWorkerWebpackConfig(config, {
     isDev: true,
     customEntry: webWorkerCustomEntry,
     webWorkerExternals,
   });
 
-  const webWorkerOptimizeConfig = createWebWorkerWebpackConfig(config, {
+  const webWorkerOptimizedConfig = createWebWorkerWebpackConfig(config, {
     isAnalyze,
     customEntry: webWorkerCustomEntry,
     webWorkerExternals,
@@ -128,8 +128,8 @@ const build: cliCommand = async function(argv, config, model) {
     clientDebugConfig,
     clientOptimizedConfig,
     serverConfig,
-    webWorkerConfig,
-    webWorkerOptimizeConfig,
+    webWorkerDebugConfig,
+    webWorkerOptimizedConfig,
   ]);
 
   const [, clientOptimizedStats, serverStats] = stats;

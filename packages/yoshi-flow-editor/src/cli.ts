@@ -9,6 +9,7 @@ import normalizeDebuggingArgs from 'yoshi-common/build/normalize-debugging-args'
 import verifyDependencies from 'yoshi-common/build/verify-dependencies';
 import verifyNodeVersion from 'yoshi-common/build/verify-node-version';
 import { generateFlowEditorModel, FlowEditorModel } from './model';
+import { normalizeEditorFlowConfig } from './utils';
 
 const defaultCommand = 'start';
 
@@ -90,12 +91,7 @@ Promise.resolve().then(async () => {
     process.env.BABEL_ENV = 'production';
   }
 
-  const config = loadConfig();
-  // This line is because the default ssl config is false,
-  // and since we use yoshi-flow-legacy test command,
-  // we need to configure ssl to true becase we did implement build and start commands
-  // with ssl true as default (this should be removed when test cmd is implemented)
-  config.servers.cdn.ssl = true;
+  const config = normalizeEditorFlowConfig(loadConfig());
 
   const model = await generateFlowEditorModel(config);
 

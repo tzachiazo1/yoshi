@@ -18,10 +18,16 @@ import {
   EDITOR_CONTROLLER_FILENAME,
   SETTINGS_CONTROLLER_FILENAME,
   APPLICATION_CONFIG_FILENAME,
+  URLS_CONFIG,
   COMPONENT_CONFIG_FILENAME,
   VIEWER_APP_FILENAME,
   EDITOR_APP_FILENAME,
 } from './constants';
+
+export interface URLsConfig {
+  viewerUrl?: string | null;
+  editorUrl?: string | null;
+}
 
 export interface FlowEditorModel {
   appName: string;
@@ -32,6 +38,7 @@ export interface FlowEditorModel {
   experimentsConfig: ExperimentsConfig | null;
   components: Array<ComponentModel>;
   sentry: SentryConfig | null;
+  urls: URLsConfig;
 }
 
 export interface ComponentModel {
@@ -81,10 +88,14 @@ function resolveFileNamesFromDirectory(dir: string, fileNames: Array<string>) {
   );
 }
 
-function getLocalConfig<C extends AppConfig | ComponentConfig>(
-  path: string,
+function getLocalConfig<C extends AppConfig | ComponentConfig | URLsConfig>(
+  configPath: string,
 ): C {
-  return JSON.parse(fs.readFileSync(path, 'utf8'));
+  const extension = path.extname(configPath);
+  if (extension === '.js') {
+    return require(configPath);
+  }
+  return JSON.parse(fs.readFileSync(configPath, 'utf8'));
 }
 
 export async function generateFlowEditorModel(
@@ -115,6 +126,10 @@ export async function generateFlowEditorModel(
   const appConfigFileName = resolveFromRoot(APPLICATION_CONFIG_FILENAME);
   const appConfig =
     appConfigFileName && getLocalConfig<AppConfig>(appConfigFileName);
+
+  const urlsConfigFileName = resolveFromRoot(URLS_CONFIG);
+  const urlsConfig =
+    urlsConfigFileName && getLocalConfig<URLsConfig>(urlsConfigFileName);
 
   if (!appConfig || !appConfig.appDefinitionId) {
     throw new Error(
@@ -224,6 +239,10 @@ For more info, visit http://tiny.cc/dev-center-registration`);
     editorEntryFileName,
     artifactId,
     viewerAppFileName,
+    urls: {
+      viewerUrl: (urlsConfig && urlsConfig.viewerUrl) || null,
+      editorUrl: (urlsConfig && urlsConfig.editorUrl) || null,
+    },
     components: componentModels,
   };
 
