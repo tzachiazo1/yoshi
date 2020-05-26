@@ -68,7 +68,7 @@ const start: CliCommand = async function(argv, yoshiConfig) {
   try {
     serverStartFile = getServerStartFile({
       serverStartFileCLI,
-      pkgJson: config.pkgJson,
+      pkgJson: yoshiConfig.pkgJson,
     });
   } catch (e) {
     console.error(e.message);
