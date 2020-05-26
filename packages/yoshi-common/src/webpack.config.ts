@@ -57,6 +57,7 @@ import createBabelConfig from './create-babel-config';
 import SveltePreprocessSSR from './svelte-server-side-preprocess';
 import { asyncWebWorkerTarget } from './AsyncWebWorkerTarget/AsyncWebWorkerTarget';
 import { sourceMapPlugin } from './source-map-plugin';
+import HtmlRenderingDataPlugin from './html-rendering-data-plugin';
 
 const isProduction = checkIsProduction();
 const inTeamCity = checkInTeamCity();
@@ -583,6 +584,16 @@ export function createBaseWebpackConfig({
         : []),
 
       ...(isHot ? [new webpack.HotModuleReplacementPlugin()] : []),
+
+      ...(target === 'web' && createEjsTemplates
+        ? [
+            new HtmlRenderingDataPlugin({
+              outputFileName: isDev
+                ? 'html-rendering-data.json'
+                : 'html-rendering-data.min.json',
+            }),
+          ]
+        : []),
 
       ...(target === 'web'
         ? [
