@@ -321,11 +321,15 @@ export function createSiteAssetsWebpackConfig(
     forceEmitSourceMaps,
     forceEmitStats,
     isAnalyze,
+    target,
+    transpileCarmiOutput,
   }: {
     isDev?: boolean;
     forceEmitSourceMaps?: boolean;
     forceEmitStats?: boolean;
     isAnalyze?: boolean;
+    target: 'web' | 'node';
+    transpileCarmiOutput?: boolean;
   },
 ): webpack.Configuration {
   const entry = pkg.config.entry || defaultEntry;
@@ -335,36 +339,25 @@ export function createSiteAssetsWebpackConfig(
   const config = createBaseWebpackConfig({
     cwd: pkg.location,
     configName: 'site-assets',
-    target: 'node',
-    // We don't have any server externals for `site assets` bundle
-    // So with empty object, we'll be sure that no default externals value will be applied
-    serverExternals: {},
+    target,
     isDev,
     isMonorepo: true,
     isAnalyze,
     forceEmitSourceMaps,
     forceEmitStats,
+    // We don't have any server externals for `site assets` bundle
+    // So with empty object, we'll be sure that no default externals value will be applied
+    serverExternals: target === 'node' ? {} : undefined,
     exportAsLibraryName: pkg.config.exports,
     enhancedTpaStyle: pkg.config.enhancedTpaStyle,
     tpaStyle: pkg.config.tpaStyle,
     separateStylableCss: pkg.config.separateStylableCss,
     createEjsTemplates: pkg.config.experimentalBuildHtml,
+    transpileCarmiOutput,
     ...defaultOptions,
   });
 
   config.entry = isSingleEntry(entry) ? { app: entry as string } : entry;
-  config.resolve!.alias = pkg.config.resolveAlias;
-  config.externals = pkg.config.externals;
-
-  const useSplitChunks = pkg.config.splitChunks;
-
-  if (useSplitChunks) {
-    const splitChunksConfig = isObject(useSplitChunks)
-      ? useSplitChunks
-      : defaultSplitChunksConfig;
-
-    config!.optimization!.splitChunks = splitChunksConfig as webpack.Options.SplitChunksOptions;
-  }
 
   // Apply manifest since standard `node` webpack configs don't
   config.plugins!.push(

@@ -395,10 +395,12 @@ export default class DevEnvironment {
     yoshiServer = false,
   }: {
     webpackConfigs: [
-      webpack.Configuration?,
-      webpack.Configuration?,
-      webpack.Configuration?,
-      webpack.Configuration?,
+      webpack.Configuration?, // Main client config
+      webpack.Configuration?, // Main server config
+      webpack.Configuration?, // webworker config
+      webpack.Configuration?, // webworker config
+      webpack.Configuration?, // generic config
+      webpack.Configuration?, // generic config
     ];
     serverFilePath?: string;
     https: boolean;

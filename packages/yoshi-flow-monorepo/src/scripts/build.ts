@@ -4,6 +4,8 @@ import fs from 'fs-extra';
 import chalk from 'chalk';
 import {
   printBuildResult,
+  printClientBuildResult,
+  printServerBuildResult,
   printBundleSizeSuggestion,
 } from 'yoshi-common/build/print-build-results';
 import WebpackManager from 'yoshi-common/build/webpack-manager';
@@ -150,19 +152,36 @@ const build: cliCommand = async function(argv, rootConfig, { apps, libs }) {
   apps.forEach(pkg => {
     let clientDebugConfig;
     let clientOptimizedConfig;
-    let siteAssetsConfig;
 
     if (isSiteAssetsModule(pkg)) {
-      siteAssetsConfig = createSiteAssetsWebpackConfig(
+      // for running in the server
+      clientDebugConfig = createSiteAssetsWebpackConfig(
+        rootConfig,
+        pkg,
+        libs,
+        apps,
+        {
+          isDev: true,
+          target: 'node',
+          isAnalyze,
+          forceEmitSourceMaps,
+          forceEmitStats,
+        },
+      );
+
+      // for running in the browser
+      clientOptimizedConfig = createSiteAssetsWebpackConfig(
         rootConfig,
         pkg,
         libs,
         apps,
         {
           isDev: false,
+          target: 'web',
           isAnalyze,
           forceEmitSourceMaps,
           forceEmitStats,
+          transpileCarmiOutput: true,
         },
       );
     } else {
@@ -247,7 +266,6 @@ const build: cliCommand = async function(argv, rootConfig, { apps, libs }) {
       webWorkerConfig,
       webWorkerOptimizeConfig,
       webWorkerServerConfig,
-      siteAssetsConfig,
     ]);
   });
 
@@ -258,12 +276,15 @@ const build: cliCommand = async function(argv, rootConfig, { apps, libs }) {
     console.log();
 
     if (isSiteAssetsModule(pkg)) {
-      const [serverStats, siteAssetsStats] = getAppData(pkg.name).stats;
+      const [siteAssetsNodeStats, siteAssetsBrowserStats] = getAppData(
+        pkg.name,
+      ).stats;
 
-      printBuildResult({
-        webpackStats: [siteAssetsStats, serverStats],
-        cwd: pkg.location,
-      });
+      console.log(chalk.underline('Site Assets (web)'));
+      printClientBuildResult(siteAssetsBrowserStats);
+      console.log();
+      console.log(chalk.underline('Site Assets (node)'));
+      printServerBuildResult(siteAssetsNodeStats);
     } else {
       const [, clientOptimizedStats, serverStats] = getAppData(pkg.name).stats;
 
@@ -272,6 +293,7 @@ const build: cliCommand = async function(argv, rootConfig, { apps, libs }) {
         cwd: pkg.location,
       });
     }
+
     console.log();
   });
 
