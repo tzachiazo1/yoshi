@@ -125,6 +125,9 @@ function createServerEntries(context: string, cwd: string = process.cwd()) {
 
   // Add custom entries for `yoshi-server`
   entries['routes/_api_'] = 'yoshi-server/build/routes/api';
+  if (isDevelopment) {
+    entries['routes/_launchEditor_'] = 'yoshi-server/build/routes/launchEditor';
+  }
 
   return entries;
 }
