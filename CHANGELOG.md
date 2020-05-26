@@ -1,5 +1,37 @@
 # Changelog
 
+## 4.81.0 (2020-05-26)
+
+#### :rocket: New Feature
+
+- `yoshi-flow-editor-runtime`, `yoshi-flow-editor`
+  - [#2471](https://github.com/wix/yoshi/pull/2471) Allow `initAppForPage` to return a data to use it in controller ([@yavorsky](https://github.com/yavorsky))
+- `yoshi-flow-bm`
+  - [#2463](https://github.com/wix/yoshi/pull/2463) Allow overriding the module bundle name ([@amitdahan](https://github.com/amitdahan))
+- `yoshi-server`
+  - [#2450](https://github.com/wix/yoshi/pull/2450) Fix request/response types ([@yanivefraim](https://github.com/yanivefraim))
+
+#### :building_construction: Templates
+
+- `create-yoshi-app`
+  - [#2458](https://github.com/wix/yoshi/pull/2458) Start BM loader during first render ([@amitdahan](https://github.com/amitdahan))
+  - [#2452](https://github.com/wix/yoshi/pull/2452) Use `npm lint` script for `lint-staged` in flow-library template ([@amitdahan](https://github.com/amitdahan))
+
+#### :bug: Bug Fix
+
+- `yoshi-flow-editor`
+  - [#2454](https://github.com/wix/yoshi/pull/2454) Fix editor script for bob apps. ([@yavorsky](https://github.com/yavorsky))
+
+#### :nail_care: Polish
+
+- `yoshi-common`
+  - [#2467](https://github.com/wix/yoshi/pull/2467) Emit metadata file with data on how to load each entry separately ([@ronami](https://github.com/ronami))
+  - [#2462](https://github.com/wix/yoshi/pull/2462) Run Suricate with cache enabled and update it between compilations ([@ronami](https://github.com/ronami))
+
+#### :memo: Documentation
+
+- [#2453](https://github.com/wix/yoshi/pull/2453) [docs] adding docs for assets.md ([@sidoruk-sv](https://github.com/sidoruk-sv))
+
 ## 4.80.3 (2020-05-21)
 
 #### :bug: Bug Fix
