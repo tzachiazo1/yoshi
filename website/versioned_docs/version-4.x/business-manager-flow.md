@@ -103,6 +103,7 @@ The following configurations are available by creating a `.module.json` file:
 ```json
 {
   "moduleId": "my-module",
+  "moduleBundleName": "my-entry",
   "routeNamespace": "my-route",
   "topology": {
     "someArtifactsUrl": {
@@ -118,6 +119,11 @@ The following configurations are available by creating a `.module.json` file:
 
 Use this to override your `moduleId`.
 Defaults to your `artifactId` (taken from `pom.xml`).
+
+#### `moduleBundleName`
+
+Use this to change the module bundle's name.
+Defaults to `'module'` (which will output `module.bundle.js` & `module.bundle.min.js`).
 
 #### `routeNamespace`
 
@@ -195,6 +201,7 @@ For example, the `src/methods/some-method.ts` file, will be configured by `src/m
 Sets the method's `methodId`. Defaults to `<MODULE_ID>.methods.<FILE_NAME>`.
 
 ### Run code in BM's `init()` phase
+
 Create a file `src/moduleInit.{ts,js}`, for example:
 
 ```typescript
