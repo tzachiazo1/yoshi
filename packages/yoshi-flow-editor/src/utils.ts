@@ -3,7 +3,6 @@ import { URL } from 'url';
 import urlJoin from 'url-join';
 import { BROWSER_LIB_URL } from '@wix/add-sentry/lib/constants';
 import { SentryConfig } from 'yoshi-flow-editor-runtime/build/constants';
-import { Config } from 'yoshi-config/build/config';
 import { FlowEditorModel, ComponentModel, URLsConfig } from './model';
 
 export const joinDirs = (...dirs: Array<string>) =>
