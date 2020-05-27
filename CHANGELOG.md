@@ -1,5 +1,26 @@
 # Changelog
 
+## 4.83.0 (2020-05-27)
+
+#### :rocket: New Feature
+
+- `yoshi-common`, `yoshi-config`, `yoshi-flow-app`, `yoshi-flow-bm`, `yoshi-flow-editor`, `yoshi-flow-monorepo`
+  - [#2465](https://github.com/wix/yoshi/pull/2465) Yoshi Server: Create Dockerfile ([@yanivefraim](https://github.com/yanivefraim))
+- `yoshi-common`, `yoshi-server-client`, `yoshi-server`
+  - [#2445](https://github.com/wix/yoshi/pull/2445) Yoshi Server: Error toast message ([@yanivefraim](https://github.com/yanivefraim))
+
+#### :building_construction: Templates
+
+- `create-yoshi-app`
+  - [#2473](https://github.com/wix/yoshi/pull/2473) Remove `cssBaseUrl` prop from template. ([@yavorsky](https://github.com/yavorsky))
+
+#### :bug: Bug Fix
+
+- `yoshi-common`, `yoshi-flow-monorepo`
+  - [#2483](https://github.com/wix/yoshi/pull/2483) Disable emit source maps on site-assets compilation ([@ranyitz](https://github.com/ranyitz))
+- `yoshi-flow-editor-runtime`
+  - [#2475](https://github.com/wix/yoshi/pull/2475) Await for initAppForPage result ([@yavorsky](https://github.com/yavorsky))
+
 ## 4.82.0 (2020-05-26)
 
 #### :rocket: New Feature
