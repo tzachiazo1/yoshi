@@ -1,5 +1,12 @@
 # Changelog
 
+## 4.82.0 (2020-05-26)
+
+#### :rocket: New Feature
+
+- `yoshi-common`, `yoshi-flow-monorepo`
+  - [#2472](https://github.com/wix/yoshi/pull/2472) Site Assets web compilation for running site-assets code in the browser ([@ranyitz](https://github.com/ranyitz))
+
 ## 4.81.0 (2020-05-26)
 
 #### :rocket: New Feature

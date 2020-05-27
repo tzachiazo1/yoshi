@@ -100,21 +100,19 @@ But you can still override values which are supported by the platform for these 
 #### `viewer.app.ts`
 Here we'll map lifecycle methods provided by platform and add useful helpers provided by the flow. Note that you can't override `createControllers` function.
 - `initAppForPage` *(platform)* - https://bo.wix.com/wix-docs/client/client-viewer-platform/articles/lifecycle#client-viewer-platform_articles_lifecycle_initappforpage
-- `mapPlatformStateToAppData` *(flow)* - this function will be executed once before executing each of the controller. It has access to some initial data like `controllerConfigs`, `platformParams` and `flowData` and could be useful for initializing the app and passing some value to each of controllers as an `appData` field.
 
+Returned data will be passed to each controller as an `appData`.
 `viewer.app.ts`
 ```ts
-export const mapPlatformStateToAppData = async ({
-    platformParams,
-    controllerConfigs,
-    flowData,
-}: any) => {
-    const someInitialData = await getInitialData();
-    return { someInitialData }; // Will be available in `viewer.controller`
-};
-
-export const initAppForPage = () => {
-    console.log('App inited!');
+export const initAppForPage = async ({ reportError }) => {
+    let someInitialData = {};
+    try {
+      console.log('App inited!');
+      someInitialData = await getInitialData();
+    } catch(error) {
+      reportError(error);
+    }
+    return { someInitialData }; // Will be available in `controller`
 };
 ```
 

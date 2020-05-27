@@ -13,21 +13,46 @@ Entry point for Viewer Script file.
 A general call to the service where it should initiate its reusable data across components.
 It's called with the basic configuration of the application before the Viewer knows which components exist on the page.
 
+Any data returned in `initAppForPage` will be passed to each controller as an `appData` value.
 
 
 ⚠️ You shouldn't use `createControllers`. We will generate it under the hood.
 
 *src/viewer.app.ts*
 ```ts
-export const initAppForPage = (
+export const initAppForPage = async (
   initParams,
   platformApis,
   wixCodeApi,
   platformServicesApis,
   flowAPI
 ) => {
-  fetchExperiments();
-  initStorage();
+  // Init some fake storage common for all widgets
+  const kitchen = initKitchen();
+  const omelette = kitchen.cook('omlette');
+  
+  // will be passed as an `appData.omelette` for each controller
+  return {
+    omelette,
+  };
+};
+```
+
+Returned data will be passed to all controllers.
+*src/components/SomeWidget/controller.ts*
+```ts
+export default ({ appData }) => {
+  // Do something with data received from `initAppForPage`...
+  const { omelette } = appData;
+
+  return {
+    pageReady() {
+      setProps({
+        // Pass it to the Widget if needed
+        omelette,
+      });
+    }
+  };
 };
 ```
 

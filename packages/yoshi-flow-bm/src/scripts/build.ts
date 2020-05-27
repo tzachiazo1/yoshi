@@ -73,6 +73,7 @@ const build: CliCommand = async function(argv, config) {
   if (inTeamCity()) {
     const petriSpecs = await import('yoshi-common/build/sync-petri-specs');
     const wixMavenStatics = await import('yoshi-common/build/maven-statics');
+    const copyDocker = await import('yoshi-common/build/copy-docker');
 
     await Promise.all([
       petriSpecs.default({
@@ -82,6 +83,7 @@ const build: CliCommand = async function(argv, config) {
         clientProjectName: config.clientProjectName,
         staticsDir: config.clientFilesPath,
       }),
+      copyDocker.default(config),
     ]);
   }
 

@@ -101,30 +101,38 @@ const start: cliCommand = async function(argv, rootConfig, { apps, libs }) {
     process.exit(1);
   }
 
-  let clientOrSiteAssetsConfig;
+  let clientConfig;
+  let siteAssetConfigNode;
+  let siteAssetConfigWeb;
 
   if (isSiteAssetsModule(pkg)) {
-    clientOrSiteAssetsConfig = createSiteAssetsWebpackConfig(
+    siteAssetConfigNode = createSiteAssetsWebpackConfig(
       rootConfig,
       pkg,
       libs,
       apps,
       {
         isDev: true,
+        target: 'node',
+      },
+    );
+
+    siteAssetConfigWeb = createSiteAssetsWebpackConfig(
+      rootConfig,
+      pkg,
+      libs,
+      apps,
+      {
+        isDev: true,
+        target: 'web',
       },
     );
   } else {
-    clientOrSiteAssetsConfig = createClientWebpackConfig(
-      rootConfig,
-      pkg,
-      libs,
-      apps,
-      {
-        isDev: true,
-        isHot: pkg.config.hmr as boolean,
-        suricate: pkg.config.suricate,
-      },
-    );
+    clientConfig = createClientWebpackConfig(rootConfig, pkg, libs, apps, {
+      isDev: true,
+      isHot: pkg.config.hmr as boolean,
+      suricate: pkg.config.suricate,
+    });
   }
 
   const serverConfig = createServerWebpackConfig(rootConfig, pkg, libs, apps, {
@@ -163,10 +171,12 @@ const start: cliCommand = async function(argv, rootConfig, { apps, libs }) {
 
   const devEnvironment = await DevEnvironment.create({
     webpackConfigs: [
-      clientOrSiteAssetsConfig,
+      clientConfig,
       serverConfig,
       webWorkerConfig,
       webWorkerServerConfig,
+      siteAssetConfigNode,
+      siteAssetConfigWeb,
     ],
     https: pkg.config.servers.cdn.ssl,
     webpackDevServerPort: pkg.config.servers.cdn.port,

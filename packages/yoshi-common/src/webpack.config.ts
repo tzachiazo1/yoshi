@@ -59,6 +59,12 @@ import { asyncWebWorkerTarget } from './AsyncWebWorkerTarget/AsyncWebWorkerTarge
 import { sourceMapPlugin } from './source-map-plugin';
 import HtmlRenderingDataPlugin from './html-rendering-data-plugin';
 
+export type CompilationTarget =
+  | 'web'
+  | 'node'
+  | 'webworker'
+  | 'async-webworker';
+
 const isProduction = checkIsProduction();
 const inTeamCity = checkInTeamCity();
 
@@ -94,6 +100,7 @@ function getProgressBarInfo(
   isDev: boolean,
   isMonorepo: boolean,
   packageName: string,
+  target: CompilationTarget,
 ): {
   name: string;
   color: string;
@@ -118,7 +125,10 @@ function getProgressBarInfo(
       case 'server':
         return { name: `Server`, color: 'orange' };
       case 'site-assets':
-        return { name: `Site Assets`, color: 'green' };
+        if (target === 'web') {
+          return { name: `Site Assets [web]`, color: 'green' };
+        }
+        return { name: `Site Assets [node]`, color: 'cyan' };
       default:
         return { name: configName, color: 'white' };
     }
@@ -348,6 +358,7 @@ export function createBaseWebpackConfig({
   useAbsoluteUrlsForCssAssets = false,
   serverExternals,
   umdNamedDefine = false,
+  transpileCarmiOutput = false,
 }: {
   name: string;
   configName:
@@ -356,7 +367,7 @@ export function createBaseWebpackConfig({
     | 'web-worker'
     | 'site-assets'
     | 'web-worker-server';
-  target: 'web' | 'node' | 'webworker' | 'async-webworker';
+  target: CompilationTarget;
   isDev?: boolean;
   isHot?: boolean;
   useTypeScript?: boolean;
@@ -394,6 +405,7 @@ export function createBaseWebpackConfig({
   useAbsoluteUrlsForCssAssets?: boolean;
   serverExternals?: ExternalsElement | Array<ExternalsElement>;
   umdNamedDefine?: boolean;
+  transpileCarmiOutput?: boolean;
 }): webpack.Configuration {
   const join = (...dirs: Array<string>) => path.join(cwd, ...dirs);
 
@@ -816,7 +828,7 @@ export function createBaseWebpackConfig({
       ...(useProgressBar
         ? [
             new WebpackBar(
-              getProgressBarInfo(configName, isDev, isMonorepo, name),
+              getProgressBarInfo(configName, isDev, isMonorepo, name, target),
             ),
           ]
         : []),
@@ -836,6 +848,11 @@ export function createBaseWebpackConfig({
       // Makes missing exports an error instead of warning
       strictExportPresence: true,
 
+      // carmi returns a big blob of code which doesn't contain "require"/"import"
+      // calls for other files and therefore don't need to be parsed by webpack
+      // this improves the build time for Thunderbolt
+      // https://webpack.js.org/configuration/module/#modulenoparse
+      noParse: /\.carmi.(js|ts)$/,
       rules: [
         ...(useAssetRelocator && target === 'node'
           ? [
@@ -998,12 +1015,31 @@ export function createBaseWebpackConfig({
             },
           ],
         },
-
+        ...(transpileCarmiOutput
+          ? [
+              {
+                test: /\.carmi.(js|ts)$/,
+                include: includeInTranspilation,
+                use: [
+                  {
+                    loader: 'babel-loader',
+                    options: {
+                      ...babelConfig,
+                      // Carmi files are quite big and this option
+                      // prevents from a warning to be showing during the build
+                      // https://babeljs.io/docs/en/options#compact
+                      compact: true,
+                    },
+                  },
+                ],
+              },
+            ]
+          : []),
         {
           test: reScript,
           // Don't transpile the output of Carmi with Babel/TypeScript
           // https://github.com/wix/yoshi/pull/2227
-          exclude: /\.carmi.(js|ts)$/,
+          exclude: /\.carmi.js$/,
           include: includeInTranspilation,
           use: [
             {

@@ -7,7 +7,7 @@ import {
   RequestPayload,
 } from 'yoshi-server/types';
 import { createHeaders } from '@wix/headers';
-import { joinUrls } from './utils';
+import { joinUrls, showToast } from './utils';
 
 type Options = {
   baseUrl?: string;
@@ -56,9 +56,11 @@ export default class implements HttpClient {
         if (res.headers.get('content-type')?.includes('application/json')) {
           const error = await res.json();
           if (process.env.NODE_ENV !== 'production') {
+            if (process.env.browser) {
+              showToast(error, method, args, this.baseUrl);
+            }
             console.error(error);
           }
-
           throw new Error(JSON.stringify(error));
         } else {
           const error = await res.text();

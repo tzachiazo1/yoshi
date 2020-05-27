@@ -32,7 +32,7 @@ export function printClientBuildResult(
   printStatsResult(prepareAssets(webpackStats, cwd), 'cyan');
 }
 
-function printServerBuildResult(
+export function printServerBuildResult(
   webpackStats: webpack.Stats,
   cwd: string = process.cwd(),
 ) {

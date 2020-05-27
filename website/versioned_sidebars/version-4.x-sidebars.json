@@ -30,6 +30,10 @@
       "items": [
         {
           "type": "doc",
+          "id": "version-4.x/styles-and-assets/assets"
+        },
+        {
+          "type": "doc",
           "id": "version-4.x/styles-and-assets/disable-css-modules"
         },
         {
