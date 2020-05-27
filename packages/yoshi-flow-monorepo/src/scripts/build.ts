@@ -163,7 +163,7 @@ const build: cliCommand = async function(argv, rootConfig, { apps, libs }) {
         libs,
         apps,
         {
-          isDev: true,
+          isDev: false,
           target: 'node',
           isAnalyze,
           forceEmitSourceMaps,

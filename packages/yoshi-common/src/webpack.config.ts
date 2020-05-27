@@ -732,7 +732,10 @@ export function createBaseWebpackConfig({
               globalRuntimeId,
             }),
 
-            new ManifestPlugin({ fileName: 'manifest', isDev }),
+            // site-assets manifest is handled with its own plugin
+            ...(configName !== 'site-assets'
+              ? [new ManifestPlugin({ fileName: 'manifest', isDev })]
+              : []),
           ]
         : []),
 
