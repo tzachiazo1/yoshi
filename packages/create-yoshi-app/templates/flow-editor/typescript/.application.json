@@ -5,7 +5,8 @@
     "DSN": "{%sentryData.DSN%}",
     "id": "{%sentryData.id%}",
     "projectName": "{%sentryData.projectName%}",
-    "teamName": "{%sentryData.teamName%}"
+    "teamName": "{%sentryData.teamName%}",
+    "webPage": "https://sentry.wixpress.com/sentry/{%sentryData.projectName%}"
   },
   "experiments": {
     "scope": "test"
