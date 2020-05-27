@@ -1,5 +1,24 @@
 # Changelog
 
+## 4.83.1 (2020-05-27)
+
+#### :building_construction: Templates
+
+- `create-yoshi-app`, `jest-yoshi-preset`, `yoshi-flow-editor`
+  - [#2482](https://github.com/wix/yoshi/pull/2482) Use default config for editor flow jest. Remove ssr files ([@yavorsky](https://github.com/yavorsky))
+
+#### :bug: Bug Fix
+
+- `yoshi-common`, `yoshi-flow-monorepo`
+  - [#2484](https://github.com/wix/yoshi/pull/2484) Fix a bug with two manifests with the same name for site-assets ([@ranyitz](https://github.com/ranyitz))
+
+#### :nail_care: Polish
+
+- `create-yoshi-app`, `jest-yoshi-preset`, `yoshi-flow-editor`
+  - [#2482](https://github.com/wix/yoshi/pull/2482) Use default config for editor flow jest. Remove ssr files ([@yavorsky](https://github.com/yavorsky))
+- `create-yoshi-app`
+  - [#2480](https://github.com/wix/yoshi/pull/2480) Remove sentry from dev/sites ([@yavorsky](https://github.com/yavorsky))
+
 ## 4.83.0 (2020-05-27)
 
 #### :rocket: New Feature
