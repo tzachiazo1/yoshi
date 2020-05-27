@@ -1,12 +1,6 @@
-// The purpose of this file is to start your server and possibly additional servers
-// like RPC/Petri servers.
-//
-// Because tests are running in parallel, it should start a different server on a different port
-// for every test file (E2E and server tests).
-//
-// By attaching the server object (testkit result) on `globalObject` it will be available to every
-// test file globally by that name.
-module.exports = {
+const readPkg = require('read-pkg');
+
+const config = {
   server: {
     command: 'node dist/server.js',
     port: 3100,
@@ -22,4 +16,18 @@ module.exports = {
       '--disable-setuid-sandbox',
     ],
   },
+};
+
+const shouldUse = () => {
+  const pkgJson = readPkg.sync({ cwd: process.cwd() });
+  const { devDependencies = [], dependencies = [] } = pkgJson;
+
+  return (
+    devDependencies['yoshi-flow-editor'] || dependencies['yoshi-flow-editor']
+  );
+};
+
+module.exports = {
+  config,
+  shouldUse,
 };

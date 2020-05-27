@@ -89,7 +89,6 @@ Promise.resolve().then(async () => {
     process.env.NODE_ENV = 'production';
     process.env.BABEL_ENV = 'production';
   }
-
   const config = loadConfig();
   // This line is because the default ssl config is false,
   // and since we use yoshi-flow-legacy test command,
