@@ -56,7 +56,6 @@ describe('createController', () => {
 
     expect(setPropsSpy).toBeCalledWith({
       appName,
-      cssBaseUrl: controllerConfig.appParams.baseUrls.staticsBaseUrl,
       language,
       experiments: experiments.all(),
       mobile: false,
