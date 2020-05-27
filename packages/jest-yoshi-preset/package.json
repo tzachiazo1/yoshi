@@ -33,7 +33,6 @@
     "jest-watch-typeahead": "^0.6.0",
     "lodash": "^4.17.15",
     "puppeteer": "^1.19.0",
-    "read-pkg": "^5.2.0",
     "regenerator-runtime": "^0.13.0",
     "ts-jest": "^24.0.0",
     "wait-port": "^0.2.2",

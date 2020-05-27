@@ -4,8 +4,8 @@ const chalk = require('chalk');
 const globby = require('globby');
 const { envs, supportedEnvs, withLatestJSDom } = require('./constants');
 const { setupRequireHooks } = require('yoshi-common/build/require-hooks');
-const loadJestYoshiConfig = require('./load-jest-config');
 const globs = require('yoshi-config/build/globs');
+const loadJestYoshiConfig = require('yoshi-config/build/jest').default;
 const { inTeamCity } = require('yoshi-helpers/build/queries');
 
 // the user's config is loaded outside of a jest runtime and should be transpiled
