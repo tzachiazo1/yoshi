@@ -1,6 +1,8 @@
 const readPkg = require('read-pkg');
+const { merge } = require('lodash');
+const defaultConfig = require('yoshi-config');
 
-const config = {
+const jestConfig = {
   server: {
     command: 'node dist/server.js',
     port: 3100,
@@ -18,6 +20,15 @@ const config = {
   },
 };
 
+const yoshiConfig = merge(defaultConfig, {
+  servers: {
+    cdn: {
+      ssl: true,
+      url: `https://localhost:${defaultConfig.servers.cdn.port}`,
+    },
+  },
+});
+
 const shouldUse = () => {
   const pkgJson = readPkg.sync({ cwd: process.cwd() });
   const { devDependencies = [], dependencies = [] } = pkgJson;
@@ -28,6 +39,7 @@ const shouldUse = () => {
 };
 
 module.exports = {
-  config,
+  jestConfig,
   shouldUse,
+  yoshiConfig,
 };

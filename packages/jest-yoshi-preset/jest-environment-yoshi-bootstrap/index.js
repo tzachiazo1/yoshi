@@ -5,8 +5,10 @@ const {
   appLogDir,
   appPersistentDir,
 } = require('./constants');
-const projectConfig = require('yoshi-config');
 const { getEnvVars } = require('yoshi-helpers/build/bootstrap-utils');
+const { loadYoshiConfig } = require('../load-config');
+
+const { servers } = loadYoshiConfig();
 
 module.exports = class BootstrapEnvironment extends NodeEnvironment {
   async setup() {
@@ -33,7 +35,7 @@ module.exports = class BootstrapEnvironment extends NodeEnvironment {
         await this.global.__setup__({
           globalObject: this.global,
           getPort,
-          staticsUrl: projectConfig.servers.cdn.url,
+          staticsUrl: servers.cdn.url,
           appConfDir,
           appLogDir,
           appPersistentDir,

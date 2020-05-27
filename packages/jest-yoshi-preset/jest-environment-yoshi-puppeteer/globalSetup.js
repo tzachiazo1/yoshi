@@ -10,14 +10,13 @@ const chalk = require('chalk');
 const puppeteer = require('puppeteer');
 const child_process = require('child_process');
 const waitPort = require('wait-port');
-const { servers } = require('yoshi-config');
 const { WS_ENDPOINT_PATH, IS_DEBUG_MODE } = require('./constants');
 const { shouldRunE2Es } = require('./utils');
 const { shouldDeployToCDN } = require('yoshi-helpers/build/queries');
 const { getProcessOnPort } = require('yoshi-helpers/utils');
 const { setupRequireHooks } = require('yoshi-common/build/require-hooks');
 const cdnProxy = require('./cdnProxy');
-const loadJestYoshiConfig = require('../load-jest-config');
+const { loadJestConfig, loadYoshiConfig } = require('../load-config');
 const JestWatchDebug = require('../plugins/jest-watch-debug');
 // the user's config is loaded outside of a jest runtime and should be transpiled
 // with babel/typescript, this may be run separately for every worker
@@ -33,7 +32,9 @@ const serverLogPrefixer = () => {
 };
 
 module.exports = async config => {
-  const jestYoshiConfig = loadJestYoshiConfig();
+  const jestYoshiConfig = loadJestConfig();
+  const { servers } = loadYoshiConfig();
+
   // a bit hacky, run puppeteer setup only if it's required
   if (await shouldRunE2Es()) {
     // start with a few new lines
@@ -62,7 +63,7 @@ module.exports = async config => {
       // defaults
       args: [
         '--no-sandbox',
-        ...(servers.cdn.ssl ? ['--ignore-certificate-errors'] : []),
+        '--ignore-certificate-errors',
         ...(shouldDeployToCDN()
           ? [
               '--no-sandbox',

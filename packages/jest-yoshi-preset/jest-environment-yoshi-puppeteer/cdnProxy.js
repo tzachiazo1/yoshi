@@ -1,7 +1,9 @@
 const startRewriteForwardProxy = require('yoshi-helpers/build/rewrite-forward-proxy')
   .default;
 const { getProjectCDNBasePath } = require('yoshi-helpers/utils');
-const { servers, experimentalBuildHtml } = require('yoshi-config');
+const { loadYoshiConfig } = require('../load-config');
+
+const { servers, experimentalBuildHtml } = loadYoshiConfig();
 
 let closeProxy;
 

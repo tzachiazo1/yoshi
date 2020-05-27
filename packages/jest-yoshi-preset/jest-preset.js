@@ -4,7 +4,7 @@ const chalk = require('chalk');
 const globby = require('globby');
 const { envs, supportedEnvs, withLatestJSDom } = require('./constants');
 const { setupRequireHooks } = require('yoshi-common/build/require-hooks');
-const loadJestYoshiConfig = require('./load-jest-config');
+const { loadJestConfig } = require('./load-config');
 const globs = require('yoshi-config/build/globs');
 const { inTeamCity } = require('yoshi-helpers/build/queries');
 
@@ -22,7 +22,7 @@ if (envs && envs.some(env => !supportedEnvs.includes(env))) {
   process.exit(1);
 }
 
-const jestYoshiConfig = loadJestYoshiConfig();
+const jestYoshiConfig = loadJestConfig();
 
 const projectOverrideMapping = {
   e2e: 'e2eOptions',
