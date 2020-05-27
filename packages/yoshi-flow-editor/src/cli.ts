@@ -12,13 +12,11 @@ import { generateFlowEditorModel, FlowEditorModel } from './model';
 import { normalizeEditorFlowConfig } from './utils';
 
 const defaultCommand = 'start';
-
 export type cliCommand = (
   argv: Array<string>,
   config: Config,
   model: FlowEditorModel,
 ) => Promise<void>;
-
 const commands: {
   [command: string]: () => Promise<{ default: cliCommand }>;
 } = {
