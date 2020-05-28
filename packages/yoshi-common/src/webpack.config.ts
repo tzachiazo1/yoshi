@@ -346,6 +346,7 @@ export function createBaseWebpackConfig({
   enhancedTpaStyle = false,
   tpaStyle = false,
   forceEmitSourceMaps = false,
+  disableEmitSourceMaps = false,
   exportAsLibraryName,
   nodeExternalsWhitelist = [],
   useAssetRelocator = false,
@@ -391,6 +392,7 @@ export function createBaseWebpackConfig({
   enhancedTpaStyle?: boolean;
   tpaStyle?: boolean;
   forceEmitSourceMaps?: boolean;
+  disableEmitSourceMaps?: boolean;
   exportAsLibraryName?: string;
   nodeExternalsWhitelist?: Array<RegExp>;
   useAssetRelocator?: boolean;
@@ -730,7 +732,10 @@ export function createBaseWebpackConfig({
               globalRuntimeId,
             }),
 
-            new ManifestPlugin({ fileName: 'manifest', isDev }),
+            // site-assets manifest is handled with its own plugin
+            ...(configName !== 'site-assets'
+              ? [new ManifestPlugin({ fileName: 'manifest', isDev })]
+              : []),
           ]
         : []),
 
@@ -834,15 +839,16 @@ export function createBaseWebpackConfig({
         : []),
     ],
 
-    devtool: useCustomSourceMapPlugin
-      ? false
-      : target !== 'node'
-      ? inTeamCity || forceEmitSourceMaps
-        ? 'source-map'
-        : !isProduction
-        ? 'cheap-module-eval-source-map'
-        : false
-      : 'inline-source-map',
+    devtool:
+      disableEmitSourceMaps || useCustomSourceMapPlugin
+        ? false
+        : target !== 'node'
+        ? inTeamCity || forceEmitSourceMaps
+          ? 'source-map'
+          : !isProduction
+          ? 'cheap-module-eval-source-map'
+          : false
+        : 'inline-source-map',
 
     module: {
       // Makes missing exports an error instead of warning
@@ -877,7 +883,7 @@ export function createBaseWebpackConfig({
         ...(externalizeRelativeLodash
           ? [
               {
-                test: /[\\/]node_modules[\\/]lodash/,
+                test: /[\\/]node_modules[\\/]lodash[\\/]\w+/,
                 loader: 'externalize-relative-module-loader',
               },
             ]

@@ -192,7 +192,7 @@ export const initAppForPageWrapper = (
   });
 
   if (initAppForPage) {
-    appData = initAppForPage(
+    appData = await initAppForPage(
       initParams,
       apis,
       namespaces,

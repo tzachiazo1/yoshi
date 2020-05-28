@@ -344,6 +344,7 @@ export function createSiteAssetsWebpackConfig(
     isMonorepo: true,
     isAnalyze,
     forceEmitSourceMaps,
+    disableEmitSourceMaps: true,
     forceEmitStats,
     // We don't have any server externals for `site assets` bundle
     // So with empty object, we'll be sure that no default externals value will be applied
@@ -359,10 +360,14 @@ export function createSiteAssetsWebpackConfig(
 
   config.entry = isSingleEntry(entry) ? { app: entry as string } : entry;
 
-  // Apply manifest since standard `node` webpack configs don't
+  const manifestName = target === 'node' ? 'manifest' : 'manifest-web';
+
+  // for site-assets we have two minified compilations
+  // for them to not override each other we'll rename the web one
   config.plugins!.push(
-    new ManifestPlugin({ fileName: 'manifest', isDev: isDev as boolean }),
+    new ManifestPlugin({ fileName: manifestName, isDev: isDev as boolean }),
   );
+
   config.output!.path = path.join(pkg.location, STATICS_DIR);
   config.output!.filename = isDev
     ? '[name].bundle.js'

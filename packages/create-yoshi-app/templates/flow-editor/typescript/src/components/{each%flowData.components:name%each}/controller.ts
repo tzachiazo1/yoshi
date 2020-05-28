@@ -24,7 +24,7 @@ const createController: CreateControllerFn = async ({
     getExperiments(),
     getSiteTranslations(language),
   ]);
-  const { baseUrls = {}, appDefinitionId } = appParams;
+  const { appDefinitionId } = appParams;
 
   // Read more about fedops and how to configure it: https://bo.wix.com/wix-docs/client/client-viewer-platform/articles/fedops#client-viewer-platform_articles_fedops_fedops
   fedopsLogger.appLoadStarted();
@@ -33,7 +33,6 @@ const createController: CreateControllerFn = async ({
     async pageReady() {
       setProps({
         appName,
-        cssBaseUrl: baseUrls.staticsBaseUrl,
         language,
         mobile: isMobile(),
         experiments: experiments.all(),
