@@ -1,7 +1,6 @@
 const readPkg = require('read-pkg');
-const defaultYoshiConfig = require('yoshi-config');
 
-const jestConfig = {
+const getJestConfig = () => ({
   server: {
     command: 'node dist/server.js',
     port: 3100,
@@ -17,15 +16,18 @@ const jestConfig = {
       '--disable-setuid-sandbox',
     ],
   },
-};
+});
 
-const yoshiConfig = defaultYoshiConfig;
-yoshiConfig.servers.cdn.ssl = true;
-yoshiConfig.servers.cdn.url = `https://localhost:${yoshiConfig.servers.cdn.port}`;
+const getYoshiConfig = () => {
+  const yoshiConfig = require('yoshi-config');
+  yoshiConfig.servers.cdn.ssl = true;
+  yoshiConfig.servers.cdn.url = `https://localhost:${yoshiConfig.servers.cdn.port}`;
+  return yoshiConfig;
+};
 
 const shouldUse = () => {
   const pkgJson = readPkg.sync({ cwd: process.cwd() });
-  const { devDependencies = [], dependencies = [] } = pkgJson;
+  const { devDependencies = {}, dependencies = {} } = pkgJson;
 
   return (
     devDependencies['yoshi-flow-editor'] || dependencies['yoshi-flow-editor']
@@ -33,7 +35,7 @@ const shouldUse = () => {
 };
 
 module.exports = {
-  jestConfig,
-  yoshiConfig,
+  getJestConfig,
+  getYoshiConfig,
   shouldUse,
 };

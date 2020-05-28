@@ -18,6 +18,9 @@ const { setupRequireHooks } = require('yoshi-common/build/require-hooks');
 const cdnProxy = require('./cdnProxy');
 const { loadJestConfig, loadYoshiConfig } = require('../load-config');
 const JestWatchDebug = require('../plugins/jest-watch-debug');
+
+const { servers } = loadYoshiConfig();
+
 // the user's config is loaded outside of a jest runtime and should be transpiled
 // with babel/typescript, this may be run separately for every worker
 setupRequireHooks();
@@ -33,7 +36,6 @@ const serverLogPrefixer = () => {
 
 module.exports = async config => {
   const jestYoshiConfig = loadJestConfig();
-  const { servers } = loadYoshiConfig();
 
   // a bit hacky, run puppeteer setup only if it's required
   if (await shouldRunE2Es()) {

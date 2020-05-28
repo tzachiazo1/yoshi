@@ -5,12 +5,12 @@ const { setupRequireHooks } = require('yoshi-common/build/require-hooks');
 const { loadJestConfig, loadYoshiConfig } = require('../load-config');
 const { getBrowserDebugFunction } = require('./utils');
 
+const { servers } = loadYoshiConfig();
+
 // the user's config is loaded outside of a jest runtime and should be transpiled
 // with babel/typescript, this may be run separately for every worker
 setupRequireHooks();
-
 const jestYoshiConfig = loadJestConfig();
-const { servers } = loadYoshiConfig();
 
 const ParentEnvironment = jestYoshiConfig.bootstrap
   ? require('../jest-environment-yoshi-bootstrap')
