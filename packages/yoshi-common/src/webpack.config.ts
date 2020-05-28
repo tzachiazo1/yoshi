@@ -883,7 +883,7 @@ export function createBaseWebpackConfig({
         ...(externalizeRelativeLodash
           ? [
               {
-                test: /[\\/]node_modules[\\/]lodash/,
+                test: /[\\/]node_modules[\\/]lodash[\\/]\w+/,
                 loader: 'externalize-relative-module-loader',
               },
             ]
