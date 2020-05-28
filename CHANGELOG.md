@@ -1,5 +1,12 @@
 # Changelog
 
+## 4.83.2 (2020-05-28)
+
+#### :bug: Bug Fix
+
+- `yoshi-common`
+  - [#2485](https://github.com/wix/yoshi/pull/2485) Update `use` rule of externalize-relative-module-loader ([@yavorsky](https://github.com/yavorsky))
+
 ## 4.83.1 (2020-05-27)
 
 #### :building_construction: Templates
