@@ -15,7 +15,6 @@ import initSchemaLogger, { IExampleBILogger } from '../../../config/bi';
 import { experiments as experimentsConfig } from '../../../../.application.json';
 import i18n, { getLanguageWithInstance } from '../../../config/i18n';
 import './Settings.global.scss';
-import css from './Settings.scss';
 
 const biLogger = initSchemaLogger(iframeAppBiLoggerFactory);
 
@@ -70,9 +69,9 @@ export class Settings extends React.Component<ISettingsProps> {
   render() {
     return (
       <div>
-        <section className={css.section}>
+        <section>
           <SettingsLabel />
-          <div className={css.colorPicker}>
+          <div>
             <BILogger>
               {(logger: IExampleBILogger) => (
                 <ColorPickerColorSpace
