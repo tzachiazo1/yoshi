@@ -29,7 +29,7 @@ export type DSL<Result extends FunctionResult, Args extends FunctionArgs> = {
 
 // Route function types
 export type RouteContext = {
-  req: Request & WithAspects;
+  req: Request;
   res: Response;
   context: any;
   params: { [name: string]: any | undefined };
