@@ -32,12 +32,20 @@
       "schedule": ["after 3:00am and before 7:00am on sunday"]
     },
     {
+      "excludePackagePatterns": [
+        "^@babel/",
+        "^@stylable/"
+      ],
       "updateTypes": ["minor", "patch"],
       "depTypeList": ["dependencies"],
       "groupName": "dependencies (weekly)",
       "schedule": ["after 3:00am and before 7:00am on sunday"]
     },
     {
+      "excludePackagePatterns": [
+        "^@babel/",
+        "^@stylable/"
+      ],
       "updateTypes": ["minor", "patch"],
       "depTypeList": ["devDependencies"],
       "groupName": "devDependencies (weekly)",
@@ -53,6 +61,5 @@
     "enabled": true,
     "groupName": "lockfile (weekly)",
     "schedule": ["after 3:00am and before 7:00am on tuesday"]
-  },
-  "npmrc": "registry=http://npm.dev.wixpress.com"
+  }
 }
