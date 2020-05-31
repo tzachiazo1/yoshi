@@ -3463,10 +3463,10 @@
   dependencies:
     "@types/express" "*"
 
-"@types/copy-webpack-plugin@5.0.1":
-  version "5.0.1"
-  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@types/copy-webpack-plugin/-/copy-webpack-plugin-5.0.1.tgz#53aa9ba7b0702e3bea1baa5b09ba9c76d18312ba"
-  integrity sha1-U6qbp7BwLjvqG6pbCbqcdtGDEro=
+"@types/copy-webpack-plugin@5.0.2":
+  version "5.0.2"
+  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@types/copy-webpack-plugin/-/copy-webpack-plugin-5.0.2.tgz#b5ba2b52be6ae19311e1d160e66f777e9d1b9d07"
+  integrity sha1-tborUr5q4ZMR4dFg5m93fp0bnQc=
   dependencies:
     "@types/minimatch" "*"
     "@types/node" "*"
@@ -3725,10 +3725,10 @@
     "@types/node" "*"
     rxjs "^6.5.1"
 
-"@types/loader-utils@1.1.3":
-  version "1.1.3"
-  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@types/loader-utils/-/loader-utils-1.1.3.tgz#82b9163f2ead596c68a8c03e450fbd6e089df401"
-  integrity sha1-grkWPy6tWWxoqMA+RQ+9bgid9AE=
+"@types/loader-utils@1.1.4":
+  version "1.1.4"
+  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@types/loader-utils/-/loader-utils-1.1.4.tgz#e8b44fda9e965e8c4eba864c7918e7f7528eaa25"
+  integrity sha1-6LRP2p6WXoxOuoZMeRjn91KOqiU=
   dependencies:
     "@types/node" "*"
     "@types/webpack" "*"
@@ -3744,6 +3744,11 @@
   version "4.14.152"
   resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@types/lodash/-/lodash-4.14.152.tgz#7e7679250adce14e749304cdb570969f77ec997c"
   integrity sha1-fnZ5JQrc4U50kwTNtXCWn3fsmXw=
+
+"@types/lodash@4.14.154":
+  version "4.14.154"
+  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@types/lodash/-/lodash-4.14.154.tgz#069e3c703fdb264e67be9e03b20a640bc0198ecc"
+  integrity sha1-Bp48cD/bJk5nvp4DsgpkC8AZjsw=
 
 "@types/long@*", "@types/long@4.0.1", "@types/long@^4.0.1":
   version "4.0.1"
@@ -25900,10 +25905,15 @@ type-detect@^4.0.0, type-detect@^4.0.5:
   resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/type-detect/-/type-detect-4.0.8.tgz#7646fb5f18871cfbb7749e69bd39a6388eb7450c"
   integrity sha1-dkb7XxiHHPu3dJ5pvTmmOI63RQw=
 
-type-fest@0.14.0, type-fest@^0.14.0:
+type-fest@0.14.0:
   version "0.14.0"
   resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/type-fest/-/type-fest-0.14.0.tgz#758d800f2dcc0de47a946a120d91ab17883523ad"
   integrity sha1-dY2ADy3MDeR6lGoSDZGrF4g1I60=
+
+type-fest@0.15.0, type-fest@^0.15.0:
+  version "0.15.0"
+  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/type-fest/-/type-fest-0.15.0.tgz#5f52349fb9eb34a5fb625acfb1c48d85c885adab"
+  integrity sha1-X1I0n7nrNKX7YlrPscSNhciFras=
 
 type-fest@^0.10.0:
   version "0.10.0"
