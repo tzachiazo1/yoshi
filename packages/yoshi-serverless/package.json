@@ -1,0 +1,27 @@
+{
+  "name": "yoshi-serverless",
+  "version": "4.83.0",
+  "main": "build/index.js",
+  "sideEffects": false,
+  "keywords": [
+    "yoshi",
+    "server",
+    "serverless"
+  ],
+  "author": "Yaniv Efraim",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.0.0",
+    "fs-extra": "^8.1.0",
+    "globby": "10.0.2",
+    "import-fresh": "3.2.1",
+    "yoshi-config": "4.83.0",
+    "@wix/serverless-api": "^1.0.0",
+    "path-to-regexp": "3.2.0",
+    "sockjs-client": "1.4.0",
+    "express": "4.17.1"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.0.0"
+  }
+}
