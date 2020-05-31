@@ -4582,6 +4582,16 @@
   dependencies:
     request "^2.87.0"
 
+"@wix/serverless-api@^1.0.0":
+  version "1.0.528"
+  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@wix/serverless-api/-/@wix/serverless-api-1.0.528.tgz#535b5420bc5e8a9c5d8687a9cbe3cb4d20b63fca"
+  integrity sha1-U1tUILxeipxdhoepy+PLTSC2P8o=
+  dependencies:
+    "@types/newrelic" "6.4.0"
+    "@wix/wix-aspects" latest
+    "@wix/wix-server-to-server-signer" latest
+    long "4.0.0"
+
 "@wix/web-bi-logger@^2.0.0":
   version "2.0.16"
   resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@wix/web-bi-logger/-/web-bi-logger-2.0.16.tgz#88f9453328f473c7627f2e2bb69d87d36f26e575"
@@ -4626,7 +4636,7 @@
     "@wix/wix-errors" "~1.1.0"
     xmldoc "1.1.2"
 
-"@wix/wix-aspects@~1.0.640":
+"@wix/wix-aspects@latest", "@wix/wix-aspects@~1.0.640":
   version "1.0.1339"
   resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@wix/wix-aspects/-/@wix/wix-aspects-1.0.1339.tgz#47635ba360c52f10b02d3fe2eba68882a7377ee2"
   integrity sha1-R2Nbo2DFLxCwLT/i66aIgqc3fuI=
@@ -5133,6 +5143,14 @@
     jayson "3.3.0"
     lodash "4.17.15"
 
+"@wix/wix-jws-signer@~1.0.0":
+  version "1.0.464"
+  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@wix/wix-jws-signer/-/@wix/wix-jws-signer-1.0.464.tgz#c10203809ffc32d983baf126c537d5bd98d18697"
+  integrity sha1-wQIDgJ/8MtmDuvEmxTfVvZjRhpc=
+  dependencies:
+    jws "4.0.0"
+    lodash "4.17.15"
+
 "@wix/wix-log@~1.0.1":
   version "1.0.48"
   resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@wix/wix-log/-/@wix/wix-log-1.0.48.tgz#5ce821d946081823c4ebddeafa99943cf63c47a3"
@@ -5266,6 +5284,13 @@
   version "2.0.722"
   resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@wix/wix-run-mode/-/@wix/wix-run-mode-2.0.722.tgz#b095a4a69c5c3ca366ffb7348285f5cfee67827d"
   integrity sha1-sJWkppxcPKNm/7c0goX1z+5ngn0=
+
+"@wix/wix-server-to-server-signer@latest":
+  version "1.0.522"
+  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@wix/wix-server-to-server-signer/-/@wix/wix-server-to-server-signer-1.0.522.tgz#689e5b499d69c2b86169fa69382f025aa3b2b6e7"
+  integrity sha1-aJ5bSZ1pwrhhafppOC8CWqOytuc=
+  dependencies:
+    "@wix/wix-jws-signer" "~1.0.0"
 
 "@wix/wix-session-aspect@~1.0.1057":
   version "1.0.2324"

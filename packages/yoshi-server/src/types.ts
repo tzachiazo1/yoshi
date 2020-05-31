@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { BootstrapContext } from '@wix/wix-bootstrap-ng/typed';
 import { WithAspects } from '@wix/wix-express-aspects';
+import { WebRequest } from '@wix/serverless-api';
 import * as t from 'io-ts';
 
 // io-ts' types
@@ -48,8 +49,20 @@ export type RouteContext = {
   config: any;
 };
 
+export type RouteContextServerless = {
+  req: WebRequest;
+  context: BootstrapContext;
+  params: { [name: string]: any | undefined };
+  initData: any;
+  config: any;
+};
+
 export type RouteFunction<Result extends FunctionResult> = (
   this: RouteContext,
+) => Result;
+
+export type RouteFunctionServerless<Result extends FunctionResult> = (
+  this: RouteContextServerless,
 ) => Result;
 
 export type InitServerFunction = (context: BootstrapContext) => any;
