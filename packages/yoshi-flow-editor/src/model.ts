@@ -42,6 +42,7 @@ export interface ComponentModel {
   editorControllerFileName: string | null;
   settingsFileName: string | null;
   id: string | null;
+  controllerId?: string;
 }
 
 export interface AppConfig {
@@ -51,6 +52,7 @@ export interface AppConfig {
 }
 export interface ComponentConfig {
   id: string;
+  controllerId?: string;
   type?: WidgetType;
 }
 
@@ -210,6 +212,7 @@ For more info, visit http://tiny.cc/dev-center-registration`);
         editorControllerFileName,
         settingsFileName,
         id: componentConfig.id,
+        controllerId: componentConfig.controllerId,
       };
       return processedModels.concat(componentModel);
     },
