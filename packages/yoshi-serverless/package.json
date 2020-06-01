@@ -5,23 +5,43 @@
   "sideEffects": false,
   "keywords": [
     "yoshi",
-    "server",
-    "serverless"
+    "server"
   ],
-  "author": "Yaniv Efraim",
+  "author": "Ronen Amiel",
   "license": "ISC",
   "dependencies": {
+    "@wix/serverless-api": "^1.0.0",
+    "@wix/wix-bootstrap-greynode": "^1.0.0",
+    "@wix/wix-bootstrap-hadron": "^1.0.0",
+    "@wix/wix-bootstrap-renderer": "^1.0.0",
+    "@wix/wix-bootstrap-require-login": "^1.0.0",
+    "@wix/wix-errors": "^1.0.0",
+    "@wix/wix-express-aspects": "^1.0.0",
+    "@wix/wix-express-csrf": "^1.0.0",
+    "@wix/wix-express-require-https": "^1.0.0",
     "cookie-parser": "^1.0.0",
+    "ejs": "2.7.4",
+    "express": "4.17.1",
+    "fp-ts": "2.6.1",
     "fs-extra": "^8.1.0",
     "globby": "10.0.2",
     "import-fresh": "3.2.1",
-    "yoshi-config": "4.83.0",
-    "@wix/serverless-api": "^1.0.0",
+    "io-ts": "2.2.3",
+    "micro": "9.3.5-canary.3",
     "path-to-regexp": "3.2.0",
+    "react-dev-utils": "7.0.5",
+    "serialize-error": "4.1.0",
     "sockjs-client": "1.4.0",
-    "express": "4.17.1"
+    "type-fest": "0.14.0",
+    "wix-bootstrap-bo-auth": "^1.0.1888",
+    "wix-express-require-https": "^1.0.756",
+    "yoshi-config": "4.83.0",
+    "youch": "2.0.10"
   },
   "devDependencies": {
-    "@types/cookie-parser": "^1.0.0"
+    "@types/cookie-parser": "^1.0.0",
+    "@types/ejs": "2.7.0",
+    "@types/express": "4.17.6",
+    "@types/sockjs-client": "1.1.1"
   }
 }

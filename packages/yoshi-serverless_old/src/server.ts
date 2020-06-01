@@ -1,13 +1,13 @@
 import path from 'path';
 import { parse as parseUrl } from 'url';
-// @ts-ignore - missing types
 import fs from 'fs-extra';
 import globby from 'globby';
 import importFresh from 'import-fresh';
 import project from 'yoshi-config';
 import { FullHttpResponse, WebResponse, WebRequest } from '@wix/serverless-api';
 import { ROUTES_BUILD_DIR, BUILD_DIR } from 'yoshi-config/build/paths';
-import { RouteFunction, InitServerFunction } from './types';
+// import { BootstrapContext } from '@wix/wix-bootstrap-ng/typed';
+import { RouteFunctionServerless, InitServerFunction } from './types';
 import { pathMatch, connectToYoshiServerHMR, buildRoute } from './utils';
 
 export type Route = {
@@ -76,32 +76,45 @@ export default class Server {
           pathname?.replace('/api/_api_', '/_api_') as string,
         );
 
-        // if (params) {
-        return await handler(req, params);
-        // }
+        if (params) {
+          // await runMiddleware(req, res, requireHttps);
+          // await runMiddleware(req, res, cookieParser());
+          // await runMiddleware(req, res, wixExpressCsrf());
+
+          // const renderer = (this.context as any).renderer;
+          // if (renderer) {
+          //   await runMiddleware(req, res, renderer.middleware());
+          // }
+          return await handler(req, params);
+        }
       }
     } catch (error) {
-      // if (
-      //   process.env.NODE_ENV === 'production' ||
-      //   process.env.IS_INTEGRATION_TEST_PROD === 'true'
-      // ) {
-      //   return next(new InternalServerError('internal server error', error));
-      // }
+      console.log('&&&&&&&&&&&&&&&&&&&&&&');
+      console.log(error);
+      console.log('&&&&&&&&&&&&&&&&&&&&&&');
+      if (
+        process.env.NODE_ENV === 'production' ||
+        process.env.IS_INTEGRATION_TEST_PROD === 'true'
+      ) {
+        // return next(new InternalServerError('internal server error', error));
+      }
+
       // const youch = new Youch(error, req);
       // const html: string = await youch.toHTML();
+
       // return send(res, 500, html);
     }
 
-    // if (process.env.NODE_ENV === 'production') {
-    //   // If Yoshi Server did not find anything, pass the request on
-    //   return next();
-    // }
+    if (process.env.NODE_ENV === 'production') {
+      // If Yoshi Server did not find anything, pass the request on
+      // return next();
+    }
 
     // return send(res, 404, 'not found');
   };
 
   private createRoutes(): Array<Route> {
-    const routesBuildDir = path.resolve(__dirname, '..', ROUTES_BUILD_DIR);
+    const routesBuildDir = path.resolve(ROUTES_BUILD_DIR);
 
     const serverChunks = globby.sync('**/*.js', {
       cwd: routesBuildDir,
@@ -109,7 +122,7 @@ export default class Server {
     });
 
     return serverChunks.map(absolutePath => {
-      const chunk = importFresh(absolutePath) as RouteFunction<any>;
+      const chunk = importFresh(absolutePath) as RouteFunctionServerless<any>;
       const route = buildRoute(absolutePath);
       return {
         route,
@@ -126,11 +139,11 @@ export default class Server {
           if (result) {
             const webResponse: WebResponse = { body: result, status: 200 };
             return new FullHttpResponse(webResponse);
-            // In case that the user is adding both custom response and return value:
-            // ```
-            // this.res.send('hello');
-            // return 'hello2';
-            // ```
+            // // In case that the user is adding both custom response and return value:
+            // // ```
+            // // this.res.send('hello');
+            // // return 'hello2';
+            // // ```
             // if (res.headersSent) {
             //   console.log(
             //     'Cannot return a response since `this.req` has been used to sent back the request',

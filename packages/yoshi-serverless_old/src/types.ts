@@ -1,15 +1,5 @@
-// import { WithAspects } from '@wix/wix-express-aspects';
+import { Request, Response } from 'express';
 import { WebRequest } from '@wix/serverless-api';
-import * as t from 'io-ts';
-
-// io-ts' types
-export const requestPayloadCodec = t.type({
-  fileName: t.string,
-  functionName: t.string,
-  args: t.array(t.any),
-});
-
-export type RequestPayload = t.TypeOf<typeof requestPayloadCodec>;
 
 // General stuff
 export type UnpackPromise<T> = T extends Promise<infer U> ? U : T;
@@ -19,7 +9,8 @@ export type FunctionResult = OptionalPromise<any>;
 
 // Server function types
 export type FunctionContext = {
-  req: WebRequest; // & WithAspects;
+  req: Request;
+  res: Response;
   context: any;
   initData: any;
   config: any;
@@ -38,7 +29,16 @@ export type DSL<Result extends FunctionResult, Args extends FunctionArgs> = {
 
 // Route function types
 export type RouteContext = {
-  req: WebRequest; // & WithAspects;
+  req: Request;
+  res: Response;
+  context: any;
+  params: { [name: string]: any | undefined };
+  initData: any;
+  config: any;
+};
+
+export type RouteContextServerless = {
+  req: WebRequest;
   context: any;
   params: { [name: string]: any | undefined };
   initData: any;
@@ -47,6 +47,10 @@ export type RouteContext = {
 
 export type RouteFunction<Result extends FunctionResult> = (
   this: RouteContext,
+) => Result;
+
+export type RouteFunctionServerless<Result extends FunctionResult> = (
+  this: RouteContextServerless,
 ) => Result;
 
 export type InitServerFunction = (context: any) => any;
