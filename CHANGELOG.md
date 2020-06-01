@@ -1,5 +1,21 @@
 # Changelog
 
+## 4.84.0 (2020-06-01)
+
+#### :rocket: New Feature
+
+- `yoshi-common`, `yoshi-flow-monorepo`
+  - [#2494](https://github.com/wix/yoshi/pull/2494) Make `petri-specs` directory at the root of the monorepo work ([@ranyitz](https://github.com/ranyitz))
+- `create-yoshi-app`, `yoshi-config`, `yoshi-flow-editor`
+  - [#2487](https://github.com/wix/yoshi/pull/2487) Remove yoshi config for editor flow ([@yavorsky](https://github.com/yavorsky))
+- `create-yoshi-app`, `yoshi-flow-editor`
+  - [#2403](https://github.com/wix/yoshi/pull/2403) Allow to set `controllerType` for component configuration ([@maoryosef2](https://github.com/maoryosef2))
+
+#### :building_construction: Templates
+
+- `create-yoshi-app`
+  - [#2486](https://github.com/wix/yoshi/pull/2486) Remove Settings scss file from template ([@yavorsky](https://github.com/yavorsky))
+
 ## 4.83.2 (2020-05-28)
 
 #### :bug: Bug Fix
