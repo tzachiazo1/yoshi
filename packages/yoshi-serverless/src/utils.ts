@@ -16,6 +16,9 @@ export function connectToYoshiServerHMR() {
 }
 export function pathMatch(route: string, pathname: string | undefined) {
   const keys: Array<any> = [];
+  console.log('******************************');
+  console.log(route + '' + pathname);
+  console.log('******************************');
   const regex = pathToRegexp(route, keys, {});
 
   const match = regex.exec(pathname as string);
