@@ -21,6 +21,7 @@ import {
   COMPONENT_CONFIG_FILENAME,
   VIEWER_APP_FILENAME,
   EDITOR_APP_FILENAME,
+  URLS_CONFIG,
 } from './constants';
 
 export interface FlowEditorModel {
@@ -32,6 +33,12 @@ export interface FlowEditorModel {
   experimentsConfig: ExperimentsConfig | null;
   components: Array<ComponentModel>;
   sentry: SentryConfig | null;
+  urls: URLsConfig;
+}
+
+export interface URLsConfig {
+  viewerUrl?: string | null;
+  editorUrl?: string | null;
 }
 
 export interface ComponentModel {
@@ -83,10 +90,14 @@ function resolveFileNamesFromDirectory(dir: string, fileNames: Array<string>) {
   );
 }
 
-function getLocalConfig<C extends AppConfig | ComponentConfig>(
-  path: string,
+function getLocalConfig<C extends AppConfig | ComponentConfig | URLsConfig>(
+  configPath: string,
 ): C {
-  return JSON.parse(fs.readFileSync(path, 'utf8'));
+  const extension = path.extname(configPath);
+  if (extension === '.js') {
+    return require(configPath);
+  }
+  return JSON.parse(fs.readFileSync(configPath, 'utf8'));
 }
 
 export async function generateFlowEditorModel(
@@ -115,6 +126,9 @@ export async function generateFlowEditorModel(
 
   const editorEntryFileName = resolveFromSrc(EDITOR_APP_FILENAME);
   const appConfigFileName = resolveFromRoot(APPLICATION_CONFIG_FILENAME);
+  const urlsConfigFileName = resolveFromRoot(URLS_CONFIG);
+  const urlsConfig =
+    urlsConfigFileName && getLocalConfig<URLsConfig>(urlsConfigFileName);
   const appConfig =
     appConfigFileName && getLocalConfig<AppConfig>(appConfigFileName);
 
@@ -228,6 +242,10 @@ For more info, visit http://tiny.cc/dev-center-registration`);
     artifactId,
     viewerAppFileName,
     components: componentModels,
+    urls: {
+      viewerUrl: (urlsConfig && urlsConfig.viewerUrl) || null,
+      editorUrl: (urlsConfig && urlsConfig.editorUrl) || null,
+    },
   };
 
   return model;

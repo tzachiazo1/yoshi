@@ -1,21 +1,22 @@
 import path from 'path';
 import { URL } from 'url';
 import urlJoin from 'url-join';
-import { StartUrl } from 'yoshi-config/build/config';
 import { BROWSER_LIB_URL } from '@wix/add-sentry/lib/constants';
 import { SentryConfig } from 'yoshi-flow-editor-runtime/build/constants';
-import { FlowEditorModel, ComponentModel } from './model';
+import { FlowEditorModel, ComponentModel, URLsConfig } from './model';
 
 export const joinDirs = (...dirs: Array<string>) =>
   path.join(process.cwd(), ...dirs);
 
-export const normalizeStartUrlOption = (urls: StartUrl): Array<string> => {
-  if (Array.isArray(urls)) {
-    return urls;
-  } else if (typeof urls === 'string') {
-    return [urls];
+export const normalizeStartUrlOption = (urls: URLsConfig): Array<string> => {
+  const result: Array<string> = [];
+  if (urls.viewerUrl) {
+    result.push(urls.viewerUrl);
   }
-  return [];
+  if (urls.editorUrl) {
+    result.push(urls.editorUrl);
+  }
+  return result;
 };
 
 const widgetUrlFormatter = (component: ComponentModel, baseUrl: string) => {

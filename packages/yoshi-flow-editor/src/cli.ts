@@ -1,3 +1,5 @@
+// We want to always load the same yoshi.config.js
+process.env.YOSHI_CONFIG_DIR = __dirname;
 process.on('unhandledRejection', error => {
   throw error;
 });
@@ -89,12 +91,8 @@ Promise.resolve().then(async () => {
     process.env.NODE_ENV = 'production';
     process.env.BABEL_ENV = 'production';
   }
+
   const config = loadConfig();
-  // This line is because the default ssl config is false,
-  // and since we use yoshi-flow-legacy test command,
-  // we need to configure ssl to true becase we did implement build and start commands
-  // with ssl true as default (this should be removed when test cmd is implemented)
-  config.servers.cdn.ssl = true;
 
   const model = await generateFlowEditorModel(config);
 
