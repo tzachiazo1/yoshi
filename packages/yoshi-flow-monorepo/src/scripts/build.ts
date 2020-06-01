@@ -123,14 +123,13 @@ const build: cliCommand = async function(argv, rootConfig, { apps, libs }) {
     const wixMavenStatics = await import('yoshi-common/build/maven-statics');
     const copyDocker = await import('yoshi-common/build/copy-docker');
 
+    // Run petri-specs once in the root of the monorepo
+    await petriSpecs.default();
+
     await Promise.all(
       apps.reduce((acc: Array<Promise<void>>, app) => {
         return [
           ...acc,
-          petriSpecs.default({
-            config: app.config.petriSpecsConfig,
-            cwd: app.location,
-          }),
           wixMavenStatics.default({
             clientProjectName: app.config.clientProjectName,
             staticsDir: app.config.clientFilesPath,
