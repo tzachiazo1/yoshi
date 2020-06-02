@@ -52,4 +52,8 @@ module.exports = {
     'yoshi-server/custom-server',
     'yoshi-server/testing',
   ],
+  'business-manager-flow': [
+    'business-manager-flow/overview',
+    'business-manager-flow/migration',
+  ],
 };
