@@ -344,7 +344,6 @@ export function createSiteAssetsWebpackConfig(
     isMonorepo: true,
     isAnalyze,
     forceEmitSourceMaps,
-    disableEmitSourceMaps: true,
     forceEmitStats,
     // We don't have any server externals for `site assets` bundle
     // So with empty object, we'll be sure that no default externals value will be applied
