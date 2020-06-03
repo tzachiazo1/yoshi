@@ -25,7 +25,7 @@ interface ModuleOptions {
     methodId: string;
     loadMethod(): (...args: Array<any>) => any;
   }>;
-  moduleInit: (
+  moduleInit?: (
     this: any,
     _module: BusinessManagerModule,
     _moduleParams: IBMModuleParams,
