@@ -8,25 +8,24 @@ import styles from './styles.module.css';
 
 const features = [
   {
-    title: <>Zero config</>,
+    title: <>Aspire for zero config</>,
     imageUrl: 'img/rocket.png',
-    description: <>No configuration required, just create and start working</>,
-  },
-  {
-    title: <>Full TypeScript Support</>,
-    imageUrl: 'img/ts.png',
     description: (
       <>
-        Just choose TypeScript when generating a project, or gradually migrate
+        Standard Wix Flows like Out of iFrame app or Business-manager module
+        require minimal configuration
       </>
     ),
   },
   {
-    title: <>JustWorks™</>,
+    title: <>Yoshi ❤️ TypeScript</>,
+    imageUrl: 'img/ts.png',
+    description: <>You can use TypeScript with any of the flows</>,
+  },
+  {
+    title: <>We have your back</>,
     imageUrl: 'img/lotusman.png',
-    description: (
-      <>Supports multiple usecases while being stable and reliable</>
-    ),
+    description: <>Stable, Reliable and Fully Supported #yoshi</>,
   },
 ];
 
