@@ -367,6 +367,11 @@ export function createSiteAssetsWebpackConfig(
     new ManifestPlugin({ fileName: manifestName, isDev: isDev as boolean }),
   );
 
+  if (target === 'web') {
+    // use a umd bundle for the web bundles
+    config.output!.libraryTarget = 'umd';
+  }
+
   config.output!.path = path.join(pkg.location, STATICS_DIR);
   config.output!.filename = isDev
     ? '[name].bundle.js'
