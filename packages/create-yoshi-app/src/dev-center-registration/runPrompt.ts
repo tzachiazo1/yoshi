@@ -1,9 +1,9 @@
 import LocalAppTemplateModel from '../TemplateModel';
 import extendedPropmts, { Answers } from '../extended-prompts';
+import { initAPIService } from '../api';
 import TemplateModel from './TemplateModel';
 import getQuestions from './getQuestions';
 import { getInstance } from './auth';
-import { initAppService } from './appService';
 import getDefaultAnswers from './getDefaultAnswers';
 
 export default async (
@@ -14,7 +14,7 @@ export default async (
 
   const instance = await getInstance();
   if (instance) {
-    initAppService(instance);
+    initAPIService(instance);
   } else {
     // We should handle default template if auth flow was failed
     return fallbackWithDefaultTemplate();

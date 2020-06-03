@@ -251,7 +251,7 @@ export default (): Array<ExtendedPromptObject<string>> => {
                 } else {
                   answers.components = [];
                 }
-                return createApp(answers.appName);
+                return createApp({ name: answers.appName });
               },
               validate(value: string) {
                 return !!value;

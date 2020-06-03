@@ -184,7 +184,10 @@ async function init() {
     });
   } else {
     // first time generation
-    workingDir = path.join(tempy.directory(), 'generated');
+    workingDir = path.join(
+      tempy.directory(),
+      process.env.DEV_ARTIFACT_ID || 'generated',
+    );
 
     templateModel = await createApp({
       workingDir,

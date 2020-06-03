@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { axios } from '../api';
 
 const getUrl = (path: string): string => {
   return `https://www.wix.com/_api/app-service/v1/${path}`;
@@ -34,15 +34,13 @@ const formatComponent = (
   id: component.compId,
 });
 
-export const initAppService = async (instance: string): Promise<void> => {
-  axios.defaults.headers.common.Authorization = instance;
-};
-
-export const createApp = (name: string): Promise<{ appId: string }> => {
+export const createApp = ({
+  name,
+}: {
+  name: string;
+}): Promise<{ appId: string }> => {
   return axios
-    .post<{ appId: string }>(getUrl('apps'), {
-      name,
-    })
+    .post<{ appId: string }>(getUrl('apps'), { name })
     .then(res => res.data);
 };
 

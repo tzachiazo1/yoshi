@@ -8,6 +8,7 @@ import {
   gitCommit,
 } from './utils';
 import generateProject from './generateProject';
+import setupAutoRelease from './auto-release/setupAutoRelease';
 import TemplateModel from './TemplateModel';
 import SentryTemplateModel from './sentry-registration/TemplateModel';
 import DevCenterTemplateModel from './dev-center-registration/TemplateModel';
@@ -57,6 +58,8 @@ export default async ({
     )) as SentryTemplateModel;
 
     templateModel.setSentryData(sentryModel);
+
+    await setupAutoRelease(templateModel);
   }
 
   console.log(
