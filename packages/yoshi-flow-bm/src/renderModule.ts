@@ -7,12 +7,11 @@ import renderExportedComponent from './renderExportedComponent';
 import { EXPORTED_COMPONENTS_DIR, PAGES_DIR } from './constants';
 
 const generateModuleCode = ({
-  moduleId,
   exportedComponents,
   methods,
   pages,
   moduleInitPath,
-  config: { sentryDsn },
+  config: { moduleId, moduleConfigurationId, sentryDsn },
 }: FlowBMModel) => `
 import { createModule } from 'yoshi-flow-bm-runtime';
 
@@ -48,6 +47,7 @@ createModule({
       }`,
     )}
   ], // ${JSON.stringify(methods)},
+  ${moduleConfigurationId ? `moduleConfigurationId: '${module}'` : ''}
   ${moduleInitPath ? `moduleInit: require('${moduleInitPath}').default,` : ''}
   ${sentryDsn ? `sentryDsn: '${sentryDsn}',` : ''}
 });`;

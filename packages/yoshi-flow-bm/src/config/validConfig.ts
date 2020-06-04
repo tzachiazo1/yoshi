@@ -8,6 +8,7 @@ import {
 
 export const validModuleConfig: InitialModuleConfig = {
   moduleId: 'module-id',
+  moduleConfigurationId: 'parent-module-id',
   routeNamespace: 'some-route',
   sentryDsn: '1337',
   experimentsScopes: ['yoshi', 'wos'],

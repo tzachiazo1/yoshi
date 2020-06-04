@@ -39,7 +39,6 @@ export interface MethodModel {
 }
 
 export interface FlowBMModel {
-  moduleId: string;
   pages: Array<PageModel>;
   exportedComponents: Array<ExportedComponentModel>;
   methods: Array<MethodModel>;
@@ -127,7 +126,6 @@ export default function createFlowBMModel(cwd = process.cwd()): FlowBMModel {
   const [localePath] = globDirs(TRANSLATIONS_DIR);
 
   return {
-    moduleId: config.moduleId,
     config,
     pages,
     exportedComponents,

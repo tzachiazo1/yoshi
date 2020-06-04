@@ -2,6 +2,7 @@ export type InitialModuleConfig = Partial<ModuleConfig>;
 
 export interface ModuleConfig {
   moduleId: string;
+  moduleConfigurationId?: string;
   experimentsScopes: Array<string>;
   sentryDsn?: string;
   routeNamespace: string;

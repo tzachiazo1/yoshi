@@ -12,6 +12,7 @@ import { IBMModuleParams } from './hooks/ModuleProvider';
 
 interface ModuleOptions {
   moduleId: string;
+  moduleConfigurationId?: string;
   pages: Array<{
     componentId: string;
     componentName: string;
@@ -35,6 +36,7 @@ interface ModuleOptions {
 
 export default function createModule({
   moduleId,
+  moduleConfigurationId,
   pages,
   exportedComponents,
   methods,
@@ -54,6 +56,9 @@ export default function createModule({
 
     constructor(moduleId: ModuleId) {
       super(moduleId);
+      if (moduleConfigurationId) {
+        this.setModuleConfigurationId(moduleConfigurationId as ModuleId);
+      }
 
       pages.forEach(({ componentId, componentName, loadComponent }) => {
         if (sentryClient) {
