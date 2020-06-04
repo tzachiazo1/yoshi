@@ -1,5 +1,29 @@
 # Changelog
 
+## 4.85.0 (2020-06-04)
+
+#### :rocket: New Feature
+
+- `yoshi-common`
+  - [#2504](https://github.com/wix/yoshi/pull/2504) Kill child servers on serve process exit ([@ranyitz](https://github.com/ranyitz))
+- `yoshi-flow-bm-runtime`, `yoshi-flow-bm`
+  - [#2495](https://github.com/wix/yoshi/pull/2495) Add `moduleConfigurationId` to bm-flow config ([@amitdahan](https://github.com/amitdahan))
+- `create-yoshi-app`
+  - [#2498](https://github.com/wix/yoshi/pull/2498) Configure `auto-release` by default ([@yavorsky](https://github.com/yavorsky))
+- `yoshi-flow-monorepo`
+  - [#2503](https://github.com/wix/yoshi/pull/2503) Produce a `umd` bundle for site-assets web bundles ([@ranyitz](https://github.com/ranyitz))
+
+#### :bug: Bug Fix
+
+- `yoshi-common`, `yoshi-flow-monorepo`
+  - [#2501](https://github.com/wix/yoshi/pull/2501) Produce sourcemaps for site-assets modules ([@ranyitz](https://github.com/ranyitz))
+- `yoshi-flow-bm-runtime`
+  - [#2497](https://github.com/wix/yoshi/pull/2497) Fix `moduleInit` being required in flow-bm-runtime ([@amitdahan](https://github.com/amitdahan))
+
+#### :memo: Documentation
+
+- [#2500](https://github.com/wix/yoshi/pull/2500) Improve yoshi description points on the website main page ([@ranyitz](https://github.com/ranyitz))
+
 ## 4.84.0 (2020-06-01)
 
 #### :rocket: New Feature
