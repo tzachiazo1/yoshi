@@ -11,11 +11,15 @@ import {
   createClientWebpackConfig,
   createServerWebpackConfig,
 } from '../webpack.config';
-import createFlowBMModel, { watchFlowBMModel } from '../model';
+import createFlowBMModel, { FlowBMModel, watchFlowBMModel } from '../model';
 import renderModule, { getModuleEntry } from '../renderModule';
 import renderModuleConfig from '../renderModuleConfig';
 
 const join = (...dirs: Array<string>) => path.join(process.cwd(), ...dirs);
+
+const getBMTestkitUrl = ({ pages }: FlowBMModel) => {
+  return `http://localhost:5000/business-manager/${uuid()}/${pages[0].route}`;
+};
 
 const start: CliCommand = async function(argv, yoshiConfig) {
   const args = arg(
@@ -27,6 +31,7 @@ const start: CliCommand = async function(argv, yoshiConfig) {
       '--https': Boolean,
       '--debug': Boolean,
       '--debug-brk': Boolean,
+      '--url': String,
 
       // Aliases
       '--entry-point': '--server',
@@ -39,6 +44,7 @@ const start: CliCommand = async function(argv, yoshiConfig) {
     '--help': help,
     '--server': serverStartFileCLI,
     '--production': shouldRunAsProduction,
+    '--url': url,
   } = args;
 
   if (help) {
@@ -102,9 +108,7 @@ const start: CliCommand = async function(argv, yoshiConfig) {
     isHot: true,
   });
 
-  const startUrl = `http://localhost:5000/business-manager/${uuid()}/${
-    model.pages[0].route
-  }`;
+  const startUrl = url ?? getBMTestkitUrl(model);
 
   const devEnvironment = await DevEnvironment.create({
     webpackConfigs: [clientConfig, serverConfig],
