@@ -67,5 +67,7 @@ export const serveApp = async ({
     }),
   ]);
 
-  return () => Promise.all([serverProcess.close(), cdn.close()]);
+  const closeServers = () => Promise.all([serverProcess.close(), cdn.close()]);
+
+  return closeServers;
 };

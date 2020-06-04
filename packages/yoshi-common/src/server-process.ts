@@ -3,6 +3,7 @@ import stream from 'stream';
 import child_process from 'child_process';
 import chalk from 'chalk';
 import waitPort from 'wait-port';
+import execa from 'execa';
 import fs from 'fs-extra';
 import { getDevelopmentEnvVars } from 'yoshi-helpers/build/bootstrap-utils';
 import { stripOrganization } from 'yoshi-helpers/build/utils';
@@ -80,9 +81,10 @@ export class ServerProcess {
       './server-process-worker-with-transpilation.js',
     );
 
-    this.child = child_process.fork(serverProcessWorker, [], {
+    this.child = execa.node(serverProcessWorker, [], {
       stdio: 'pipe',
-      execArgv: [inspectArg]
+      // execArgv
+      nodeOptions: [inspectArg]
         .filter(notUndefined)
         .map(arg => arg.replace('debug', 'inspect')),
       env: {
