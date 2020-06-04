@@ -137,7 +137,7 @@ const config = {
         // We recommend projects use the `__tests__` directory But we support `test`
         // too
         const setupFilePaths = globby.sync(
-          `(__tests__|test)/${project.displayName}-setup.(ts|js){,x}`,
+          `(src/|)(__tests__|test)/${project.displayName}-setup.(ts|js){,x}`,
         );
 
         const [setupTestsPath] = setupFilePaths;
