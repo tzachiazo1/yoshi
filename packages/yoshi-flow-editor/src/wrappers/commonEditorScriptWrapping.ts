@@ -26,10 +26,6 @@ const editorScriptWrapper = (
   generatedWidgetEntriesPath: string,
   model: FlowEditorModel,
 ) => {
-  if (!model.editorEntryFileName) {
-    return {};
-  }
-
   const controllersMeta: Array<TemplateControllerConfig> = model.components
     .filter(isConfigured)
     .map(toControllerMeta);

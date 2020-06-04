@@ -41,7 +41,7 @@ const viewerScriptWrapper = (
     sentryConfig: model.sentry,
     controllersMeta,
     experimentsConfig: model.experimentsConfig,
-    viewerAppFileName: model.viewerAppFileName,
+    viewerEntryFileName: model.viewerEntryFileName,
   });
 
   fs.outputFileSync(

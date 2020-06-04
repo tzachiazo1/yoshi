@@ -14,13 +14,25 @@ export type TemplateControllerConfig = {
 
 type Opts = {
   viewerScriptWrapperPath: string;
-  viewerAppFileName: string;
+  viewerEntryFileName: string | null;
   sentryConfig: SentryConfig | null;
   experimentsConfig: ExperimentsConfig | null;
   controllersMeta: Array<TemplateControllerConfig>;
 };
 
+type ViewerScriptOpts = {
+  viewerEntryFileName: string | null;
+};
+
 const getControllerVariableName = (index: number) => `controller${index}`;
+
+export const viewerScriptOptionalImport = t<ViewerScriptOpts>`
+  ${({ viewerEntryFileName }) =>
+    viewerEntryFileName
+      ? `import * as viewerApp from '${viewerEntryFileName}';
+    var importedApp = viewerApp;`
+      : `var importedApp = {};`}
+`;
 
 const importsForControllers = t<{
   controllersMeta: Array<TemplateControllerConfig>;
@@ -59,8 +71,8 @@ export default t<Opts>`
     viewerScriptWrapperPath,
   }) => viewerScriptWrapperPath}';
   ${({ controllersMeta }) => importsForControllers({ controllersMeta })}
-  import * as viewerApp from '${({ viewerAppFileName }) => viewerAppFileName}';
-  var importedApp = viewerApp;
+  ${({ viewerEntryFileName }) =>
+    viewerScriptOptionalImport({ viewerEntryFileName })}
 
   var sentryConfig = ${({ sentryConfig }) =>
     sentryConfig
@@ -79,7 +91,10 @@ export default t<Opts>`
   }`
       : 'null'};
 
-  export const initAppForPage = initAppForPageWrapper(importedApp.initAppForPage, sentryConfig, experimentsConfig);
+  ${({ viewerEntryFileName }) =>
+    viewerEntryFileName
+      ? `export const initAppForPage = initAppForPageWrapper(importedApp.initAppForPage, sentryConfig, experimentsConfig);`
+      : ''}
   export const createControllers = createControllersWithDescriptors([${({
     controllersMeta,
   }) =>
