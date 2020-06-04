@@ -69,7 +69,7 @@ export default function createFlowBMModel(cwd = process.cwd()): FlowBMModel {
 
     const route = path.join(
       config.routeNamespace,
-      ...relativePath.split(path.delimiter).slice(0, -1),
+      ...relativePath.split('/').slice(0, -1),
       name !== 'index' ? name : '',
     );
 

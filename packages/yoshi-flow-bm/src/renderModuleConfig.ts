@@ -18,8 +18,7 @@ export default ({
   const template = {
     moduleId: moduleConfigurationId ?? moduleId,
     mainPageComponentId: pageComponents.reduce((prev, { route, ...rest }) =>
-      route.split(path.delimiter).length >
-      prev.route.split(path.delimiter).length
+      route.split('/').length > prev.route.split('/').length
         ? prev
         : { ...rest, route },
     ).pageComponentId,
