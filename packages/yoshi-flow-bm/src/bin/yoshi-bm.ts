@@ -10,6 +10,7 @@ import { Config } from 'yoshi-config/build/config';
 import normalizeDebuggingArgs from 'yoshi-common/build/normalize-debugging-args';
 import verifyDependencies from 'yoshi-common/build/verify-dependencies';
 import verifyNodeVersion from 'yoshi-common/build/verify-node-version';
+import { clearCache } from '../cache';
 
 const defaultCommand = 'start';
 
@@ -32,6 +33,7 @@ const args = arg(
     '--version': Boolean,
     '--help': Boolean,
     '--verbose': Boolean,
+    '--clear-cache': Boolean,
 
     // Aliases
     '-v': '--version',
@@ -42,9 +44,11 @@ const args = arg(
   },
 );
 
+const { '--help': help, '--clear-cache': shouldClearCache } = args;
+
 const foundCommand = Boolean(commands[args._[0]]);
 
-if (!foundCommand && args['--help']) {
+if (!foundCommand && help) {
   console.log(`
     Usage
       $ yoshi-bm <command>
@@ -55,6 +59,7 @@ if (!foundCommand && args['--help']) {
       Options
       --version, -v   Version number
       --inspect       Enable the Node.js inspector
+      --clear-cache   Clears the cache
       --help, -h      Displays this message
 
       For more information run a command with the --help flag
@@ -64,10 +69,17 @@ if (!foundCommand && args['--help']) {
   process.exit(0);
 }
 
+if (shouldClearCache) {
+  console.log('Clearing the cache...');
+  clearCache();
+  console.log('Cleared! ✔');
+  process.exit(0);
+}
+
 const command = foundCommand ? args._[0] : defaultCommand;
 const forwardedArgs = foundCommand ? args._.slice(1) : args._;
 
-if (args['--help']) {
+if (help) {
   forwardedArgs.push('--help');
 }
 
