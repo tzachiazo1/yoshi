@@ -12,8 +12,8 @@
     "@types/webpack": "4.41.13"
   },
   "dependencies": {
-    "@babel/parser": "7.9.6",
-    "@babel/traverse": "7.9.6",
+    "@babel/parser": "7.10.2",
+    "@babel/traverse": "7.10.1",
     "yoshi-config": "4.84.0"
   }
 }
