@@ -1,5 +1,38 @@
 # Changelog
 
+## 4.86.0 (2020-06-07)
+
+#### :rocket: New Feature
+
+- `yoshi-flow-bm`
+  - [#2418](https://github.com/wix/yoshi/pull/2418) Open production BM on `yoshi-bm start` ([@amitdahan](https://github.com/amitdahan))
+  - [#2469](https://github.com/wix/yoshi/pull/2469) Add `--url` to `yoshi-bm start` ([@amitdahan](https://github.com/amitdahan))
+- `jest-yoshi-preset`
+  - [#2505](https://github.com/wix/yoshi/pull/2505) Read `{testEnv}-setup.(ts|js)` files from within `src/(__tests__|test)` ([@amitdahan](https://github.com/amitdahan))
+
+#### :bug: Bug Fix
+
+- `yoshi-flow-bm`
+  - [#2502](https://github.com/wix/yoshi/pull/2502) Fix nested route inference in flow-bm ([@amitdahan](https://github.com/amitdahan))
+
+#### :memo: Documentation
+
+- [#2517](https://github.com/wix/yoshi/pull/2517) Improve contributing section - sort, arrange and ensure it's up to date ([@ranyitz](https://github.com/ranyitz))
+- [#2506](https://github.com/wix/yoshi/pull/2506) Update runtime docs ([@yavorsky](https://github.com/yavorsky))
+
+#### :house: Internal
+
+- `jest-yoshi-preset`, `yoshi-flow-legacy`, `yoshi-flow-library`
+  - [#2510](https://github.com/wix/yoshi/pull/2510) Replace jest-teamcity-reporter with jest-teamcity ([@ohana54](https://github.com/ohana54))
+
+#### Committers: 5
+
+- Amit Dahan ([@amitdahan](https://github.com/amitdahan))
+- Artem Yavorsky ([@yavorsky](https://github.com/yavorsky))
+- Ran Yitzhaki ([@ranyitz](https://github.com/ranyitz))
+- Tomer Ohana ([@ohana54](https://github.com/ohana54))
+- [@wix-renovate](https://github.com/wix-renovate)
+
 ## 4.85.0 (2020-06-04)
 
 #### :rocket: New Feature
