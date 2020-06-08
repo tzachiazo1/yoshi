@@ -6,8 +6,10 @@ exports[`CommonViewerScriptEntry template generates correct template w/o control
   
   
 
+  
   import * as viewerApp from 'project/src/app.ts';
-  var importedApp = viewerApp;
+    var importedApp = viewerApp;
+
 
   var sentryConfig = null;
 
@@ -20,6 +22,53 @@ exports[`CommonViewerScriptEntry template generates correct template w/o control
 "
 `;
 
+exports[`CommonViewerScriptEntry template generates correct template with a single controller 1`] = `
+"
+  import {createControllersWithDescriptors, initAppForPageWrapper} from 'yoshi-flow-editor-runtime/build/viewerScript.js';
+  
+  import controller0 from 'project/src/components/button/controller.ts';
+
+  
+  import * as viewerApp from 'project/src/app.ts';
+    var importedApp = viewerApp;
+
+
+  var sentryConfig = null;
+
+  var experimentsConfig = {
+    scope: 'test-scope'
+  };
+
+  export const initAppForPage = initAppForPageWrapper(importedApp.initAppForPage, sentryConfig, experimentsConfig);
+  export const createControllers = createControllersWithDescriptors([{ method: controller0,
+          widgetType: \\"WIDGET_OUT_OF_IFRAME\\",
+          id: \\"123\\" }]);
+"
+`;
+
+exports[`CommonViewerScriptEntry template generates correct template with a single controller and without viewerEntryFileName 1`] = `
+"
+  import {createControllersWithDescriptors, initAppForPageWrapper} from 'yoshi-flow-editor-runtime/build/viewerScript.js';
+  
+  import controller0 from 'project/src/components/button/controller.ts';
+
+  
+  var importedApp = {};
+
+
+  var sentryConfig = null;
+
+  var experimentsConfig = {
+    scope: 'test-scope'
+  };
+
+  
+  export const createControllers = createControllersWithDescriptors([{ method: controller0,
+          widgetType: \\"WIDGET_OUT_OF_IFRAME\\",
+          id: \\"123\\" }]);
+"
+`;
+
 exports[`CommonViewerScriptEntry template generates correct template with controllerId override 1`] = `
 "
   import {createControllersWithDescriptors, initAppForPageWrapper} from 'yoshi-flow-editor-runtime/build/viewerScript.js';
@@ -27,8 +76,10 @@ exports[`CommonViewerScriptEntry template generates correct template with contro
   import controller0 from 'project/src/components/todo/controller.ts';
 import controller1 from 'project/src/components/todo/controller.ts';
 
+  
   import * as viewerApp from 'project/src/app.ts';
-  var importedApp = viewerApp;
+    var importedApp = viewerApp;
+
 
   var sentryConfig = null;
 
@@ -52,8 +103,10 @@ exports[`CommonViewerScriptEntry template generates correct template with multip
   import controller0 from 'project/src/components/todo/controller.ts';
 import controller1 from 'project/src/components/todo/controller.ts';
 
+  
   import * as viewerApp from 'project/src/app.ts';
-  var importedApp = viewerApp;
+    var importedApp = viewerApp;
+
 
   var sentryConfig = null;
 
@@ -76,8 +129,10 @@ exports[`CommonViewerScriptEntry template generates correct template with sentry
   
   import controller0 from 'project/src/components/button/controller.ts';
 
+  
   import * as viewerApp from 'project/src/app.ts';
-  var importedApp = viewerApp;
+    var importedApp = viewerApp;
+
 
   var sentryConfig = {
       DSN: 'https:xxx@123',
@@ -85,28 +140,6 @@ exports[`CommonViewerScriptEntry template generates correct template with sentry
       projectName: 'project-name',
       teamName: 'team-name',
     };
-
-  var experimentsConfig = {
-    scope: 'test-scope'
-  };
-
-  export const initAppForPage = initAppForPageWrapper(importedApp.initAppForPage, sentryConfig, experimentsConfig);
-  export const createControllers = createControllersWithDescriptors([{ method: controller0,
-          widgetType: \\"WIDGET_OUT_OF_IFRAME\\",
-          id: \\"123\\" }]);
-"
-`;
-
-exports[`CommonViewerScriptEntry template generates correct template with single controller 1`] = `
-"
-  import {createControllersWithDescriptors, initAppForPageWrapper} from 'yoshi-flow-editor-runtime/build/viewerScript.js';
-  
-  import controller0 from 'project/src/components/button/controller.ts';
-
-  import * as viewerApp from 'project/src/app.ts';
-  var importedApp = viewerApp;
-
-  var sentryConfig = null;
 
   var experimentsConfig = {
     scope: 'test-scope'

@@ -5,7 +5,7 @@ import {
 import commonViewerScriptEntry from '../CommonViewerScriptEntry';
 
 describe('CommonViewerScriptEntry template', () => {
-  it('generates correct template with single controller', () => {
+  it('generates correct template with a single controller', () => {
     const generateControllerEntryContent = commonViewerScriptEntry({
       viewerScriptWrapperPath:
         'yoshi-flow-editor-runtime/build/viewerScript.js',
@@ -20,7 +20,28 @@ describe('CommonViewerScriptEntry template', () => {
       experimentsConfig: {
         scope: 'test-scope',
       },
-      viewerAppFileName: 'project/src/app.ts',
+      viewerEntryFileName: 'project/src/app.ts',
+    });
+
+    expect(generateControllerEntryContent).toMatchSnapshot();
+  });
+
+  it('generates correct template with a single controller and without viewerEntryFileName', () => {
+    const generateControllerEntryContent = commonViewerScriptEntry({
+      viewerScriptWrapperPath:
+        'yoshi-flow-editor-runtime/build/viewerScript.js',
+      sentryConfig: null,
+      controllersMeta: [
+        {
+          controllerFileName: 'project/src/components/button/controller.ts',
+          id: '123',
+          widgetType: OOI_WIDGET_COMPONENT_TYPE,
+        },
+      ],
+      experimentsConfig: {
+        scope: 'test-scope',
+      },
+      viewerEntryFileName: null,
     });
 
     expect(generateControllerEntryContent).toMatchSnapshot();
@@ -46,7 +67,7 @@ describe('CommonViewerScriptEntry template', () => {
       experimentsConfig: {
         scope: 'test-scope',
       },
-      viewerAppFileName: 'project/src/app.ts',
+      viewerEntryFileName: 'project/src/app.ts',
     });
 
     expect(generateControllerEntryContent).toMatchSnapshot();
@@ -73,7 +94,7 @@ describe('CommonViewerScriptEntry template', () => {
       experimentsConfig: {
         scope: 'test-scope',
       },
-      viewerAppFileName: 'project/src/app.ts',
+      viewerEntryFileName: 'project/src/app.ts',
     });
 
     expect(generateControllerEntryContent).toMatchSnapshot();
@@ -88,7 +109,7 @@ describe('CommonViewerScriptEntry template', () => {
       experimentsConfig: {
         scope: 'test-scope',
       },
-      viewerAppFileName: 'project/src/app.ts',
+      viewerEntryFileName: 'project/src/app.ts',
     });
 
     expect(generateControllerEntryContent).toMatchSnapshot();
@@ -114,7 +135,7 @@ describe('CommonViewerScriptEntry template', () => {
       experimentsConfig: {
         scope: 'test-scope',
       },
-      viewerAppFileName: 'project/src/app.ts',
+      viewerEntryFileName: 'project/src/app.ts',
     });
 
     expect(generateControllerEntryContent).toMatchSnapshot();

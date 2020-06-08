@@ -13,7 +13,7 @@ describe('addOverrideQueryParamsWithModel', () => {
         appName: 'app',
         artifactId: '7891',
         editorEntryFileName: 'a/b/editor.app.ts',
-        viewerAppFileName: 'a/b',
+        viewerEntryFileName: 'a/b',
         appDefId: 'APP_DEF_ID',
         sentry: null,
         urls: {
@@ -54,7 +54,7 @@ describe('addOverrideQueryParamsWithModel', () => {
           scope: 'test-scope',
         },
         editorEntryFileName: 'a/b/editor.app.ts',
-        viewerAppFileName: 'a/b',
+        viewerEntryFileName: 'a/b',
         appDefId: 'APP_DEF_ID',
         sentry: null,
         components: [
@@ -94,7 +94,7 @@ describe('addOverrideQueryParamsWithModel', () => {
         artifactId: '7891',
         urls: {},
         editorEntryFileName: null,
-        viewerAppFileName: 'a/b',
+        viewerEntryFileName: 'a/b',
         appDefId: 'APP_DEF_ID',
         experimentsConfig: {
           scope: 'test-scope',
