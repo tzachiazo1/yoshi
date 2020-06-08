@@ -176,7 +176,7 @@ export const createControllersWithDescriptors = (
 };
 
 export const initAppForPageWrapper = (
-  initAppForPage: InitAppForPageFn,
+  initAppForPage: InitAppForPageFn | undefined,
   sentry: SentryConfig | null,
   experimentsConfig: ExperimentsConfig | null,
 ): IInitAppForPage => async (

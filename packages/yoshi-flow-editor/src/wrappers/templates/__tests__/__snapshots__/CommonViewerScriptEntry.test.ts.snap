@@ -62,7 +62,7 @@ exports[`CommonViewerScriptEntry template generates correct template with a sing
     scope: 'test-scope'
   };
 
-  
+  export const initAppForPage = initAppForPageWrapper(importedApp.initAppForPage, sentryConfig, experimentsConfig);
   export const createControllers = createControllersWithDescriptors([{ method: controller0,
           widgetType: \\"WIDGET_OUT_OF_IFRAME\\",
           id: \\"123\\" }]);

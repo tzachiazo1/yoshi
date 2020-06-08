@@ -91,10 +91,7 @@ export default t<Opts>`
   }`
       : 'null'};
 
-  ${({ viewerEntryFileName }) =>
-    viewerEntryFileName
-      ? `export const initAppForPage = initAppForPageWrapper(importedApp.initAppForPage, sentryConfig, experimentsConfig);`
-      : ''}
+  export const initAppForPage = initAppForPageWrapper(importedApp.initAppForPage, sentryConfig, experimentsConfig);
   export const createControllers = createControllersWithDescriptors([${({
     controllersMeta,
   }) =>

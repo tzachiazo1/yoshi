@@ -21,7 +21,7 @@ export default t<Opts>`
     return `var editorScriptEntry = ${
       editorEntryFileName
         ? `require('${editorEntryFileName}');`
-        : `{ editorReady: function {} };`
+        : `{ editorReady: function () {} };`
     }`;
   }}
 
