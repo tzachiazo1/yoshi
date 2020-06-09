@@ -3,7 +3,7 @@ import fs from 'fs-extra';
 import { Config } from 'yoshi-config/build/config';
 import { SERVERLESS_DIR } from 'yoshi-config/build/paths';
 
-export default async function(
+export default async function (
   config: Config,
   scopeName: string,
   cwd = process.cwd(),

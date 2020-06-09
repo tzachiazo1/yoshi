@@ -43,7 +43,7 @@ if (process.env.NODE_ENV === 'development') {
   };
 }
 
-export default route(async function() {
+export default route(async function () {
   const body = this.req.body; // || (await parseBodyAsJson(this.req));
   const validation = requestPayloadCodec.decode(body);
 

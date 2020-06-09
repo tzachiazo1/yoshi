@@ -62,7 +62,7 @@ const start: cliCommand = async function (argv, config) {
     process.exit(0);
   }
 
-  const inspectArg = process.argv.find(arg => arg.includes('--debug'));
+  const inspectArg = process.argv.find((arg) => arg.includes('--debug'));
 
   let serverStartFile;
 

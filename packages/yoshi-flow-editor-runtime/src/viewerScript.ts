@@ -96,7 +96,7 @@ function ooiControllerWrapper(
   });
 
   const wrappedController = Promise.resolve(userControllerPromise)
-    .catch(error => {
+    .catch((error) => {
       if (!flowAPI.inEditor) {
         // Currently platform doesn't log errors happened in worker. We want to fix it here.
         console.error(
