@@ -1,5 +1,23 @@
 # Changelog
 
+## 4.88.0 (2020-06-09)
+
+#### :rocket: New Feature
+
+- `yoshi-common`, `yoshi-config`, `yoshi-flow-app`, `yoshi-server-tools`, `yoshi-serverless`
+  - [#2490](https://github.com/wix/yoshi/pull/2490) Yoshi Serverless POC ([@yanivefraim](https://github.com/yanivefraim))
+- `create-yoshi-app`, `yoshi-flow-editor-runtime`, `yoshi-flow-editor`
+  - [#2513](https://github.com/wix/yoshi/pull/2513) Create Sentry logs automatically ([@yavorsky](https://github.com/yavorsky))
+
+#### :nail_care: Polish
+
+- `yoshi-common`
+  - [#2525](https://github.com/wix/yoshi/pull/2525) Do not show progress bar if `DEBUG=true` ([@daliusd](https://github.com/daliusd))
+
+#### :house: Internal
+
+- [#2529](https://github.com/wix/yoshi/pull/2529) Publish yoshi's packages to http://npm.dev.wixpress.com/ ([@ranyitz](https://github.com/ranyitz))
+
 ## 4.87.0 (2020-06-09)
 
 #### :rocket: New Feature
