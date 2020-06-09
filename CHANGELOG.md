@@ -1,5 +1,19 @@
 # Changelog
 
+## 4.90.1 (2020-06-09)
+
+#### :rocket: New Feature
+
+- `create-yoshi-app`
+  - [#2528](https://github.com/wix/yoshi/pull/2528) Remove `editor.app.ts` and `viewer.app.ts` from the template ([@yavorsky](https://github.com/yavorsky))
+
+#### :bug: Bug Fix
+
+- `create-yoshi-app`
+  - [#2537](https://github.com/wix/yoshi/pull/2537) Fix create yoshi app library flow creation bug ([@ranyitz](https://github.com/ranyitz))
+- `yoshi-flow-bm`
+  - [#2530](https://github.com/wix/yoshi/pull/2530) Fix wrong value passed in `moduleConfigurationId` in flow-bm ([@amitdahan](https://github.com/amitdahan))
+
 ## 4.90.0 (2020-06-09)
 
 #### :rocket: New Feature
