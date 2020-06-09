@@ -1,5 +1,17 @@
 # Changelog
 
+## 4.90.0 (2020-06-09)
+
+#### :rocket: New Feature
+
+- `yoshi-common`, `yoshi-serverless`
+  - [#2535](https://github.com/wix/yoshi/pull/2535) fix serverless route + add a missing dep ([@yanivefraim](https://github.com/yanivefraim))
+
+#### :house: Internal
+
+- `create-yoshi-app`
+  - [#2512](https://github.com/wix/yoshi/pull/2512) in case there is an error during prompts it will now throw properly ([@ranyitz](https://github.com/ranyitz))
+
 ## 4.89.0 (2020-06-09)
 
 #### :boom: Breaking Change
