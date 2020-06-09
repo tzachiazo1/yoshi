@@ -47,7 +47,11 @@ createModule({
       }`,
     )}
   ], // ${JSON.stringify(methods)},
-  ${moduleConfigurationId ? `moduleConfigurationId: '${module}'` : ''}
+  ${
+    moduleConfigurationId
+      ? `moduleConfigurationId: '${moduleConfigurationId}'`
+      : ''
+  }
   ${moduleInitPath ? `moduleInit: require('${moduleInitPath}').default,` : ''}
   ${sentryDsn ? `sentryDsn: '${sentryDsn}',` : ''}
 });`;
