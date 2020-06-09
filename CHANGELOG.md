@@ -1,5 +1,32 @@
 # Changelog
 
+## 4.87.0 (2020-06-09)
+
+#### :rocket: New Feature
+
+- `yoshi-config`, `yoshi-flow-app`, `yoshi-flow-monorepo`
+  - [#2526](https://github.com/wix/yoshi/pull/2526) Support configuring webworker compilation's resolve.alias ([@ronami](https://github.com/ronami))
+- `yoshi-flow-library`
+  - [#2519](https://github.com/wix/yoshi/pull/2519) Pass unused arguments to jest in library-flow ([@daliusd](https://github.com/daliusd))
+- `yoshi-flow-editor`
+  - [#2507](https://github.com/wix/yoshi/pull/2507) Make `viewer.app.ts` and `editor.app.ts` optional ([@yavorsky](https://github.com/yavorsky))
+
+#### :building_construction: Templates
+
+- `create-yoshi-app`
+  - [#2514](https://github.com/wix/yoshi/pull/2514) Endorse starting from wix-serverless when creating a server project ([@ranyitz](https://github.com/ranyitz))
+
+#### :bug: Bug Fix
+
+- `yoshi-common`, `yoshi-flow-app`
+  - [#2523](https://github.com/wix/yoshi/pull/2523) Fix a bug with server process and `--debug` argv ([@ranyitz](https://github.com/ranyitz))
+- `yoshi-flow-editor-runtime`, `yoshi-flow-editor`
+  - [#2521](https://github.com/wix/yoshi/pull/2521) Init flowAPI even if no `viewer.app.ts` was created ([@yavorsky](https://github.com/yavorsky))
+
+#### :memo: Documentation
+
+- [#2522](https://github.com/wix/yoshi/pull/2522) Add warning about global installation ([@daliusd](https://github.com/daliusd))
+
 ## 4.86.0 (2020-06-07)
 
 #### :rocket: New Feature
