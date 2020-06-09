@@ -7,6 +7,7 @@ import {
   STATICS_DIR,
   TSCONFIG_FILE,
   BUILD_DIR,
+  SERVERLESS_SCOPE_BUILD_DIR,
   PUBLIC_DIR,
   ASSETS_DIR,
   TEMPLATES_DIR,
@@ -493,7 +494,11 @@ export function createBaseWebpackConfig({
 
       ...(target === 'node'
         ? {
-            path: join(BUILD_DIR),
+            path: join(
+              process.env.EXPERIMENTAL_YOSHI_SERVERLESS
+                ? SERVERLESS_SCOPE_BUILD_DIR(getProjectArtifactId())
+                : BUILD_DIR,
+            ),
             filename: '[name].js',
             chunkFilename: `${SERVER_CHUNKS_DIR}/[name].js`,
             libraryTarget: 'umd',
