@@ -32,7 +32,6 @@ module.exports = {
     {
       'Structure API': [
         'editor-flow/structure-api/overview',
-        'editor-flow/structure-api/app-configuration',
         'editor-flow/structure-api/application',
         'editor-flow/structure-api/component',
       ],
