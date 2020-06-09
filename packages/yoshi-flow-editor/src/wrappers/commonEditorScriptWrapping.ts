@@ -33,7 +33,7 @@ const editorScriptWrapper = (
     .map(toControllerMeta);
 
   const shouldUseAppBuilder = controllersMeta.some(
-    meta => meta.widgetType === PLATFORM_WIDGET_COMPONENT_TYPE,
+    (meta) => meta.widgetType === PLATFORM_WIDGET_COMPONENT_TYPE,
   );
 
   const generatedEditorScriptEntryPath = path.join(

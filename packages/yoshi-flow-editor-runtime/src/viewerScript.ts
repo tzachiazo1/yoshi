@@ -149,7 +149,7 @@ const getDescriptorForConfig = (
   descriptors: Array<ControllerDescriptor>,
 ) => {
   return (
-    descriptors.find(descriptor => descriptor.id === type) ||
+    descriptors.find((descriptor) => descriptor.id === type) ||
     getFirstDescriptor(descriptors)
   );
 };
@@ -172,7 +172,7 @@ export const createControllersWithDescriptors = (
 ) => (controllerConfigs: Array<IWidgetControllerConfig>) => {
   // It should be called inside initAppForPage
 
-  const wrappedControllers = controllerConfigs.map(controllerConfig => {
+  const wrappedControllers = controllerConfigs.map((controllerConfig) => {
     // [Platform surprise] `type` here, is a widgetId. :(
     const { type } = controllerConfig;
     const controllerDescriptor:
