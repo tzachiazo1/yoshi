@@ -3102,7 +3102,7 @@
     postcss-value-parser "^3.3.1"
     url-regex "^4.1.1"
 
-"@stylable/core@^3.6.2":
+"@stylable/core@3.6.2", "@stylable/core@^3.6.2":
   version "3.6.2"
   resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@stylable/core/-/core-3.6.2.tgz#1d87f32ec2d42d9aa091d070afadbeb7f9359fd6"
   integrity sha1-HYfzLsLULZqgkdBwr62+t/k1n9Y=
@@ -3174,6 +3174,11 @@
     csso "^4.0.3"
     postcss "^7.0.32"
 
+"@stylable/runtime@3.6.2", "@stylable/runtime@^3.6.2":
+  version "3.6.2"
+  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@stylable/runtime/-/runtime-3.6.2.tgz#88d4dc8aa443b35d526a05d7a481df56cd812f69"
+  integrity sha1-iNTciqRDs11SagXXpIHfVs2BL2k=
+
 "@stylable/runtime@^1.4.0":
   version "1.4.0"
   resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@stylable/runtime/-/runtime-1.4.0.tgz#b3887229e1b8836cbd134a6ca54ff45d989872f4"
@@ -3183,11 +3188,6 @@
   version "3.6.0"
   resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@stylable/runtime/-/runtime-3.6.0.tgz#33536c959b4bc37724ec90b59540447076ba8f87"
   integrity sha1-M1NslZtLw3ck7JC1lUBEcHa6j4c=
-
-"@stylable/runtime@^3.6.2":
-  version "3.6.2"
-  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@stylable/runtime/-/runtime-3.6.2.tgz#88d4dc8aa443b35d526a05d7a481df56cd812f69"
-  integrity sha1-iNTciqRDs11SagXXpIHfVs2BL2k=
 
 "@stylable/webpack-plugin@1.4.0":
   version "1.4.0"
@@ -28035,6 +28035,20 @@ yn@^2.0.0:
   version "2.0.0"
   resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/yn/-/yn-2.0.0.tgz#e5adabc8acf408f6385fc76495684c88e6af689a"
   integrity sha1-5a2ryKz0CPY4X8dklWhMiOavaJo=
+
+yoshi-config@4.83.0:
+  version "4.83.0"
+  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/yoshi-config/-/yoshi-config-4.83.0.tgz#e978655dcfa9b275e25c25aa527d899c68a694bf"
+  integrity sha1-6XhlXc+psnXiXCWqUn2JnGimlL8=
+  dependencies:
+    chalk "2.4.2"
+    cosmiconfig "5.2.1"
+    execa "2.1.0"
+    find-up "3.0.0"
+    import-fresh "3.2.1"
+    jest-validate "24.9.0"
+    lodash "4.17.15"
+    read-pkg "5.2.0"
 
 yoshi-runtime@1.0.732:
   version "1.0.732"
