@@ -15,8 +15,8 @@ test("create-yoshi-app's .nvmrc should match yoshi's .nvmrc", () => {
   expect(cyaNvmrc).toBe(rootNvmrc);
 });
 
-templates.forEach(({ name, path: templatePath, language }) => {
-  language.forEach((lang) => {
+templates.forEach(({ name, path: templatePath, availableLanguages }) => {
+  availableLanguages.forEach((lang) => {
     test(`${capitalize(
       lang,
     )} template ${name}'s .nvmrc should match create-yoshi-app's .nvmrc`, () => {

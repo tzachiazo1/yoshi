@@ -93,9 +93,11 @@ export default (): Array<ExtendedPromptObject<string>> => {
           });
         }
 
-        const templateLangs = answers.templateDefinition.language;
+        const templateLangs = answers.templateDefinition.availableLanguages;
 
-        if (templateLangs.length !== 1) {
+        if (templateLangs.length === 1) {
+          answers.language = templateLangs[0];
+        } else {
           questions.push({
             type: 'select',
             name: 'language',

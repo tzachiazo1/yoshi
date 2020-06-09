@@ -14,7 +14,7 @@ export interface TemplateDefinition {
   title?: string;
   path: string;
   warning?: string;
-  language: Array<'typescript' | 'javascript'>;
+  availableLanguages: Array<Language>;
 }
 
 export default class TemplateModel {
