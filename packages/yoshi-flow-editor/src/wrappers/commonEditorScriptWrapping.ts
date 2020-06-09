@@ -16,6 +16,8 @@ const toControllerMeta = (
     controllerFileName: component.editorControllerFileName!,
     id: component.id,
     widgetType: component.type,
+    controllerId: component.controllerId,
+    componentName: component.name,
   };
 };
 

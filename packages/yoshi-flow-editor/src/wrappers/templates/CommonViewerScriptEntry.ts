@@ -9,6 +9,7 @@ export type TemplateControllerConfig = {
   id: string | null;
   controllerFileName: string;
   widgetType: WidgetType;
+  componentName: string;
   controllerId?: string;
 };
 
@@ -17,6 +18,7 @@ type Opts = {
   viewerEntryFileName: string | null;
   sentryConfig: SentryConfig | null;
   experimentsConfig: ExperimentsConfig | null;
+  appName: string | null;
   controllersMeta: Array<TemplateControllerConfig>;
 };
 
@@ -56,12 +58,16 @@ const getControllerScriptId = (controller: TemplateControllerConfig) => {
 
 const controllerConfigs = t<{
   controllersMeta: Array<TemplateControllerConfig>;
-}>`${({ controllersMeta }) =>
+  appName: string | null;
+}>`${({ controllersMeta, appName }) =>
   controllersMeta
     .map(
       (controller, i) =>
         `{ method: ${getControllerVariableName(i)},
           widgetType: "${controller.widgetType}",
+          controllerFileName: "${controller.controllerFileName}",
+          appName: ${appName ? `"${appName}"` : 'null'},
+          componentName: "${controller.componentName}",
           id: ${getControllerScriptId(controller)} }`,
     )
     .join(', ')}`;
@@ -91,11 +97,15 @@ export default t<Opts>`
   }`
       : 'null'};
 
-  export const initAppForPage = initAppForPageWrapper(importedApp.initAppForPage, sentryConfig, experimentsConfig);
+  export const initAppForPage = initAppForPageWrapper(importedApp.initAppForPage, sentryConfig, experimentsConfig, false, ${({
+    appName,
+  }) => (appName ? `"${appName}"` : 'null')});
   export const createControllers = createControllersWithDescriptors([${({
     controllersMeta,
+    appName,
   }) =>
     controllerConfigs({
       controllersMeta,
+      appName,
     })}]);
 `;

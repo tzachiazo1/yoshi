@@ -15,6 +15,7 @@ export const toControllerMeta = (
     controllerFileName: component.viewerControllerFileName,
     id: component.id,
     controllerId: component.controllerId,
+    componentName: component.name,
     widgetType: component.type,
   };
 };
@@ -40,6 +41,7 @@ const viewerScriptWrapper = (
     viewerScriptWrapperPath,
     sentryConfig: model.sentry,
     controllersMeta,
+    appName: model.appName,
     experimentsConfig: model.experimentsConfig,
     viewerEntryFileName: model.viewerEntryFileName,
   });

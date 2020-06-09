@@ -11,6 +11,7 @@ describe('addOverrideQueryParamsWithModel', () => {
     const overrideParams = overrideQueryParamsWithModel(
       {
         appName: 'app',
+        projectName: '@wix/app',
         artifactId: '7891',
         editorEntryFileName: 'a/b/editor.app.ts',
         viewerEntryFileName: 'a/b',
@@ -48,6 +49,7 @@ describe('addOverrideQueryParamsWithModel', () => {
     const overrideParams = overrideQueryParamsWithModel(
       {
         appName: 'app',
+        projectName: '@wix/app',
         artifactId: '7891',
         urls: {},
         experimentsConfig: {
@@ -91,6 +93,7 @@ describe('addOverrideQueryParamsWithModel', () => {
     const overrideParams = overrideQueryParamsWithModel(
       {
         appName: 'app',
+        projectName: '@wix/app',
         artifactId: '7891',
         urls: {},
         editorEntryFileName: null,

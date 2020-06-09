@@ -25,7 +25,8 @@ import {
 } from './constants';
 
 export interface FlowEditorModel {
-  appName: string;
+  appName: string | null;
+  projectName: string;
   appDefId: string | null;
   artifactId: string;
   viewerEntryFileName: string | null;
@@ -55,6 +56,7 @@ export interface ComponentModel {
 export interface AppConfig {
   experiments: ExperimentsConfig | null;
   appDefinitionId: string;
+  appName?: string;
   sentry?: SentryConfig;
 }
 export interface ComponentConfig {
@@ -227,7 +229,10 @@ For more info, visit http://tiny.cc/dev-center-registration`);
   );
 
   const model = {
-    appName: config.name,
+    // dev center app name from .application.json
+    appName: appConfig.appName || null,
+    // package name from package.json
+    projectName: config.name,
     sentry: (shouldUseSentry() && appConfig.sentry) || null,
     experimentsConfig: appConfig ? appConfig.experiments : null,
     appDefId: appConfig.appDefinitionId ?? null,
