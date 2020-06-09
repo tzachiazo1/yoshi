@@ -1,5 +1,17 @@
 # Changelog
 
+## 4.89.0 (2020-06-09)
+
+#### :boom: Breaking Change
+
+- `babel-plugin-transform-hmr-runtime`, `babel-preset-yoshi`, `bootstrap-hot-loader`, `create-yoshi-app`, `eslint-config-yoshi-base`, `eslint-config-yoshi`, `jest-yoshi-preset`, `stylelint-config-yoshi`, `tslint-config-yoshi-base`, `tslint-config-yoshi`, `yoshi-common`, `yoshi-config`, `yoshi-flow-app`, `yoshi-flow-bm`, `yoshi-flow-editor-runtime`, `yoshi-flow-editor`, `yoshi-flow-legacy`, `yoshi-flow-library`, `yoshi-flow-monorepo`, `yoshi-helpers`, `yoshi-server-react`, `yoshi-server-tools`, `yoshi-server`, `yoshi`
+  - [#2516](https://github.com/wix/yoshi/pull/2516) Upgrade prettier to v2 ([@liorcode](https://github.com/liorcode))
+
+#### :bug: Bug Fix
+
+- `yoshi-stylable-dependencies`
+  - [#2532](https://github.com/wix/yoshi/pull/2532) Add explicit `@stylable/core` & `@stylable/runtime` dependencies ([@argshook](https://github.com/argshook))
+
 ## 4.88.0 (2020-06-09)
 
 #### :rocket: New Feature
