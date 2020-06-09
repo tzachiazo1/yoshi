@@ -6,7 +6,7 @@ import { requestPayloadCodec, DSL } from '../types';
 import { relativeFilePath, connectToYoshiServerHMR } from '../utils';
 import { route } from '..';
 
-const buildDir = path.resolve(__dirname, '..', '..', '..', '..', BUILD_DIR);
+const buildDir = path.resolve(__dirname, '..', '..', BUILD_DIR);
 
 let functions = createFunctions();
 

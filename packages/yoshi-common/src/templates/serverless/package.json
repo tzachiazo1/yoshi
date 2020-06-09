@@ -9,7 +9,8 @@
     "sockjs-client": "1.4.0",
     "path-to-regexp": "3.2.0",
     "micro": "9.3.5-canary.3",
-    "youch": "2.0.10"
+    "youch": "2.0.10",
+    "yoshi-serverless": "^4.0.0"
   },
   "yoshi": {
     "projectType": "app",
