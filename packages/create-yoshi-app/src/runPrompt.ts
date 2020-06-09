@@ -17,6 +17,8 @@ export default async (workingDir = process.cwd()) => {
       console.log('Aborting ...');
       process.exit(0);
     }
+
+    throw e;
   }
 
   // use the basename of the current working directory if projectName wasn't supplied
