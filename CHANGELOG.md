@@ -1,5 +1,26 @@
 # Changelog
 
+## 4.91.0 (2020-06-10)
+
+#### :rocket: New Feature
+
+- `yoshi-common`
+  - [#2531](https://github.com/wix/yoshi/pull/2531) Write full webpack errors log to file. ([@daliusd](https://github.com/daliusd))
+
+#### :bug: Bug Fix
+
+- `yoshi-flow-bm`
+  - [#2543](https://github.com/wix/yoshi/pull/2543) Copy templates in flow-bm ([@amitdahan](https://github.com/amitdahan))
+
+#### :memo: Documentation
+
+- [#2536](https://github.com/wix/yoshi/pull/2536) Document env vars related to debugging ([@daliusd](https://github.com/daliusd))
+
+#### Committers: 2
+
+- Amit Dahan ([@amitdahan](https://github.com/amitdahan))
+- Dalius Dobravolskas ([@daliusd](https://github.com/daliusd))
+
 ## 4.90.1 (2020-06-09)
 
 #### :rocket: New Feature
