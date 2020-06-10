@@ -1,5 +1,17 @@
 # Changelog
 
+## 4.93.0 (2020-06-10)
+
+#### :rocket: New Feature
+
+- `create-yoshi-app`, `yoshi-flow-editor-runtime`
+  - [#2541](https://github.com/wix/yoshi/pull/2541) Automatic `fedops` logging for Editor Flow projects ([@yavorsky](https://github.com/yavorsky))
+
+#### :bug: Bug Fix
+
+- `yoshi-helpers`
+  - [#2547](https://github.com/wix/yoshi/pull/2547) Yoshi serverless: fix scope name ([@yanivefraim](https://github.com/yanivefraim))
+
 ## 4.92.1 (2020-06-10)
 
 #### :bug: Bug Fix
