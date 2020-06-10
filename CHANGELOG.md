@@ -1,5 +1,17 @@
 # Changelog
 
+## 4.92.1 (2020-06-10)
+
+#### :bug: Bug Fix
+
+- `create-yoshi-app`
+  - [#2544](https://github.com/wix/yoshi/pull/2544) Fix a bug with create yoshi app ([@ranyitz](https://github.com/ranyitz))
+
+#### :house: Internal
+
+- `yoshi-common`, `yoshi-flow-app`, `yoshi-flow-bm`, `yoshi-flow-editor`, `yoshi-flow-legacy`, `yoshi-flow-library`, `yoshi-flow-monorepo`
+  - [#2539](https://github.com/wix/yoshi/pull/2539) Send telemetry when start building ([@ranyitz](https://github.com/ranyitz))
+
 ## 4.92.0 (2020-06-10)
 
 #### :rocket: New Feature
