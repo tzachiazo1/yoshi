@@ -194,7 +194,9 @@ export const getProjectArtifactId = (cwd = process.cwd()) => {
 
 export const getServerlessScope = () => {
   return (
-    getProjectArtifactId() + '-' + (process.env.ARTIFACT_VERSION || '0.0.0')
+    getProjectArtifactId() +
+    '-' +
+    (process.env.ARTIFACT_VERSION?.replace(/\./g, '-') || '0-0-0')
   );
 };
 
