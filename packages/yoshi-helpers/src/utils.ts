@@ -192,6 +192,12 @@ export const getProjectArtifactId = (cwd = process.cwd()) => {
   return '';
 };
 
+export const getServerlessScope = () => {
+  return (
+    getProjectArtifactId() + '-' + (process.env.ARTIFACT_VERSION || '0.0.0')
+  );
+};
+
 export const getProjectArtifactVersion = () => {
   return (process.env.ARTIFACT_VERSION
     ? // Dev CI

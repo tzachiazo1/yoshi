@@ -25,7 +25,11 @@ import { StatsWriterPlugin } from 'webpack-stats-plugin';
 // @ts-ignore - missing types
 import ModuleNotFoundPlugin from 'react-dev-utils/ModuleNotFoundPlugin';
 import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin';
-import { toIdentifier, getProjectArtifactId } from 'yoshi-helpers/utils';
+import {
+  toIdentifier,
+  getProjectArtifactId,
+  getServerlessScope,
+} from 'yoshi-helpers/utils';
 import TerserPlugin from 'terser-webpack-plugin';
 import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import cssnano from 'cssnano';
@@ -459,6 +463,8 @@ export function createBaseWebpackConfig({
     },
   };
 
+  const serverlessScope = SERVERLESS_SCOPE_BUILD_DIR(getServerlessScope());
+
   const config: webpack.Configuration = {
     context: join(SRC_DIR),
 
@@ -496,7 +502,7 @@ export function createBaseWebpackConfig({
         ? {
             path: join(
               process.env.EXPERIMENTAL_YOSHI_SERVERLESS
-                ? SERVERLESS_SCOPE_BUILD_DIR(getProjectArtifactId())
+                ? serverlessScope
                 : BUILD_DIR,
             ),
             filename: '[name].js',

@@ -12,7 +12,6 @@ import {
   SERVERLESS_DIR,
 } from 'yoshi-config/build/paths';
 import { inTeamCity, isWebWorkerBundle } from 'yoshi-helpers/build/queries';
-import { getProjectArtifactId } from 'yoshi-helpers/utils';
 import fs from 'fs-extra';
 import {
   createClientWebpackConfig,
@@ -88,7 +87,7 @@ const build: cliCommand = async function (argv, config) {
         staticsDir: config.clientFilesPath,
       }),
       copyDocker.default(config),
-      copyServerless.default(config, getProjectArtifactId() || ''),
+      copyServerless.default(config),
     ]);
   }
 
