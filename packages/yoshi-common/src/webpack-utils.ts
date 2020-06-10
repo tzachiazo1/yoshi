@@ -238,6 +238,13 @@ async function runWebpack(
       console.log(chalk.red('Failed to compile.\n'));
       console.error(messages.errors.join('\n\n'));
 
+      const fullLog = webpackStats.stats
+        .filter((s) => s.hasErrors())
+        .map((s) => s.toString())
+        .join('\n\n');
+      await fs.writeFile('./target/yoshi-error.log', fullLog);
+      console.error('Full log written to ./target/yoshi-error.log\n\n');
+
       process.exit(1);
     }
 
