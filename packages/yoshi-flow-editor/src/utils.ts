@@ -75,7 +75,7 @@ const withComponents = (components: Array<ComponentModel>) => {
       formatter: (component: ComponentModel, baseUrl: string) => string,
     ) => {
       return components
-        .map(component => formatter(component, baseUrl))
+        .map((component) => formatter(component, baseUrl))
         .join(',');
     };
   };
@@ -129,8 +129,7 @@ export const overrideQueryParamsWithModel = (
     );
 
   if (
-    isOverrideSupportedForOrigin(origin, 'editorScriptUrlOverride') &&
-    model.editorEntryFileName
+    isOverrideSupportedForOrigin(origin, 'editorScriptUrlOverride')
   ) {
     urlWithParams.searchParams.set(
       'editorScriptUrlOverride',

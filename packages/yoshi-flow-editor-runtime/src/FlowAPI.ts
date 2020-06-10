@@ -31,7 +31,7 @@ class FlowAPI {
     }
   }
 
-  reportError: ReportError = error => {
+  reportError: ReportError = (error) => {
     console.warn(
       "You are trying to report an error, but didn't configure it in `.application.json`",
       'Error: ',
@@ -44,6 +44,7 @@ export class ControllerFlowAPI extends FlowAPI {
   controllerConfig: IWidgetControllerConfig;
   sentryMonitor?: RavenStatic;
   fedopsLogger: BaseLogger<string>;
+  inEditor: boolean;
   widgetId: string;
 
   constructor({
@@ -62,12 +63,14 @@ export class ControllerFlowAPI extends FlowAPI {
     this.controllerConfig = controllerConfig;
     this.getExperiments = viewerScriptFlowAPI.getExperiments;
     this.sentryMonitor = viewerScriptFlowAPI.sentryMonitor;
+    this.inEditor = viewerScriptFlowAPI.inEditor;
     this.fedopsLogger = controllerConfig.platformAPIs.fedOpsLoggerFactory!.getLoggerForWidget(
       {
         appId: appDefinitionId,
         widgetId,
       },
     );
+
     if (this.sentryMonitor) {
       this.reportError = this.sentryMonitor.captureException.bind(
         this.sentryMonitor,
@@ -136,17 +139,22 @@ export class EditorScriptFlowAPI extends FlowAPI {
 
 export class ViewerScriptFlowAPI extends FlowAPI {
   sentryMonitor?: RavenStatic;
+  inEditor: boolean;
 
   constructor({
     experimentsConfig,
     platformServices,
     sentry,
+    inEditor,
   }: {
     experimentsConfig: ExperimentsConfig | null;
     platformServices: IPlatformServices;
     sentry: SentryConfig | null;
+    inEditor: boolean;
   }) {
     super({ experimentsConfig });
+
+    this.inEditor = inEditor;
 
     if (sentry) {
       const sentryOptions = buildSentryOptions(
@@ -157,7 +165,7 @@ export class ViewerScriptFlowAPI extends FlowAPI {
 
       this.sentryMonitor = platformServices.monitoring.createMonitor(
         sentryOptions.dsn,
-        config => ({
+        (config) => ({
           ...config,
           ...sentryOptions.config,
         }),

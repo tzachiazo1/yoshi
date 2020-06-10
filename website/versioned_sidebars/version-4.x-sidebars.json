@@ -100,10 +100,6 @@
         },
         {
           "type": "doc",
-          "id": "version-4.x/editor-flow/structure-api/app-configuration"
-        },
-        {
-          "type": "doc",
           "id": "version-4.x/editor-flow/structure-api/application"
         },
         {

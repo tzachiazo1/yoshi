@@ -47,7 +47,11 @@ createModule({
       }`,
     )}
   ], // ${JSON.stringify(methods)},
-  ${moduleConfigurationId ? `moduleConfigurationId: '${module}'` : ''}
+  ${
+    moduleConfigurationId
+      ? `moduleConfigurationId: '${moduleConfigurationId}'`
+      : ''
+  }
   ${moduleInitPath ? `moduleInit: require('${moduleInitPath}').default,` : ''}
   ${sentryDsn ? `sentryDsn: '${sentryDsn}',` : ''}
 });`;
@@ -59,9 +63,9 @@ export const getModuleEntry = (model: FlowBMModel): Entry => ({
 });
 
 const renderModule = (model: FlowBMModel) => {
-  model.pages.forEach(page => renderPage(page, model));
+  model.pages.forEach((page) => renderPage(page, model));
 
-  model.exportedComponents.forEach(component =>
+  model.exportedComponents.forEach((component) =>
     renderExportedComponent(component, model),
   );
 

@@ -28,9 +28,13 @@ export function transform(source: string, fullFileName: string) {
   const srcDir = path.resolve(SRC_DIR);
   const fileName = path.relative(srcDir, fullFileName).replace(/\.[^/.]+$/, '');
 
-  const headers = [`import { dsl } from 'yoshi-server/build/wrap';`];
+  const yoshiServerString = process.env.EXPERIMENTAL_YOSHI_SERVERLESS
+    ? 'yoshi-serverless/build/wrap'
+    : 'yoshi-server/build/wrap';
 
-  const functions = collectExportNames(source as string).map(functionName => {
+  const headers = [`import { dsl } from '${yoshiServerString}';`];
+
+  const functions = collectExportNames(source as string).map((functionName) => {
     return `export const ${functionName} = dsl({
           functionName: '${functionName}',
           fileName: '${fileName}',

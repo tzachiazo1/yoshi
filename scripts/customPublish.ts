@@ -1,4 +1,4 @@
-process.on('unhandledRejection', error => {
+process.on('unhandledRejection', (error) => {
   throw error;
 });
 
@@ -11,8 +11,10 @@ import isEmpty from 'lodash/isEmpty';
 import { getPackages } from '@lerna/project';
 import { Package } from '../packages/yoshi-flow-monorepo/src/load-package-graph';
 import { isTruthy } from '../packages/yoshi-common/src/utils/helpers';
+// @ts-ignore
+import pkg from '../package.json';
 
-const REGISTRY = 'https://registry.npmjs.org/';
+const REGISTRY = pkg.publishConfig.registry;
 const LATEST_TAG = 'latest';
 const NEXT_TAG = 'next';
 const OLD_TAG = 'old';

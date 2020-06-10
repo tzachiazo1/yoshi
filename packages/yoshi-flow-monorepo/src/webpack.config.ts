@@ -53,7 +53,7 @@ const createDefaultOptions = (
     includeInTranspilation: [
       ...[...apps, ...libs].map(({ location }) => path.join(location, SRC_DIR)),
       ...rootConfig.externalUnprocessedModules.map(
-        m => new RegExp(`node_modules/${m}`),
+        (m) => new RegExp(`node_modules/${m}`),
       ),
     ],
     umdNamedDefine: pkg.config.umdNamedDefine,
@@ -185,7 +185,7 @@ export function createServerWebpackConfig(
     isDev,
     isHot,
     isMonorepo: true,
-    nodeExternalsWhitelist: libs.map(pkg => new RegExp(pkg.name)),
+    nodeExternalsWhitelist: libs.map((pkg) => new RegExp(pkg.name)),
     useAssetRelocator: pkg.config.experimentalUseAssetRelocator,
     forceMinimizeServer: isThunderboltElementModule(pkg),
     serverExternals: pkg.config.serverExternals,
@@ -270,7 +270,7 @@ export function createWebWorkerWebpackConfig(
   workerConfig.output!.globalObject = 'self';
 
   workerConfig.entry = pkg.config.webWorkerEntry;
-
+  workerConfig.resolve!.alias = pkg.config.webWorkerResolveAlias;
   workerConfig.externals = pkg.config.webWorkerExternals;
 
   return workerConfig;

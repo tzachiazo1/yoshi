@@ -5,23 +5,19 @@ import chalk from 'chalk';
 import DevEnvironment from 'yoshi-common/build/dev-environment';
 import { TARGET_DIR, BUILD_DIR } from 'yoshi-config/build/paths';
 import { getServerStartFile } from 'yoshi-helpers/build/server-start-file';
-import { v4 as uuid } from 'uuid';
 import { CliCommand } from '../bin/yoshi-bm';
 import {
   createClientWebpackConfig,
   createServerWebpackConfig,
 } from '../webpack.config';
-import createFlowBMModel, { FlowBMModel, watchFlowBMModel } from '../model';
+import createFlowBMModel, { watchFlowBMModel } from '../model';
 import renderModule, { getModuleEntry } from '../renderModule';
 import renderModuleConfig from '../renderModuleConfig';
+import getStartUrl from '../start-url';
 
 const join = (...dirs: Array<string>) => path.join(process.cwd(), ...dirs);
 
-const getBMTestkitUrl = ({ pages }: FlowBMModel) => {
-  return `http://localhost:5000/business-manager/${uuid()}/${pages[0].route}`;
-};
-
-const start: CliCommand = async function(argv, yoshiConfig) {
+const start: CliCommand = async function (argv, yoshiConfig) {
   const args = arg(
     {
       // Types
@@ -59,7 +55,6 @@ const start: CliCommand = async function(argv, yoshiConfig) {
       Options
         --help, -h      Displays this message
         --server        (Deprecated!) The main file to start your server
-        --url           Opens the browser with the supplied URL
         --production    Start using unminified production build
         --https         Serve the app bundle on https
         --debug         Allow app-server debugging
@@ -90,7 +85,7 @@ const start: CliCommand = async function(argv, yoshiConfig) {
     fs.emptyDir(join(TARGET_DIR)),
   ]);
 
-  watchFlowBMModel(model => {
+  watchFlowBMModel((model) => {
     renderModule(model);
     renderModuleConfig(model);
   });
@@ -108,7 +103,7 @@ const start: CliCommand = async function(argv, yoshiConfig) {
     isHot: true,
   });
 
-  const startUrl = url ?? getBMTestkitUrl(model);
+  const startUrl = url ?? (await getStartUrl(model, yoshiConfig.servers.cdn));
 
   const devEnvironment = await DevEnvironment.create({
     webpackConfigs: [clientConfig, serverConfig],

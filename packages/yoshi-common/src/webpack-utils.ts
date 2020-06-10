@@ -63,7 +63,7 @@ function overrideRules(
   rules: Array<webpack.Rule>,
   patch: (rule: webpack.Rule) => webpack.Rule,
 ): Array<webpack.Rule> {
-  return rules.map(ruleToPatch => {
+  return rules.map((ruleToPatch) => {
     let rule = patch(ruleToPatch);
     if (rule.rules) {
       rule = { ...rule, rules: overrideRules(rule.rules, patch) };
@@ -81,7 +81,7 @@ function overrideRules(
 
 function waitForCompilation(compiler: webpack.Compiler) {
   return new Promise((resolve, reject) => {
-    compiler.hooks.done.tap('promise', stats =>
+    compiler.hooks.done.tap('promise', (stats) =>
       stats.hasErrors() ? reject(stats) : resolve(stats),
     );
   });
@@ -124,7 +124,12 @@ function createServerEntries(context: string, cwd: string = process.cwd()) {
   }, {});
 
   // Add custom entries for `yoshi-server`
-  entries['routes/_api_'] = 'yoshi-server/build/routes/api';
+  const yoshiServerEntry = process.env.EXPERIMENTAL_YOSHI_SERVERLESS
+    ? `yoshi-serverless/build/routes/api`
+    : `yoshi-server/build/routes/api`;
+
+  entries['routes/_api_'] = yoshiServerEntry;
+
   if (isDevelopment) {
     entries['routes/_launchEditor_'] = 'yoshi-server/build/routes/launchEditor';
   }
@@ -154,7 +159,7 @@ function validateServerEntry({
   extensions: Array<string>;
   yoshiServer: boolean;
 }) {
-  const serverEntry = possibleServerEntries.find(entry => {
+  const serverEntry = possibleServerEntries.find((entry) => {
     return (
       globby.sync(`${entry}(${extensions.join('|')})`, {
         cwd: path.join(cwd, SRC_DIR),
@@ -232,6 +237,13 @@ async function runWebpack(
       // Error handled by webpack
       console.log(chalk.red('Failed to compile.\n'));
       console.error(messages.errors.join('\n\n'));
+
+      const fullLog = webpackStats.stats
+        .filter((s) => s.hasErrors())
+        .map((s) => s.toString())
+        .join('\n\n');
+      await fs.writeFile('./target/yoshi-error.log', fullLog);
+      console.error('Full log written to ./target/yoshi-error.log\n\n');
 
       process.exit(1);
     }

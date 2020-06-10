@@ -3,6 +3,11 @@ import path from 'path';
 export const SRC_DIR = 'src';
 export const BUILD_DIR = 'dist';
 export const TARGET_DIR = 'target';
+export const SERVERLESS_DIR = 'serverless';
+export const SERVERLESS_SCOPE_DIR = (scopeName: string) =>
+  `${SERVERLESS_DIR}/${scopeName}`;
+export const SERVERLESS_SCOPE_BUILD_DIR = (scopeName: string = '') =>
+  `${SERVERLESS_SCOPE_DIR(scopeName)}/dist`;
 export const SERVER_CHUNKS_DIR = 'chunks';
 export const DOCKER_FILE = 'Dockerfile';
 

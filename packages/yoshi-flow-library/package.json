@@ -1,6 +1,6 @@
 {
   "name": "yoshi-flow-library",
-  "version": "4.85.0",
+  "version": "4.90.0",
   "bin": {
     "yoshi-library": "./bin/yoshi-library.js"
   },
@@ -31,13 +31,13 @@
     "fs-extra": "8.1.0",
     "globby": "11.0.0",
     "jest": "24.9.0",
-    "jest-teamcity-reporter": "0.9.0",
+    "jest-teamcity": "^1.7.0",
     "jest-validate": "24.9.0",
     "lodash": "4.17.15",
     "read-pkg": "5.2.0",
-    "yoshi-common": "4.85.0",
-    "yoshi-config": "4.84.0",
-    "yoshi-flow-legacy": "4.85.0",
-    "yoshi-helpers": "4.84.0"
+    "yoshi-common": "4.90.0",
+    "yoshi-config": "4.89.0",
+    "yoshi-flow-legacy": "4.90.0",
+    "yoshi-helpers": "4.89.0"
   }
 }

@@ -38,8 +38,7 @@ Yoshi flow editor requires users to use strictly defined file structure. This al
 
 In next sections, we'll explain usage of extended platform API with editor flow methods and what boilerplate code can be bypassed, since it's already handled in most optimal way behind the scenes.
 
-Editor flow apps structure consist of 3 levels:
-- App configuration level: root of the project with configuration file (`.application.json`)
-- Application level: Entry points for viewerScript (`viewer.app.ts`) and editorScript (`editor.app.ts`) - files that's running in worker for all components. Located under `src` direcotry.
+Editor flow apps structure consist of 2 levels:
+- Application level: Configuration files in the project's root and entry points for viewerScript (`viewer.app.ts`) and editorScript (`editor.app.ts`) - files that's running in worker for all components. Located under `src` direcotry.
 - Component level: Single components located in `src/components/:componentName` directories. Includes `Widget`, `Settings` panel and `controller`.
 

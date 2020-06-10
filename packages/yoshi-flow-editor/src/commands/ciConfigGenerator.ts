@@ -10,12 +10,12 @@ function generateWidgetsUrls(
   components: Array<ComponentModel>,
   artifactId: string,
 ): Array<string> {
-  const controllerConfig = components.map(component =>
+  const controllerConfig = components.map((component) =>
     generateWidgetControllerUrl(component, artifactId),
   );
 
   return controllerConfig.concat(
-    components.map(component =>
+    components.map((component) =>
       generateWidgetComponentUrl(component, artifactId),
     ),
   );
@@ -40,7 +40,7 @@ export function writeCiConfig(model: FlowEditorModel): Promise<void> {
     app_def_id: model.appDefId,
     ignore_dependencies: 'clear',
     tpa_url_templates: [
-      generatePlatformBaseUrl(model.appName, model.artifactId),
+      generatePlatformBaseUrl(model.projectName, model.artifactId),
       ...generateWidgetsUrls(model.components, model.artifactId),
     ],
   };

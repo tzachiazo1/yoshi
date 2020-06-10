@@ -25,10 +25,11 @@ import {
 } from './constants';
 
 export interface FlowEditorModel {
-  appName: string;
+  appName: string | null;
+  projectName: string;
   appDefId: string | null;
   artifactId: string;
-  viewerAppFileName: string;
+  viewerEntryFileName: string | null;
   editorEntryFileName: string | null;
   experimentsConfig: ExperimentsConfig | null;
   components: Array<ComponentModel>;
@@ -56,6 +57,7 @@ export interface ComponentModel {
 export interface AppConfig {
   experiments: ExperimentsConfig | null;
   appDefinitionId: string;
+  appName?: string;
   sentry?: SentryConfig;
 }
 export interface ComponentConfig {
@@ -82,12 +84,13 @@ function shouldUseSentry(): boolean {
 }
 
 function formatPathsForLog(paths: Array<string>, ext: string) {
-  return paths.map(path => (ext ? `${path}.${ext}` : path)).join(' or ');
+  return paths.map((path) => (ext ? `${path}.${ext}` : path)).join(' or ');
 }
 
 function resolveFileNamesFromDirectory(dir: string, fileNames: Array<string>) {
   return (
-    fileNames.map(fileName => resolveFrom(dir, fileName)).find(Boolean) || null
+    fileNames.map((fileName) => resolveFrom(dir, fileName)).find(Boolean) ||
+    null
   );
 }
 
@@ -115,17 +118,10 @@ export async function generateFlowEditorModel(
   const srcPath = path.join(rootPath, 'src');
   const resolveFromRoot = resolveFileNamesFromDirectory.bind(null, rootPath);
   const resolveFromSrc = resolveFileNamesFromDirectory.bind(null, srcPath);
-  const viewerAppFileName = resolveFromSrc(VIEWER_APP_FILENAME);
-  if (!viewerAppFileName) {
-    throw new Error(
-      `Please create "${formatPathsForLog(
-        VIEWER_APP_FILENAME,
-        fileExtension,
-      )}" file in "${path.resolve('./src')}" directory`,
-    );
-  }
 
+  const viewerEntryFileName = resolveFromSrc(VIEWER_APP_FILENAME);
   const editorEntryFileName = resolveFromSrc(EDITOR_APP_FILENAME);
+
   const appConfigFileName = resolveFromRoot(APPLICATION_CONFIG_FILENAME);
   const urlsConfigFileName = resolveFromRoot(URLS_CONFIG);
   const urlsConfig =
@@ -235,13 +231,16 @@ For more info, visit http://tiny.cc/dev-center-registration`);
   );
 
   const model = {
-    appName: config.name,
+    // dev center app name from .application.json
+    appName: appConfig.appName || null,
+    // package name from package.json
+    projectName: config.name,
     sentry: (shouldUseSentry() && appConfig.sentry) || null,
     experimentsConfig: appConfig ? appConfig.experiments : null,
     appDefId: appConfig.appDefinitionId ?? null,
     editorEntryFileName,
     artifactId,
-    viewerAppFileName,
+    viewerEntryFileName,
     components: componentModels,
     urls: {
       viewerUrl: (urlsConfig && urlsConfig.viewerUrl) || null,

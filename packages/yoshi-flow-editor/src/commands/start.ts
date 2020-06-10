@@ -20,10 +20,9 @@ import {
   buildViewerScriptEntry,
   webWorkerExternals,
 } from '../buildEditorEntires';
-
 import { URLsConfig } from '../model';
 
-const start: cliCommand = async function(argv, config, model) {
+const start: cliCommand = async function (argv, config, model) {
   const args = arg(
     {
       // Types
