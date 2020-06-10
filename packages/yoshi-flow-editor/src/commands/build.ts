@@ -9,6 +9,7 @@ import { copyTemplates } from 'yoshi-common/build/copy-assets';
 import { BUILD_DIR, TARGET_DIR } from 'yoshi-config/build/paths';
 import { inTeamCity } from 'yoshi-helpers/build/queries';
 import fs from 'fs-extra';
+import * as telemetry from 'yoshi-common/build/telemetry';
 import {
   createClientWebpackConfig,
   createServerWebpackConfig,
@@ -26,6 +27,8 @@ import { generateEditorHTMLFiles } from './htmlGenerator';
 const join = (...dirs: Array<string>) => path.join(process.cwd(), ...dirs);
 
 const build: cliCommand = async function (argv, config, model) {
+  telemetry.buildStart('Editor', config.name);
+
   const args = arg(
     {
       // Types

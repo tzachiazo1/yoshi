@@ -8,6 +8,7 @@ import {
 } from 'yoshi-common/build/print-build-results';
 import { BUILD_DIR, TARGET_DIR } from 'yoshi-config/build/paths';
 import { inTeamCity } from 'yoshi-helpers/build/queries';
+import * as telemetry from 'yoshi-common/build/telemetry';
 import { copyTemplates } from 'yoshi-common/build/copy-assets';
 import {
   createClientWebpackConfig,
@@ -21,6 +22,8 @@ import renderModuleConfig from '../renderModuleConfig';
 const join = (...dirs: Array<string>) => path.join(process.cwd(), ...dirs);
 
 const build: CliCommand = async function (argv, config) {
+  telemetry.buildStart('BM', config.name);
+
   const args = arg(
     {
       // Types

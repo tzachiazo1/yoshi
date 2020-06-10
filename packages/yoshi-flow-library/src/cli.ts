@@ -5,6 +5,7 @@ process.on('unhandledRejection', (error) => {
 });
 
 import arg from 'arg';
+import readPkg from 'read-pkg';
 import verifyDependencies from 'yoshi-common/build/verify-dependencies';
 import verifyNodeVersion from 'yoshi-common/build/verify-node-version';
 import normalizeDebuggingArgs from 'yoshi-common/build/normalize-debugging-args';
@@ -14,7 +15,11 @@ import loadConfig from './config/loadConfig';
 
 const defaultCommand = 'start';
 
-export type cliCommand = (argv: Array<string>, config: Config) => Promise<void>;
+export type cliCommand = (
+  argv: Array<string>,
+  config: Config,
+  pkgJson: readPkg.PackageJson,
+) => Promise<void>;
 
 const commands: {
   [command: string]: () => Promise<{ default: cliCommand }>;
@@ -93,10 +98,13 @@ Promise.resolve().then(async () => {
 
   const config = loadConfig();
 
+  // Load the users' package.json
+  const pkgJson = readPkg.sync({ cwd: process.cwd() });
+
   const runCommand = (await commands[command]()).default;
 
   // legacy flow commands doesn't need to be run
   if (typeof runCommand === 'function') {
-    await runCommand(forwardedArgs, config);
+    await runCommand(forwardedArgs, config, pkgJson);
   }
 });
