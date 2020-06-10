@@ -8,6 +8,7 @@ import {
 } from 'yoshi-common/build/print-build-results';
 import { BUILD_DIR, TARGET_DIR } from 'yoshi-config/build/paths';
 import { inTeamCity } from 'yoshi-helpers/build/queries';
+import { copyTemplates } from 'yoshi-common/build/copy-assets';
 import {
   createClientWebpackConfig,
   createServerWebpackConfig,
@@ -69,6 +70,8 @@ const build: CliCommand = async function (argv, config) {
   const model = createFlowBMModel();
   renderModule(model);
   renderModuleConfig(model);
+
+  await copyTemplates();
 
   if (inTeamCity()) {
     const petriSpecs = await import('yoshi-common/build/sync-petri-specs');
