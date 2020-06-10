@@ -1,5 +1,12 @@
 # Changelog
 
+## 4.92.0 (2020-06-10)
+
+#### :rocket: New Feature
+
+- `yoshi-common`, `yoshi-flow-app`, `yoshi-helpers`
+  - [#2542](https://github.com/wix/yoshi/pull/2542) Yoshi Serverless: remove redundant deps and test scope ([@yanivefraim](https://github.com/yanivefraim))
+
 ## 4.91.0 (2020-06-10)
 
 #### :rocket: New Feature
