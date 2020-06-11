@@ -12,8 +12,8 @@ import {
   SERVERLESS_DIR,
 } from 'yoshi-config/build/paths';
 import { inTeamCity, isWebWorkerBundle } from 'yoshi-helpers/build/queries';
-import { getProjectArtifactId } from 'yoshi-helpers/utils';
 import fs from 'fs-extra';
+import * as telemetry from 'yoshi-common/build/telemetry';
 import {
   createClientWebpackConfig,
   createServerWebpackConfig,
@@ -24,6 +24,8 @@ import { cliCommand } from '../bin/yoshi-app';
 const join = (...dirs: Array<string>) => path.join(process.cwd(), ...dirs);
 
 const build: cliCommand = async function (argv, config) {
+  telemetry.buildStart('App', config.name);
+
   const args = arg(
     {
       // Types
@@ -88,7 +90,7 @@ const build: cliCommand = async function (argv, config) {
         staticsDir: config.clientFilesPath,
       }),
       copyDocker.default(config),
-      copyServerless.default(config, getProjectArtifactId() || ''),
+      copyServerless.default(config),
     ]);
   }
 

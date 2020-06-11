@@ -4486,6 +4486,13 @@
     rimraf "^2.6.3"
     typescript "^2.9.2"
 
+"@wix/bi-logger-testkit@latest":
+  version "1.0.661"
+  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@wix/bi-logger-testkit/-/@wix/bi-logger-testkit-1.0.661.tgz#98f0d4243165485c84d0493c3b8cce2e77f45d5f"
+  integrity sha1-mPDUJDFlSFyE0Ek8O4zOLnf0XV8=
+  dependencies:
+    "@wix/wix-bi-logger-client" latest
+
 "@wix/bob-widget-services@^1.30.0":
   version "1.30.0"
   resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@wix/bob-widget-services/-/@wix/bob-widget-services-1.30.0.tgz#05abbc8e5dbdabeb37cc6fa29b2ba35df2e09896"
@@ -7623,6 +7630,14 @@ bfj@^6.1.1:
     check-types "^8.0.3"
     hoopy "^0.1.4"
     tryer "^1.0.1"
+
+bi-logger-yoshi@^1.0.158:
+  version "1.0.158"
+  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/bi-logger-yoshi/-/bi-logger-yoshi-1.0.158.tgz#c8c9416bf6df33ea888c250aec428484aa5d7fae"
+  integrity sha1-yMlBa/bfM+qIjCUK7EKEhKpdf64=
+  dependencies:
+    "@wix/bi-logger-testkit" latest
+    is-url-superb "^2.0.0"
 
 big.js@^3.1.3:
   version "3.2.0"
@@ -15326,6 +15341,13 @@ is-typedarray@^1.0.0, is-typedarray@~1.0.0:
   version "1.0.0"
   resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/is-typedarray/-/is-typedarray-1.0.0.tgz#e479c80858df0c1b11ddda6940f96011fcda4a9a"
   integrity sha1-5HnICFjfDBsR3dppQPlgEfzaSpo=
+
+is-url-superb@^2.0.0:
+  version "2.0.0"
+  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/is-url-superb/-/is-url-superb-2.0.0.tgz#b728a18cf692e4d16da6b94c7408a811db0d0492"
+  integrity sha1-tyihjPaS5NFtprlMdAioEdsNBJI=
+  dependencies:
+    url-regex "^3.0.0"
 
 is-utf8@^0.2.0:
   version "0.2.1"
@@ -26540,6 +26562,13 @@ url-parse@^1.4.3, url-parse@~1.4.3:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
 
+url-regex@^3.0.0:
+  version "3.2.0"
+  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/url-regex/-/url-regex-3.2.0.tgz#dbad1e0c9e29e105dd0b1f09f6862f7fdb482724"
+  integrity sha1-260eDJ4p4QXdCx8J9oYvf9tIJyQ=
+  dependencies:
+    ip-regex "^1.0.1"
+
 url-regex@^4.1.1:
   version "4.1.1"
   resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/url-regex/-/url-regex-4.1.1.tgz#a5617b22e15e26dac57ce74c3f52088bcdfec995"
@@ -27405,6 +27434,11 @@ with-callback@^1.0.2:
   version "1.0.2"
   resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/with-callback/-/with-callback-1.0.2.tgz#a09629b9a920028d721404fb435bdcff5c91bc21"
   integrity sha1-oJYpuakgAo1yFAT7Q1vc/1yRvCE=
+
+wix-bi-logger-client@0.0.787:
+  version "0.0.787"
+  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/wix-bi-logger-client/-/wix-bi-logger-client-0.0.787.tgz#0846c2c6b84a04d3db21fc8b60873bc39fdd3fc0"
+  integrity sha1-CEbCxrhKBNPbIfyLYIc7w5/dP8A=
 
 wix-bootstrap-bo-auth@^1.0.1888:
   version "1.0.2007"

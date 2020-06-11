@@ -11,13 +11,16 @@ import fs from 'fs-extra';
 import TscProcess, {
   TypeError,
 } from 'yoshi-common/build/typescript/tsc-process';
+import * as telemetry from 'yoshi-common/build/telemetry';
 import runBabel from 'yoshi-common/build/typescript/run-babel';
 import { createClientWebpackConfig } from '../webpack.config';
 import { cliCommand } from '../cli';
 
 const join = (...dirs: Array<string>) => path.join(process.cwd(), ...dirs);
 
-const build: cliCommand = async function (argv, config) {
+const build: cliCommand = async function (argv, config, pkgJson) {
+  telemetry.buildStart('Library', pkgJson.name!);
+
   const args = arg(
     {
       // Types

@@ -1,19 +1,6 @@
 {
   "name": "yoshi-server-auto-generated",
   "dependencies": {
-    "fs-extra": "^8.1.0",
-    "globby": "10.0.2",
-    "import-fresh": "3.2.1",
-    "yoshi-config": "4.83.0",
-    "@wix/serverless-api": "^1.0.0",
-    "sockjs-client": "1.4.0",
-    "path-to-regexp": "3.2.0",
-    "micro": "9.3.5-canary.3",
-    "youch": "2.0.10",
     "yoshi-serverless": "^4.0.0"
-  },
-  "yoshi": {
-    "projectType": "app",
-    "yoshiServer": true
   }
 }

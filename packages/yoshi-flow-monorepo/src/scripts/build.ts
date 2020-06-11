@@ -18,6 +18,7 @@ import {
 import { inTeamCity as checkInTeamCity } from 'yoshi-helpers/build/queries';
 import { copyTemplates } from 'yoshi-common/build/copy-assets';
 import { stripOrganization } from 'yoshi-helpers/build/utils';
+import * as telemetry from 'yoshi-common/build/telemetry';
 import { cliCommand } from '../bin/yoshi-monorepo';
 import {
   createClientWebpackConfig,
@@ -32,6 +33,8 @@ import { isSiteAssetsModule } from '../utils';
 const inTeamCity = checkInTeamCity();
 
 const build: cliCommand = async function (argv, rootConfig, { apps, libs }) {
+  telemetry.buildStart('App', rootConfig.name);
+
   const args = arg(
     {
       // Types

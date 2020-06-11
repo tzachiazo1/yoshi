@@ -103,7 +103,7 @@ export default (): Array<ExtendedPromptObject<string>> => {
             name: 'language',
             message: 'Choose JavaScript Transpiler',
             async getDynamicChoices(answers: any) {
-              return answers.templateDefinition.language.map(
+              return answers.templateDefinition.availableLanguages.map(
                 (lang: string) => ({
                   title: capitalize(lang),
                   value: lang,
