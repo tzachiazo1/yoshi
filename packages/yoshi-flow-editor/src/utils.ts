@@ -128,9 +128,7 @@ export const overrideQueryParamsWithModel = (
       viewerScriptUrlFormatter(model, cdnUrl),
     );
 
-  if (
-    isOverrideSupportedForOrigin(origin, 'editorScriptUrlOverride')
-  ) {
+  if (isOverrideSupportedForOrigin(origin, 'editorScriptUrlOverride')) {
     urlWithParams.searchParams.set(
       'editorScriptUrlOverride',
       editorScriptUrlFormatter(model, cdnUrl),

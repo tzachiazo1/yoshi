@@ -128,10 +128,11 @@ describe('addOverrideQueryParamsWithModel', () => {
     const overrideParams = overrideQueryParamsWithModel(
       {
         appName: 'app',
+        projectName: 'some-project',
         artifactId: '7891',
         urls: {},
         editorEntryFileName: null,
-        viewerAppFileName: 'a/b',
+        viewerEntryFileName: 'a/b',
         appDefId: 'APP_DEF_ID',
         experimentsConfig: {
           scope: 'test-scope',
@@ -165,7 +166,8 @@ describe('addOverrideQueryParamsWithModel', () => {
         artifactId: '7891',
         urls: {},
         editorEntryFileName: null,
-        viewerAppFileName: 'a/b',
+        projectName: 'some-project',
+        viewerEntryFileName: 'a/b',
         appDefId: 'APP_DEF_ID',
         experimentsConfig: {
           scope: 'test-scope',
